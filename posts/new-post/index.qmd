@@ -1,0 +1,17 @@
+---
+title: "Millie"
+author: "KW"
+date: "2025-02-06"
+categories: [news, code, analysis]
+image: "Millie.jpg"
+---
+
+Hello, I am Millie 🐈![](Millie.jpg)
+
+```{r}
+print("I code in R")
+```
+
+```{python}
+print("And in Python")
+```

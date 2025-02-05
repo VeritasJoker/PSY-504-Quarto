@@ -1,0 +1,15 @@
+{
+  "hash": "8418b8c80bce61653de2f96342a03a5e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Millie\"\nauthor: \"KW\"\ndate: \"2025-02-06\"\ncategories: [news, code, analysis]\nimage: \"Millie.jpg\"\n---\n\n\nHello, I am Millie 🐈![](Millie.jpg)\n\n\n::: {.cell}\n\n```{.r .cell-code}\nprint(\"I code in R\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"I code in R\"\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.python .cell-code}\nprint(\"And in Python\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nAnd in Python\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
