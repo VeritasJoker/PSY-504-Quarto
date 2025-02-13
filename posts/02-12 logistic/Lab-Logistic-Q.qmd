@@ -1,7 +1,9 @@
 ---
 title: "Lab: Logistic Regression"
 subtitle: "Princeton University"
-author: "Suyog Chandramouli"
+date: "2025-02-11"
+author: "KW"
+categories: [code, analysis]
 output: 
   tufte::tufte_html:
     css: 
@@ -492,7 +494,7 @@ binned_residuals(fit2, term="age") %>% plot(show_dots=TRUE)
 ```
 
 ::: callout-note
-    Here SES seems to stick out. For SES, only 88% of the residuals are inside the error bounds while for age, about 98% of the residuals are inside the error bounds. However, for the binned residual plot, it looks like there is no systematic trends, so I think it's reasonable to assume linearity. If we want, we can transform SES or add interaction terms to improve model fit.
+Here SES seems to stick out. For SES, only 88% of the residuals are inside the error bounds while for age, about 98% of the residuals are inside the error bounds. However, for the binned residual plot, it looks like there is no systematic trends, so I think it's reasonable to assume linearity. If we want, we can transform SES or add interaction terms to improve model fit.
 :::
 
 ## Testing Polviews

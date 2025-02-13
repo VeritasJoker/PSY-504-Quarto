@@ -1,5 +1,5 @@
 ---
-title: "02-05-Quartro"
+title: "Labs & Assignments"
 listing:
   contents: posts
   sort: "date desc"

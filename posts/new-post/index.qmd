@@ -2,7 +2,7 @@
 title: "Millie"
 author: "KW"
 date: "2025-02-06"
-categories: [news, code, analysis]
+categories: [news]
 image: "Millie.jpg"
 ---
 

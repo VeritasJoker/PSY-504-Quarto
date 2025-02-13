@@ -14,27 +14,6 @@
     "text": "Hello, I am Millie 🐈\n\nprint(\"I code in R\")\n\n[1] \"I code in R\"\n\n\n\nprint(\"And in Python\")\n\nAnd in Python"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "02-05-Quartro",
-    "section": "",
-    "text": "Lab: Logistic Regression\n\n\nPrinceton University\n\n\n\n\n\n\n\n\nSuyog Chandramouli\n\n\n\n\n\n\n\n\n\n\n\n\nMillie\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 5, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nFeb 2, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "posts/02-12 logistic/Lab-Logistic-Q.html",
     "href": "posts/02-12 logistic/Lab-Logistic-Q.html",
     "title": "Lab: Logistic Regression",
@@ -95,7 +74,7 @@
     "href": "posts/02-12 logistic/Lab-Logistic-Q.html#model-fit",
     "title": "Lab: Logistic Regression",
     "section": "Model fit",
-    "text": "Model fit\n\nCalculate the \\(R^2\\) for this model\n\n\n\nCode\nr2_mcfadden(fit2)\n\n\n# R2 for Generalized Linear Regression\n       R2: 0.010\n  adj. R2: 0.009\n\n\n\nR2 interpretation: The model explains around 1% of the variance in the dependent variable, which means it is not a good fit.\nNext, Take a look at the binned residual plots for each continuous predictor variable and look at linearity. Is there a predictor that sticks out? What can we do to improve model fit in this case?\n\n\n\nCode\nbinned_residuals(fit2, term=\"sei10\")\n\n\nWarning: About 88% of the residuals are inside the error bounds (~95% or higher would be good).\n\n\nCode\nbinned_residuals(fit2, term=\"age\")\n\n\nOk: About 98% of the residuals are inside the error bounds.\n\n\nCode\nbinned_residuals(fit2, term=\"sei10\") %&gt;% plot(show_dots=TRUE)\n\n\n\n\n\n\n\n\n\nCode\nbinned_residuals(fit2, term=\"age\") %&gt;% plot(show_dots=TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nHere SES seems to stick out. For SES, only 88% of the residuals are inside the error bounds while for age, about 98% of the residuals are inside the error bounds. However, for the binned residual plot, it looks like there is no systematic trends, so I think it's reasonable to assume linearity. If we want, we can transform SES or add interaction terms to improve model fit."
+    "text": "Model fit\n\nCalculate the \\(R^2\\) for this model\n\n\n\nCode\nr2_mcfadden(fit2)\n\n\n# R2 for Generalized Linear Regression\n       R2: 0.010\n  adj. R2: 0.009\n\n\n\nR2 interpretation: The model explains around 1% of the variance in the dependent variable, which means it is not a good fit.\nNext, Take a look at the binned residual plots for each continuous predictor variable and look at linearity. Is there a predictor that sticks out? What can we do to improve model fit in this case?\n\n\n\nCode\nbinned_residuals(fit2, term=\"sei10\")\n\n\nWarning: About 88% of the residuals are inside the error bounds (~95% or higher would be good).\n\n\nCode\nbinned_residuals(fit2, term=\"age\")\n\n\nOk: About 98% of the residuals are inside the error bounds.\n\n\nCode\nbinned_residuals(fit2, term=\"sei10\") %&gt;% plot(show_dots=TRUE)\n\n\n\n\n\n\n\n\n\nCode\nbinned_residuals(fit2, term=\"age\") %&gt;% plot(show_dots=TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nHere SES seems to stick out. For SES, only 88% of the residuals are inside the error bounds while for age, about 98% of the residuals are inside the error bounds. However, for the binned residual plot, it looks like there is no systematic trends, so I think it’s reasonable to assume linearity. If we want, we can transform SES or add interaction terms to improve model fit."
   },
   {
     "objectID": "posts/02-12 logistic/Lab-Logistic-Q.html#testing-polviews",
@@ -110,5 +89,12 @@
     "title": "Lab: Logistic Regression",
     "section": "Conclusion",
     "text": "Conclusion\nBased on the model summary below, and the three figures, we conclude that age, sex, SES, and political views are all significant variables in predicting satisfaction of mass transit spending. Specifically, people that are younger tend to be more satisfied with mass transit spending; females are more satisfied with mass transit spending than males in general; people of lower socioeconomic status are more satisfied with mass transit spending; and people with more conservative political views are more satisfied with mass transit spending.\n\n\n\n\nDf\nDeviance\nResid. Df\nResid. Dev\nPr(&gt;Chi)\n\n\n\n\nNULL\nNA\nNA\n2589\n3581.340\nNA\n\n\nage\n1\n9.268443\n2588\n3572.072\n0.0023314\n\n\nsex\n1\n12.156624\n2587\n3559.915\n0.0004891\n\n\nsei10\n1\n14.119078\n2586\n3545.796\n0.0001716\n\n\npolviews\n6\n63.028441\n2580\n3482.768\n0.0000000\n\n\n\nTable 1\n\n\n\n\n\nFigure 1: Effect of Sex on Satisfaction with Mass Transportation\n\n\n\n\n\n\n\n\n\nFigure 2: Effect of SES on Satisfaction with Mass Transportation\n\n\n\n\n\n\n\n\n\nFigure 3: Effect of Political Views on Satisfaction with Mass Transportation"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Labs & Assignments",
+    "section": "",
+    "text": "Lab: Logistic Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 11, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nMillie\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\nKW\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Suyog Chandramouli">
+<meta name="author" content="KW">
+<meta name="dcterms.date" content="2025-02-11">
 
-<title>02-05-Quartro - Lab: Logistic Regression</title>
+<title>PSY-504-Quarto - Lab: Logistic Regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +144,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">02-05-Quartro</span>
+    <span class="navbar-title">PSY-504-Quarto</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -179,7 +180,11 @@ window.Quarto = {
     <div class="quarto-title column-body">
       <h1 class="title">Lab: Logistic Regression</h1>
             <p class="subtitle lead">Princeton University</p>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -188,10 +193,16 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Suyog Chandramouli </p>
+               <p>KW </p>
             </div>
     </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 11, 2025</p>
+      </div>
+    </div>
     
       
     </div>
@@ -1145,7 +1156,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>Here SES seems to stick out. For SES, only 88% of the residuals are inside the error bounds while for age, about 98% of the residuals are inside the error bounds. However, for the binned residual plot, it looks like there is no systematic trends, so I think it's reasonable to assume linearity. If we want, we can transform SES or add interaction terms to improve model fit.</code></pre>
+<p>Here SES seems to stick out. For SES, only 88% of the residuals are inside the error bounds while for age, about 98% of the residuals are inside the error bounds. However, for the binned residual plot, it looks like there is no systematic trends, so I think it’s reasonable to assume linearity. If we want, we can transform SES or add interaction terms to improve model fit.</p>
 </div>
 </div>
 </section>
@@ -1154,7 +1165,7 @@ Note
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(fit3, <span class="st">"polviews"</span>) <span class="sc">%&gt;%</span> <span class="fu">pairs</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(fit3, <span class="st">"polviews"</span>) <span class="sc">%&gt;%</span> <span class="fu">pairs</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast                                   estimate        SE  df z.ratio
@@ -1184,7 +1195,7 @@ P value adjustment: tukey method for comparing a family of 7 estimates </code></
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(fit3, <span class="st">"polviews"</span>, <span class="at">type=</span><span class="st">"response"</span>) <span class="sc">%&gt;%</span> <span class="fu">pairs</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(fit3, <span class="st">"polviews"</span>, <span class="at">type=</span><span class="st">"response"</span>) <span class="sc">%&gt;%</span> <span class="fu">pairs</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.value <span class="sc">&lt;</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> contrast                                 odds.ratio         SE  df null

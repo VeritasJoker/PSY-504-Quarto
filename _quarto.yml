@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "02-05-Quartro"
+  title: "PSY-504-Quarto"
   navbar:
     right:
       - about.qmd
