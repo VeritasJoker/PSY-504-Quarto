@@ -13,5 +13,8 @@
   },
   "posts/new-post/index.qmd": {
     "index.html": "8dd01c9e"
+  },
+  "posts/02-12 logistic/Lab-Logistic-Q.qmd": {
+    "Lab-Logistic-Q.html": "d765aa8d"
   }
 }
