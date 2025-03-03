@@ -1,0 +1,392 @@
+---
+    title: "Lab 4 - Multinomial Regression - Questions"
+    subtitle: "Princeton University"
+    date: "2025-02-12"
+    author: "KW"
+    format:
+      html:
+        self-contained: true
+        anchor-sections: true
+        code-tools: true
+        code-fold: true
+        fig-width: 8
+        fig-height: 4
+        code-block-bg: "#f1f3f5"
+        code-block-border-left: "#31BAE9"
+        mainfont: Source Sans Pro
+        theme: journal
+        toc: true
+        toc-depth: 3
+        toc-location: left
+        captions: true
+        cap-location: margin
+        table-captions: true
+        tbl-cap-location: margin
+        reference-location: margin
+      pdf:
+        pdf-engine: lualatex
+        toc: false
+        number-sections: true
+        number-depth: 2
+        top-level-division: section
+        reference-location: document
+        listings: false
+        header-includes:
+          \usepackage{marginnote, here, relsize, needspace, setspace}
+          \def\it{\emph}
+
+    comments:
+      hypothesis: false
+
+    execute:
+      warning: false
+      message: false
+---
+
+Lab Goal: Predict voting frequency using demographic variables
+Data source: FiveThirtyEight "Why Many Americans Don't Vote" survey
+Method: Multinomial logistic regression
+
+## Data
+
+The data for this assignment comes from an online Ipsos survey that was conducted for the FiveThirtyEight article ["Why Many Americans Don't Vote"](https://projects.fivethirtyeight.com/non-voters-poll-2020-election/). You can read more about the survey design and respondents in the README of the [GitHub repo](https://github.com/fivethirtyeight/data/tree/master/non-voters) for the data.
+
+Respondents were asked a variety of questions about their political beliefs, thoughts on multiple issues, and voting behavior. We will focus on using the demographic variables and someone's party identification to understand whether a person is a probable voter.
+
+The variables we'll focus on were (definitions from the codebook in data set GitHub repo):
+
+-   `ppage`: Age of respondent
+
+-   `educ`: Highest educational attainment category.\
+
+-   `race`: Race of respondent, census categories. Note: all categories except Hispanic were non-Hispanic.
+
+-   `gender`: Gender of respondent
+
+-   `income_cat`: Household income category of respondent
+
+-   `Q30`: Response to the question "Generally speaking, do you think of yourself as a..."
+
+    -   1: Republican
+    -   2: Democrat
+    -   3: Independent
+    -   4: Another party, please specify
+    -   5: No preference
+    -   -1: No response
+
+-   `voter_category`: past voting behavior:
+
+    -   **always**: respondent voted in all or all-but-one of the elections they were eligible in
+    -   **sporadic**: respondent voted in at least two, but fewer than all-but-one of the elections they were eligible in
+    -   **rarely/never**: respondent voted in 0 or 1 of the elections they were eligible in
+
+You can read in the data directly from the GitHub repo:
+
+```{r}
+library(nnet)
+library(car)
+library(tidyverse)
+library(emmeans)
+library(ggeffects)
+library(knitr)
+library(patchwork)
+library(broom)
+library(parameters)
+library(easystats)
+```
+
+```{r}
+
+voter_data <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/non-voters/nonvoters_data.csv")
+```
+
+# Lab
+
+-   The variable `Q30` contains the respondent's political party identification. Make a new variable that simplifies `Q30` into four categories: "Democrat", "Republican", "Independent", "Other" ("Other" also includes respondents who did not answer the question).
+
+```{r}
+voter_data <- voter_data %>%
+  mutate(pol_ident_new = case_when(
+    Q30==1 ~ "Rep", 
+    Q30==2 ~ "Dem", 
+    Q30==3 ~ "Indep", 
+    TRUE ~ "Other"
+  ))
+```
+
+-   The variable `voter_category` identifies the respondent's past voter behavior. Relevel the variable to make rarely/never the baseline level, followed by sporadic, then always
+
+```{r}
+voter_data <- voter_data %>%
+  mutate(voter_category = factor(voter_category,
+                           levels = c("rarely/never", "sporadic", "always"),
+                           ordered = TRUE))
+
+```
+
+- Center the age variable to make the intercept more interepretable. 
+That is, so that it reflects the log-odds for an average-aged person rather than a 0-year old person
+```{r}
+voter_data = voter_data %>%
+  mutate(ppage = scale(voter_data$ppage,scale=FALSE))
+```
+
+-   In the [FiveThirtyEight article](https://projects.fivethirtyeight.com/non-voters-poll-2020-election/), the authors include visualizations of the relationship between the voter category and demographic variables such as race, age, education, etc. Select two demographic variables. For each variable, try to replicate the visualizations and interpret the plot to describe its relationship with voter category. Have fun with it: https://www.mikelee.co/posts/2020-02-08-recreate-fivethirtyeight-chicklet-stacked-bar-chart-in-ggplot2.
+
+```{r}
+# library
+library(ggplot2)
+library(viridis)
+library(cowplot)
+library(ggchicklet)
+
+# Enter code
+voter_race <- voter_data %>%
+  count(race, voter_category) %>%
+  mutate(proportion = n / sum(n))
+
+# ggplot(voter_race, aes(x = race, y = proportion, fill = voter_category)) +
+#  geom_bar(stat="identity",position="fill") + coord_flip()
+#   labs(x="Race", y="Proportion")
+
+plt_race = voter_race %>%
+  ggplot(aes(x=race, y=proportion, group = voter_category, fill = voter_category)) +
+  geom_chicklet(width = 0.75, position="fill")  + 
+  scale_y_continuous(
+    expand = c(0, 0.0625),
+    position = "right",
+    breaks = seq(0, 1, 0.25),
+    labels = c("0%", seq(25, 100, 25))
+  ) +
+  coord_flip() + 
+  labs(x="Race", y="Proportion")
+plt_race
+```
+
+```{r}
+# Enter code
+voter_gender <- voter_data %>%
+  count(gender, voter_category) %>%
+  mutate(proportion = n / sum(n))
+
+plt_gender = voter_gender %>%
+  ggplot(aes(x=gender, y=proportion, group = voter_category, fill = voter_category)) +
+  geom_chicklet(width = 0.75, position="fill")  + 
+  scale_y_continuous(
+    expand = c(0, 0.0625),
+    position = "right",
+    breaks = seq(0, 1, 0.25),
+    labels = c("0%", seq(25, 100, 25))
+  ) +
+  coord_flip() + 
+  labs(x="Gender", y="Proportion")
+plt_gender
+```
+
+The plots can be combined into a single plot using the patchwork package.
+```{r}
+library(patchwork)
+plt_race / plt_gender
+```
+
+-   Fit a model using mean-centered age, race, gender, income, and education to predict voter category. Show the code used to fit the model, but do **not** display the model output.
+
+```{r}
+library(nnet)
+
+model = multinom(voter_category ~ ppage + race + gender + income_cat + educ, 
+                     data = voter_data)
+
+```
+
+-   *Should party identification be added to the model?*
+- #Hint: Use an anova test to make the determination
+
+```{r}
+model2 = multinom(voter_category ~ ppage + race + gender + income_cat + educ + pol_ident_new, 
+                     data = voter_data)
+
+anova(model, model2) %>% 
+  kable()
+```
+
+    > #Enter answer based on your code: Yes, party identification should be included in the model
+
+**Use the model you select for the remainder of the assignment**.
+
+## LRT 
+
+-   Run the full model and report overall significance of each of the terms
+
+    ```{r}
+car::Anova(model2) %>% 
+  kable()
+    ```
+
+    > # All the temrs: age, race, gender, income, education, and party identification are all significant in predicting voter category
+
+## Marginal Effects Political Group - Emmeans
+
+```{r}
+#Get estimated marginal means from the model
+
+#using 
+multinomial_analysis <- emmeans(model2, ~ pol_ident_new|voter_category)
+
+coefs = contrast(regrid(multinomial_analysis, "log"),"trt.vs.ctrl1",  by="pol_ident_new")
+# you can add a parameter to the above command, ref = newbaseline, if you want to change baseline
+
+update(coefs, by = "contrast") %>%
+ kable(format = "markdown", digits = 3)
+```
+
+
+## Marginal Effects of Education - Emmeans
+
+```{r}
+#Get estimated marginal means from the model
+
+#using 
+multinomial_analysis <- emmeans(model2, ~ educ|voter_category)
+
+coefs = contrast(regrid(multinomial_analysis, "log"),"trt.vs.ctrl1",  by="educ")
+# you can add a parameter to the above command, ref = newbaseline, if you want to change baseline
+
+update(coefs, by = "contrast") %>%
+ kable(format = "markdown", digits = 3)
+```
+
+- Next, plot the predicted probabilities of voter category as a function of Age and Party ID
+
+    ```{r}
+  ggemmeans(model2, terms = c("ppage")) %>% 
+      ggplot(., aes(x = x, y = predicted, fill = response.level)) +
+      geom_area() + 
+      geom_rug(sides = "b", position = "jitter", alpha = .5) + 
+      labs(x = "\nAge", y = "Predicted Probablity\n", title = "Predicted Probabilities of Voting Frequency by Age") +
+      scale_fill_manual(
+        name = NULL,
+        values = c("always" = "#F6B533", "sporadic" = "#D07EA2", "rarely/never" = "#9854F7"),
+        labels = c("RARELY OR NEVER VOTE    ", "SOMETIMES VOTE    ", "ALMOST ALWAYS VOTE    "),
+        breaks = c("rarely/never", "sporadic", "always")
+      ) +
+      theme_minimal()
+    
+    
+ ggemmeans(model2, terms=c("pol_ident_new")) %>%   ggplot(., aes(x = x, y = predicted, fill = response.level)) + 
+  geom_bar(stat = "identity" ) +
+    geom_text(aes(label = round(predicted, 3)), color="white", position = position_fill(vjust = 0.5),size=3)  + 
+  labs(x="Education", y="Predicted Probablity") + 
+  theme(text = element_text(size = 30)) +  
+  scale_fill_viridis(discrete = TRUE) + 
+  theme_lucid(base_size=25)
+
+```
+
+Plot predicted probabilities as a function of education and voting frequency. 
+    ```{r}
+ ggemmeans(model2, terms=c("educ")) %>% ggplot(., aes(x = x, y = predicted, fill = response.level)) + 
+  geom_bar(stat = "identity" ) +
+    geom_text(aes(label = round(predicted, 3)), color="white", position = position_fill(vjust = 0.5),size=3)  + 
+  labs(x="Education", y="Predicted Probablity") + 
+  theme(text = element_text(size = 30)) +  
+  scale_fill_viridis(discrete = TRUE) + 
+  theme_lucid(base_size=25)
+
+    ```
+
+
+    ## Write-up
+
+### Differences between political groups and voting behavior - Emmeans
+
+```{r}
+multinomial_analysis <- emmeans(model2, ~ pol_ident_new|voter_category)
+
+coefs = contrast(regrid(multinomial_analysis, "log"),"trt.vs.ctrl1",  by="pol_ident_new")
+# you can add a parameter to the above command, ref = newbaseline, if you want to change baseline
+
+update(coefs, by = "contrast") %>%
+ kable(format = "markdown", digits = 3)
+
+# get difference between yes-no and fair-excellent
+contrast(coefs, "revpairwise", by = "contrast") %>%
+  kable(format = "markdown", digits = 3)
+
+```
+
+
+Main Takeaways:
+Comparisons Against Democrats:
+
+Independents vs. Democrats: Independents vote less frequently than Democrats for both sporadic and always voting categories (𝑝
+=
+0.003
+,
+𝑝
+<
+0.001
+p=0.003,p<0.001).
+Other vs. Democrats: "Other" party members vote significantly less frequently than Democrats (
+𝑝
+<
+0.001
+p<0.001).
+Republicans vs. Democrats: No significant difference (
+𝑝
+=
+0.86
+,
+𝑝
+=
+0.468
+p=0.86,p=0.468), suggesting Republicans and Democrats have similar voting frequencies.
+Comparisons Against Independents:
+
+Other vs. Independents: "Other" party members vote less than Independents (
+𝑝
+<
+0.001
+p<0.001).
+Republicans vs. Independents: Republicans vote more frequently than Independents (
+𝑝
+=
+0.029
+,
+𝑝
+=
+0.006
+p=0.029,p=0.006).
+Comparisons Against "Other" Party Members:
+
+Republicans vote significantly more frequently than "Other" party members (
+𝑝
+<
+0.001
+p<0.001).
+Summary Interpretation:
+Democrats and Republicans have similar voting frequencies.
+Independents vote less frequently than Democrats but more than "Other" party members.
+Republicans vote significantly more than Independents and "Other" party members.
+"Other" party members have the lowest voting frequency across all groups.
+
+
+### Differences between education level and voting behavior - Emmeans
+
+Last part of the assignment: Interpret the results from running the following code for your model
+
+```{r}
+multi_an <- emmeans(model, ~ educ|voter_category)
+
+coefs = contrast(regrid(multi_an, "log"),"trt.vs.ctrl1",  by="educ")
+
+update(coefs, by = "contrast") %>% 
+  kable(format = "markdown", digits = 3)
+
+# get difference between yes-no and fair-excellent
+contrast(coefs, "revpairwise", by = "contrast") %>%
+  kable(format = "markdown", digits = 3)
+```
+
+Enter your interpretation here: 
+
