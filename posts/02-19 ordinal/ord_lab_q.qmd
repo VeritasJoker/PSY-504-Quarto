@@ -3,6 +3,7 @@ title: "Lab: Ordinal Regression"
 subtitle: "Princeton University"
 date: "2025-02-19"
 author: "KW"
+categories: [code, analysis]
 output: 
   tufte::tufte_html:
     css: 
@@ -135,10 +136,10 @@ ggplot(gb_age, aes(x = Age, y = proportion, fill = `Technical Rank`)) +
     print(1-exp(-0.0274268))
     ```
 
-    Gender: The odds of being in a higher Technical_Rank category are 2.25 times greater for Females compared to Males, controlling for Age and the interaction between Gender and Age. 
-    
+    Gender: The odds of being in a higher Technical_Rank category are 2.25 times greater for Females compared to Males, controlling for Age and the interaction between Gender and Age.
+
     Age: For every one year increase in age, the odds of being in a higher Technical_Rank category decreases by approximately 0.37%, controlling for Gender and the interaction between Gender and Age.
-    
+
     Gender and Age: For each additional year increase in Age, the odds of being in a higher Technical_Rank category decreases by about 2.71% more for Females than for Males, controlling for Gender and Age.
 
 -   Test if the interaction is warranted
