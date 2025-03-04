@@ -158,7 +158,7 @@
     "href": "posts/02-26 multinomial/Lab4_multinom_Questions-1.html#lrt",
     "title": "Lab: Multinomial Regression",
     "section": "LRT",
-    "text": "LRT\n\nRun the full model and report overall significance of each of the terms\n\n\nCode\ncar::Anova(model2) %&gt;% \n  kable()\n\n\n\n\n\n\nLR Chisq\nDf\nPr(&gt;Chisq)\n\n\n\n\nppage\n638.297213\n2\n0.000000\n\n\nrace\n52.651508\n6\n0.000000\n\n\ngender\n6.027914\n2\n0.049097\n\n\nincome_cat\n67.721466\n6\n0.000000\n\n\neduc\n154.136763\n4\n0.000000\n\n\npol_ident_new\n153.843978\n6\n0.000000\n\n\n\n\n\n\nAll the temrs: age, race, gender, income, education, and party identification are all significant in predicting voter category"
+    "text": "LRT\n\nRun the full model and report overall significance of each of the terms\n\n\nCode\ncar::Anova(model2) %&gt;% \n  kable()\n\n\n\n\n\n\nLR Chisq\nDf\nPr(&gt;Chisq)\n\n\n\n\nppage\n638.297213\n2\n0.000000\n\n\nrace\n52.651508\n6\n0.000000\n\n\ngender\n6.027914\n2\n0.049097\n\n\nincome_cat\n67.721466\n6\n0.000000\n\n\neduc\n154.136763\n4\n0.000000\n\n\npol_ident_new\n153.843978\n6\n0.000000\n\n\n\n\n\n\nAll the terms: age, race, gender, income, education, and party identification are all significant in predicting voter category"
   },
   {
     "objectID": "posts/02-26 multinomial/Lab4_multinom_Questions-1.html#marginal-effects-political-group---emmeans",

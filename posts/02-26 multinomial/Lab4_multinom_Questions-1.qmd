@@ -224,7 +224,7 @@ anova(model, model2) %>%
       kable()
     ```
 
-    > # All the temrs: age, race, gender, income, education, and party identification are all significant in predicting voter category
+    > All the terms: age, race, gender, income, education, and party identification are all significant in predicting voter category
 
 ## Marginal Effects Political Group - Emmeans
 
