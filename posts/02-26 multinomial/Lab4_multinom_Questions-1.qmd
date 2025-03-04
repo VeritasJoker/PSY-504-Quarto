@@ -3,9 +3,19 @@
     subtitle: "Princeton University"
     date: "2025-02-26"
     author: "KW"
+    categories: [code, analysis]
+    output: 
+      tufte::tufte_html:
+        css: 
+        tufte_variant: "envisioned"
+        highlight: github-dark
+        fig_height: 10
+        fig_width: 16
+        toc: true
+        toc_depth: 1
     format:
       html:
-        self-contained: true
+        self-contained: false
         anchor-sections: true
         code-tools: true
         code-fold: true
@@ -23,17 +33,6 @@
         table-captions: true
         tbl-cap-location: margin
         reference-location: margin
-      pdf:
-        pdf-engine: lualatex
-        toc: false
-        number-sections: true
-        number-depth: 2
-        top-level-division: section
-        reference-location: document
-        listings: false
-        header-includes:
-          \usepackage{marginnote, here, relsize, needspace, setspace}
-          \def\it{\emph}
 
     comments:
       hypothesis: false
@@ -41,6 +40,7 @@
     execute:
       warning: false
       message: false
+    engine: knitr
 ---
 
 Lab Goal: Predict voting frequency using demographic variables Data source: FiveThirtyEight "Why Many Americans Don't Vote" survey Method: Multinomial logistic regression
