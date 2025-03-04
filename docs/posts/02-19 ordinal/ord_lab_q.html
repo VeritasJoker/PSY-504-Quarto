@@ -247,7 +247,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="explore" class="level2">
 <h2 class="anchored" data-anchor-id="explore">Explore</h2>
 <ul>
-<li><p>Plot two figures showing the percentage of bakers in each rank— create one for <code>Gender</code> and <code>Age</code></p>
+<li>Plot two figures showing the percentage of bakers in each rank— create one for <code>Gender</code> and <code>Age</code></li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -255,10 +256,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Gender, <span class="st">`</span><span class="at">Technical Rank</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gb_gender, <span class="fu">aes</span>(<span class="at">x =</span> Gender, <span class="at">y =</span> proportion, <span class="at">fill =</span> <span class="st">`</span><span class="at">Technical Rank</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">'identity'</span>, <span class="at">position=</span><span class="st">'fill'</span>) <span class="sc">+</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Gender"</span>, <span class="at">y=</span><span class="st">"Proportion of Technical Rank"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gb_gender, <span class="fu">aes</span>(<span class="at">x =</span> Gender, <span class="at">y =</span> proportion, <span class="at">fill =</span> <span class="st">`</span><span class="at">Technical Rank</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">'identity'</span>, <span class="at">position=</span><span class="st">'fill'</span>) <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Gender"</span>, <span class="at">y=</span><span class="st">"Proportion of Technical Rank"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -267,8 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-</div></li>
-</ul>
+</div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -403,7 +402,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 0.0270541</code></pre>
 </div>
 </div>
-<p>Gender: The odds of being in a higher Technical_Rank category are 2.25 times greater for Females compared to Males, controlling for Age and the interaction between Gender and Age. Age: For every one year increase in age, the odds of being in a higher Technical_Rank category decreases by approximately 0.37%, controlling for Gender and the interaction between Gender and Age. Gender and Age: For each additional year increase in Age, the odds of being in a higher Technical_Rank category decreases by about 2.71% more for Females than for Males, controlling for Gender and Age.</p></li>
+<p>Gender: The odds of being in a higher Technical_Rank category are 2.25 times greater for Females compared to Males, controlling for Age and the interaction between Gender and Age.</p>
+<p>Age: For every one year increase in age, the odds of being in a higher Technical_Rank category decreases by approximately 0.37%, controlling for Gender and the interaction between Gender and Age.</p>
+<p>Gender and Age: For each additional year increase in Age, the odds of being in a higher Technical_Rank category decreases by about 2.71% more for Females than for Males, controlling for Gender and Age.</p></li>
 <li><p>Test if the interaction is warranted</p></li>
 </ul>
 <p>#Hint: You need to create two models with clm(); one with interaction and one without. #Then you compare them using the anova test using anova()</p>
@@ -506,6 +507,7 @@ H0: Proportional odds assumption holds</code></pre>
 </details>
 </div>
 <pre><code>The `brm` package uses a bayesian approach, estimates parameters using Markov Chain Mote Carlo (MCMC), while the `clm` package uses a frequentist approach, estimates parameters via maximum likelihood estimation (MLE). `clm` is much faster and deterministic, while `brms` is slower and stochastic.
+
 The results from `brms` provide posterior distributions with credible intervals, which tend to be wider than the standard errors in `clm`, reflecting greater uncertainty. While the point estimates from both models are similar, the bayesian approach allows for probabilistic statements about the parameters. The posterior distributions directly tell you the probability of a parameter being within a given range. Thus, I would say `brms` is more flexible and interpretable, while `clm` is computationally efficient and useful for quick estimation.</code></pre>
 <ul>
 <li><p>The <code>conditional_effects</code> function is used to plot predicted probabilities by Gender and Age across each rank.</p>

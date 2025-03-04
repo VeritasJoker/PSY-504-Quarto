@@ -1,7 +1,7 @@
 ---
-    title: "Lab 4 - Multinomial Regression - Questions"
+    title: "Lab: Multinomial Regression"
     subtitle: "Princeton University"
-    date: "2025-02-12"
+    date: "2025-02-26"
     author: "KW"
     format:
       html:
@@ -43,9 +43,7 @@
       message: false
 ---
 
-Lab Goal: Predict voting frequency using demographic variables
-Data source: FiveThirtyEight "Why Many Americans Don't Vote" survey
-Method: Multinomial logistic regression
+Lab Goal: Predict voting frequency using demographic variables Data source: FiveThirtyEight "Why Many Americans Don't Vote" survey Method: Multinomial logistic regression
 
 ## Data
 
@@ -82,7 +80,7 @@ The variables we'll focus on were (definitions from the codebook in data set Git
 
 You can read in the data directly from the GitHub repo:
 
-```{r}
+```{r, message=FALSE}
 library(nnet)
 library(car)
 library(tidyverse)
@@ -124,8 +122,8 @@ voter_data <- voter_data %>%
 
 ```
 
-- Center the age variable to make the intercept more interepretable. 
-That is, so that it reflects the log-odds for an average-aged person rather than a 0-year old person
+-   Center the age variable to make the intercept more interepretable. That is, so that it reflects the log-odds for an average-aged person rather than a 0-year old person
+
 ```{r}
 voter_data = voter_data %>%
   mutate(ppage = scale(voter_data$ppage,scale=FALSE))
@@ -184,6 +182,7 @@ plt_gender
 ```
 
 The plots can be combined into a single plot using the patchwork package.
+
 ```{r}
 library(patchwork)
 plt_race / plt_gender
@@ -200,7 +199,7 @@ model = multinom(voter_category ~ ppage + race + gender + income_cat + educ,
 ```
 
 -   *Should party identification be added to the model?*
-- #Hint: Use an anova test to make the determination
+-   #Hint: Use an anova test to make the determination
 
 ```{r}
 model2 = multinom(voter_category ~ ppage + race + gender + income_cat + educ + pol_ident_new, 
@@ -210,17 +209,19 @@ anova(model, model2) %>%
   kable()
 ```
 
-    > #Enter answer based on your code: Yes, party identification should be included in the model
+```         
+> #Enter answer based on your code: Yes, party identification should be included in the model
+```
 
 **Use the model you select for the remainder of the assignment**.
 
-## LRT 
+## LRT
 
 -   Run the full model and report overall significance of each of the terms
 
     ```{r}
-car::Anova(model2) %>% 
-  kable()
+    car::Anova(model2) %>% 
+      kable()
     ```
 
     > # All the temrs: age, race, gender, income, education, and party identification are all significant in predicting voter category
@@ -240,7 +241,6 @@ update(coefs, by = "contrast") %>%
  kable(format = "markdown", digits = 3)
 ```
 
-
 ## Marginal Effects of Education - Emmeans
 
 ```{r}
@@ -256,9 +256,9 @@ update(coefs, by = "contrast") %>%
  kable(format = "markdown", digits = 3)
 ```
 
-- Next, plot the predicted probabilities of voter category as a function of Age and Party ID
+-   Next, plot the predicted probabilities of voter category as a function of Age and Party ID
 
-    ```{r}
+```{r}
   ggemmeans(model2, terms = c("ppage")) %>% 
       ggplot(., aes(x = x, y = predicted, fill = response.level)) +
       geom_area() + 
@@ -280,11 +280,11 @@ update(coefs, by = "contrast") %>%
   theme(text = element_text(size = 30)) +  
   scale_fill_viridis(discrete = TRUE) + 
   theme_lucid(base_size=25)
-
 ```
 
-Plot predicted probabilities as a function of education and voting frequency. 
-    ```{r}
+Plot predicted probabilities as a function of education and voting frequency.
+
+```{r}
  ggemmeans(model2, terms=c("educ")) %>% ggplot(., aes(x = x, y = predicted, fill = response.level)) + 
   geom_bar(stat = "identity" ) +
     geom_text(aes(label = round(predicted, 3)), color="white", position = position_fill(vjust = 0.5),size=3)  + 
@@ -292,11 +292,9 @@ Plot predicted probabilities as a function of education and voting frequency.
   theme(text = element_text(size = 30)) +  
   scale_fill_viridis(discrete = TRUE) + 
   theme_lucid(base_size=25)
+```
 
-    ```
-
-
-    ## Write-up
+## Write-up
 
 ### Differences between political groups and voting behavior - Emmeans
 
@@ -312,64 +310,49 @@ update(coefs, by = "contrast") %>%
 # get difference between yes-no and fair-excellent
 contrast(coefs, "revpairwise", by = "contrast") %>%
   kable(format = "markdown", digits = 3)
-
 ```
 
+Enter your interpretation here:
 
-Main Takeaways:
-Comparisons Against Democrats:
+Voters who are Democrats are 2.61 times more likely to vote sporadically than vote rarely/never.
 
-Independents vs. Democrats: Independents vote less frequently than Democrats for both sporadic and always voting categories (𝑝
-=
-0.003
-,
-𝑝
-<
-0.001
-p=0.003,p<0.001).
-Other vs. Democrats: "Other" party members vote significantly less frequently than Democrats (
-𝑝
-<
-0.001
-p<0.001).
-Republicans vs. Democrats: No significant difference (
-𝑝
-=
-0.86
-,
-𝑝
-=
-0.468
-p=0.86,p=0.468), suggesting Republicans and Democrats have similar voting frequencies.
-Comparisons Against Independents:
+Voters who are Democrats are 1.62 times more likely to vote always than vote rarely/never.
 
-Other vs. Independents: "Other" party members vote less than Independents (
-𝑝
-<
-0.001
-p<0.001).
-Republicans vs. Independents: Republicans vote more frequently than Independents (
-𝑝
-=
-0.029
-,
-𝑝
-=
-0.006
-p=0.029,p=0.006).
-Comparisons Against "Other" Party Members:
+Voters who are Independents are 1.81 times more likely to vote sporadically than vote rarely/never.
 
-Republicans vote significantly more frequently than "Other" party members (
-𝑝
-<
-0.001
-p<0.001).
-Summary Interpretation:
-Democrats and Republicans have similar voting frequencies.
-Independents vote less frequently than Democrats but more than "Other" party members.
-Republicans vote significantly more than Independents and "Other" party members.
-"Other" party members have the lowest voting frequency across all groups.
+Voters who are Independents are 4.78% less likely to vote always than vote rarely/never.
 
+Voters who belong to other political parties are 1.08 times more likely to vote sporadically than vote rarely/never.
+
+Voters who belong to other political parties are 56.61% less likely to vote always than vote rarely/never.
+
+Voters who are Republicans are 2.42 times more likely to vote sporadically than vote rarely/never.
+
+Voters who are Republicans are 1.39 times more likely to vote always than vote rarely/never.
+
+Voters who are Independents are 30.93% less likely to vote sporadically than vote rarely/never compared to voters who are Democrats.
+
+Voters who belong to voters who belong to other political parties are 58.65% less likely to vote sporadically than vote rarely/never compared to voters who are Democrats.
+
+Voters who belong to other political parties are 40.13% less likely to vote sporadically than vote rarely/never compared to voters who are Republicans.
+
+Voters who are Republicans are 7.50% less likely to vote sporadically than vote rarely/never compared to voters who are Democrats.
+
+Voters who are Republicans are 1.34 times more likely to vote sporadically than vote rarely/never compared to voters who are Independents.
+
+Voters who are Republicans are 2.24 times more likely to vote sporadically than vote rarely/never compared to voters who belong to other political parties.
+
+Voters who are Independents are 41.08% less likely to vote always than vote rarely/never compared to voters who are Democrats.
+
+Voters who belong to other political parties are 73.15% less likely to vote always than vote rarely/never compared to voters who are Democrats.
+
+Voters who belong to other political parties are 54.43% less likely to vote always than vote rarely/never compared to voters who are Republicans.
+
+Voters who are Republicans are 14.19% less likely to vote always than vote rarely/never compared to voters who are Democrats.
+
+Voters who are Republicans are 1.46 times more likely to vote always than vote rarely/never compared to voters who are Independents.
+
+Voters who are Republicans are 3.20 times more likely to vote always than vote rarely/never compared to voters who belong to other political parties.
 
 ### Differences between education level and voting behavior - Emmeans
 
@@ -388,5 +371,28 @@ contrast(coefs, "revpairwise", by = "contrast") %>%
   kable(format = "markdown", digits = 3)
 ```
 
-Enter your interpretation here: 
+Enter your interpretation here:
 
+Voters with a highest degree of college are 3.18 times more likely to vote sporadically than vote rarely/never.
+
+Voters with a highest degree of college are 2.04 times more likely to vote always than vote rarely/never.
+
+Voters with a highest degree of high school or less are 1.30 times more likely to vote sporadically than vote rarely/never.
+
+Voters with a highest degree of high school or less are 45.23% less likely to vote always than vote rarely/never.
+
+Voters with a highest degree of some college are 2.24 times more likely to vote sporadically than vote rarely/never.
+
+Voters with a highest degree of some college are 1.36 times more likely to vote always than vote rarely/never.
+
+Voters with a highest degree of high school or less are 59.22% less likely to vote sporadically than vote rarely/never compared to voters with a highest degree of college.
+
+Voters with a highest degree of some college are 29.46% less likely to vote sporadically than vote rarely/never compared to voters with a highest degree of college.
+
+Voters with a highest degree of some college are 1.73 times more likely to vote sporadically than vote rarely/never compared to voters with a highest degree of high school or less.
+
+Voters with a highest degree of high school or less are 73.10% less likely to vote always than vote rarely/never compared to voters with a highest degree of college.
+
+Voters with a highest degree of some college are 33.03% less likely to vote always than vote rarely/never compared to voters with a highest degree of college.
+
+Voters with a highest degree of some college are 2.49 times more likely to vote always than vote rarely/never compared to voters with a highest degree of high school or less.
