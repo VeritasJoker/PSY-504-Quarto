@@ -6,7 +6,7 @@ author: "KW"
 categories: [code, analysis]
 format:
   html:
-    self-contained: true
+    self-contained: false
     anchor-sections: true
     code-tools: true
     code-fold: true
