@@ -1,0 +1,242 @@
+---
+title: "Lab: Poisson Regression"
+subtitle: "Princeton University"
+date: "2025-03-05"
+author: "KW"
+categories: [code, analysis]
+format:
+  html:
+    self-contained: true
+    anchor-sections: true
+    code-tools: true
+    code-fold: true
+    fig-width: 8
+    fig-height: 4
+    code-block-bg: "#f1f3f5"
+    code-block-border-left: "#31BAE9"
+    mainfont: Source Sans Pro
+    theme: journal
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    captions: true
+    cap-location: margin
+    table-captions: true
+    tbl-cap-location: margin
+    reference-location: margin
+  pdf:
+    pdf-engine: lualatex
+    toc: false
+    number-sections: true
+    number-depth: 2
+    top-level-division: section
+    reference-location: document
+    listings: false
+    header-includes:
+      \usepackage{marginnote, here, relsize, needspace, setspace}
+      \def\it{\emph}
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+  fig-width: 12
+  fig-height: 8
+  editor_options: 
+  chunk_output_type: inline
+  code-overflow: wrap
+  html:
+    code-fold: true
+    code-tools: true
+---
+
+1.  To complete this lab:
+
+-   Load packages
+
+```{r, message=FALSE}
+library(MASS)
+library(tidyverse)
+library(emmeans)
+library(ggeffects)
+library(easystats)
+library(performance)
+library(knitr)
+```
+
+-   Download the dataset:
+
+```{r}
+
+library(tidyverse)
+
+data <- read_delim("https://raw.githubusercontent.com/jgeller112/psy504-advanced-stats/main/slides/Poisson/data/2010.csv")
+
+```
+
+2.  Conduct the analysis described in the preregistration document
+
+<!-- -->
+
+a.  The number of hours per week that a person spends on the Internet ("WWWHR") will\
+    be predicted by their vocabulary ("WORDSUM"), age ("AGE"), sex ("SEX"), religiosity\
+    ("RELITEN"), political orientation ("POLVIEWS"), and how often they work from home\
+    ("WRKHOME").
+
+-   Let's use the `naniar` package's function `replace_with_na`to clean the data.
+
+```{r}
+library(naniar)
+
+data_pos <- data %>%
+  dplyr::select(wwwhr, wordsum, age, sex, reliten, polviews, wrkhome) %>%
+replace_with_na(.,
+             replace = list(wwwhr = c(-1, 998, 999),
+                          wordsum = c(-1, 99),
+                          reliten = c(0, 8, 9), 
+             polviews = c(0, 8, 9), 
+             wrkhome = c(0,8,9), 
+             age=c(0, 98, 99)))
+```
+
+Q: Can you explain what might be going on in the above code?
+
+A: The code is using `dplyr` package to select 7 columns, then replace the values specified in the list with NAs. For instance, it replaces `wwwhr` values -1, 998, and 999 to NAs.
+
+Q: The next step in data cleaning would be to ensure that the data in your code are aligned with the description/ usage context of the variables
+
+-   Recode sex and reliten as necessary
+
+```{r}
+data_pos = data_pos %>%
+  mutate(age_recode = age - mean(age, na.rm=TRUE),
+         sex_recode = as.factor(sex),
+         reliten_recode = as.factor(reliten),
+         polviews_recode = as.factor(polviews),
+         wrkhome_recode = as.factor(wrkhome))
+
+```
+
+## Missingness
+
+```{r}
+data_pos %>%
+  dplyr::select(reliten, reliten_recode)
+
+library(skimr)
+skimr::skim(data_pos)
+
+```
+
+## Fit a Poisson model to the data.
+
+```{r}
+library(lme4)
+model1 = glm(wwwhr~age_recode+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, 
+              data=data_pos,
+              family=poisson(link = "log"))
+```
+
+## Carry out model checking
+
+Hint: performance package has the function you're looking for
+
+```{r}
+library(performance)
+performance::check_model(model1, check = c("pp_check", "outliers", "vif", "overdispersion"))
+```
+
+## Find any outliers
+
+```{r}
+outlier_idx = check_outliers(model1)
+outlier_idx
+```
+
+## Refit the model after excluding outliers
+
+```{r}
+data_pos2 = data_pos %>%
+  filter(! row_number() %in% which(outlier_idx))
+
+model2 = glm(wwwhr~age+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, 
+              data=data_pos2,
+              family=poisson(link="log"))
+```
+
+```{r}
+model_parameters(model2) %>%
+  print_html()
+```
+
+### Check for Overdispersion
+
+Hint: performance package has the function you're looking for
+
+```{r}
+performance::check_overdispersion(model2)
+```
+
+What do you notice? And what's a good next step forward? Can there be another model class that can fit the data? If so, fit this model to the data.
+
+-   There is overdispersion, which means there is more variation in the response than what's implied by a Poisson model. We can try to fit a negative-binomial regression model.
+
+```{r}
+model3 = glm.nb(wwwhr~age+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, 
+              data=data_pos2)
+
+model4 = MASS::glm.nb(wwwhr~age+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, 
+              data=data_pos2)
+
+
+```
+
+## Which one is better- your earlier model, or later model?
+
+```{r}
+test_likelihoodratio(model2, model3) %>%
+  kable()
+
+test_likelihoodratio(model2, model4) %>%
+  kable()
+```
+
+The later model is better here, which means the previous poisson model was not a good fit to the data.
+
+## What is zero inflation? Is there zero-inflation in your chosen model?
+
+```{r}
+performance::check_zeroinflation(model3)
+```
+
+There is no zero-inflation here since \# of observed zeros \< \# of predicted zeros.
+
+::: panel-tabset
+## Log Lambda
+
+```{r}
+print(coef(model4))
+print(exp(coef(model4)))
+
+mean(exp(predict(model4, type = "link")))
+```
+
+## Mean Count
+
+```{r}
+print(mean(data_pos2$wwwhr, na.rm = TRUE))
+
+data_pos_base = data_pos2 %>%
+  filter(sex_recode==-1, reliten_recode==1, polviews_recode==1, wrkhome_recode==1)
+mean(data_pos_base$wwwhr, na.rm = TRUE)
+```
+:::
+
+## Report your conclusions
+
+The coefficients of the model is roughly similar to the log value of the mean of the dependent variable. The exponential of the intercept of the model is 5.637, while the mean number of hours per week that a person spends on the internet (wwwhr) for the baseline group (sex=-1, religosity=1, political_orientation=1, work_from_home=1) is 5.4.
+
+Because of the numerous number of levels for different categorical variables, here we don't look at each level. We can use our full model to predict the dependent variable, and then take the mean of the exponential, which is 9.880, while the mean wwwhr for the whole dataset is 9.793.
+
+Overall, a negative-binomial regression model is a good fit to the data due to dispersion. We don't need to use a zero-inflated model since there is no zero-inflation.

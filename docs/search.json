@@ -179,6 +179,69 @@
     "href": "index.html",
     "title": "Labs & Assignments",
     "section": "",
-    "text": "Lab: Multinomial Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 26, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Ordinal Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 19, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Logistic Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nMillie\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\nKW\n\n\n\n\n\n\nNo matching items"
+    "text": "Lab: Poisson Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Multinomial Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 26, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Ordinal Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 19, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Logistic Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nMillie\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\nKW\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html",
+    "title": "Lab: Poisson Regression",
+    "section": "",
+    "text": "To complete this lab:\nCode\nlibrary(MASS)\nlibrary(tidyverse)\nlibrary(emmeans)\nlibrary(ggeffects)\nlibrary(easystats)\nlibrary(performance)\nlibrary(knitr)\nCode\nlibrary(tidyverse)\n\ndata &lt;- read_delim(\"https://raw.githubusercontent.com/jgeller112/psy504-advanced-stats/main/slides/Poisson/data/2010.csv\")\nCode\nlibrary(naniar)\n\ndata_pos &lt;- data %&gt;%\n  dplyr::select(wwwhr, wordsum, age, sex, reliten, polviews, wrkhome) %&gt;%\nreplace_with_na(.,\n             replace = list(wwwhr = c(-1, 998, 999),\n                          wordsum = c(-1, 99),\n                          reliten = c(0, 8, 9), \n             polviews = c(0, 8, 9), \n             wrkhome = c(0,8,9), \n             age=c(0, 98, 99)))\nQ: Can you explain what might be going on in the above code?\nA: The code is using dplyr package to select 7 columns, then replace the values specified in the list with NAs. For instance, it replaces wwwhr values -1, 998, and 999 to NAs.\nQ: The next step in data cleaning would be to ensure that the data in your code are aligned with the description/ usage context of the variables\nCode\ndata_pos = data_pos %&gt;%\n  mutate(age_recode = age - mean(age, na.rm=TRUE),\n         sex_recode = as.factor(sex),\n         reliten_recode = as.factor(reliten),\n         polviews_recode = as.factor(polviews),\n         wrkhome_recode = as.factor(wrkhome))"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#missingness",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#missingness",
+    "title": "Lab: Poisson Regression",
+    "section": "Missingness",
+    "text": "Missingness\n\n\nCode\ndata_pos %&gt;%\n  dplyr::select(reliten, reliten_recode)\n\n\n# A tibble: 2,044 × 2\n   reliten reliten_recode\n     &lt;dbl&gt; &lt;fct&gt;         \n 1       1 1             \n 2       4 4             \n 3       1 1             \n 4       1 1             \n 5       1 1             \n 6       4 4             \n 7       3 3             \n 8       1 1             \n 9       1 1             \n10       1 1             \n# ℹ 2,034 more rows\n\n\nCode\nlibrary(skimr)\nskimr::skim(data_pos)\n\n\n\n\n\n\nName\ndata_pos\n\n\nNumber of rows\n2044\n\n\nNumber of columns\n12\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\nfactor\n4\n\n\nnumeric\n8\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nData summaryVariable type: factor\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nordered\nn_unique\ntop_counts\n\n\n\n\nsex_recode\n0\n1.00\nFALSE\n2\n-1: 1153, 1: 891\n\n\nreliten_recode\n99\n0.95\nFALSE\n4\n2: 747, 1: 707, 4: 363, 3: 128\n\n\npolviews_recode\n71\n0.97\nFALSE\n7\n4: 746, 6: 315, 5: 265, 2: 259\n\n\nwrkhome_recode\n882\n0.57\nFALSE\n6\n1: 674, 5: 147, 2: 101, 4: 92\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nwwwhr\n996\n0.51\n9.79\n13.41\n0.00\n2.00\n5.00\n14.00\n168.00\n▇▁▁▁▁\n\n\nwordsum\n657\n0.68\n6.03\n2.07\n0.00\n5.00\n6.00\n7.00\n10.00\n▁▃▇▅▂\n\n\nage\n3\n1.00\n47.97\n17.68\n18.00\n33.00\n47.00\n61.00\n89.00\n▇▇▇▅▃\n\n\nsex\n0\n1.00\n-0.13\n0.99\n-1.00\n-1.00\n-1.00\n1.00\n1.00\n▇▁▁▁▆\n\n\nreliten\n99\n0.95\n2.08\n1.08\n1.00\n1.00\n2.00\n3.00\n4.00\n▇▇▁▂▃\n\n\npolviews\n71\n0.97\n4.08\n1.46\n1.00\n3.00\n4.00\n5.00\n7.00\n▃▂▇▃▅\n\n\nwrkhome\n882\n0.57\n2.26\n1.72\n1.00\n1.00\n1.00\n4.00\n6.00\n▇▁▁▂▁\n\n\nage_recode\n3\n1.00\n0.00\n17.68\n-29.97\n-14.97\n-0.97\n13.03\n41.03\n▇▇▇▅▃"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#fit-a-poisson-model-to-the-data.",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#fit-a-poisson-model-to-the-data.",
+    "title": "Lab: Poisson Regression",
+    "section": "Fit a Poisson model to the data.",
+    "text": "Fit a Poisson model to the data.\n\n\nCode\nlibrary(lme4)\nmodel1 = glm(wwwhr~age_recode+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, \n              data=data_pos,\n              family=poisson(link = \"log\"))"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#carry-out-model-checking",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#carry-out-model-checking",
+    "title": "Lab: Poisson Regression",
+    "section": "Carry out model checking",
+    "text": "Carry out model checking\nHint: performance package has the function you’re looking for\n\n\nCode\nlibrary(performance)\nperformance::check_model(model1, check = c(\"pp_check\", \"outliers\", \"vif\", \"overdispersion\"))"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#find-any-outliers",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#find-any-outliers",
+    "title": "Lab: Poisson Regression",
+    "section": "Find any outliers",
+    "text": "Find any outliers\n\n\nCode\noutlier_idx = check_outliers(model1)\noutlier_idx\n\n\n3 outliers detected: cases 72, 156, 363.\n- Based on the following method and threshold: cook (0.8).\n- For variable: (Whole model)."
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#refit-the-model-after-excluding-outliers",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#refit-the-model-after-excluding-outliers",
+    "title": "Lab: Poisson Regression",
+    "section": "Refit the model after excluding outliers",
+    "text": "Refit the model after excluding outliers\n\n\nCode\ndata_pos2 = data_pos %&gt;%\n  filter(! row_number() %in% which(outlier_idx))\n\nmodel2 = glm(wwwhr~age+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, \n              data=data_pos2,\n              family=poisson(link=\"log\"))\n\n\n\n\nCode\nmodel_parameters(model2) %&gt;%\n  print_html()\n\n\n\n\n\n\n\n\nParameter\nCoefficient\nSE\n95% CI\nz\np\n\n\n\n\n(Intercept)\n1.89\n0.09\n(1.71, 2.07)\n20.52\n&lt; .001\n\n\nage\n-0.02\n1.10e-03\n(-0.02, -0.01)\n-15.29\n&lt; .001\n\n\nwordsum\n0.10\n7.86e-03\n(0.08, 0.11)\n12.38\n&lt; .001\n\n\nsex recode (1)\n0.22\n0.03\n(0.17, 0.27)\n8.13\n&lt; .001\n\n\nreliten recode (2)\n0.34\n0.04\n(0.26, 0.41)\n8.88\n&lt; .001\n\n\nreliten recode (3)\n0.43\n0.06\n(0.30, 0.55)\n6.68\n&lt; .001\n\n\nreliten recode (4)\n0.65\n0.04\n(0.57, 0.72)\n16.23\n&lt; .001\n\n\npolviews recode (2)\n-0.10\n0.07\n(-0.23, 0.03)\n-1.49\n0.136\n\n\npolviews recode (3)\n-0.18\n0.07\n(-0.31, -0.04)\n-2.51\n0.012\n\n\npolviews recode (4)\n-0.21\n0.06\n(-0.33, -0.08)\n-3.23\n0.001\n\n\npolviews recode (5)\n-0.06\n0.07\n(-0.19, 0.07)\n-0.92\n0.359\n\n\npolviews recode (6)\n-0.25\n0.07\n(-0.39, -0.11)\n-3.46\n&lt; .001\n\n\npolviews recode (7)\n-0.31\n0.10\n(-0.51, -0.11)\n-3.02\n0.003\n\n\nwrkhome recode (2)\n0.21\n0.04\n(0.12, 0.29)\n4.57\n&lt; .001\n\n\nwrkhome recode (3)\n0.35\n0.05\n(0.26, 0.44)\n7.50\n&lt; .001\n\n\nwrkhome recode (4)\n0.44\n0.04\n(0.35, 0.52)\n9.76\n&lt; .001\n\n\nwrkhome recode (5)\n0.24\n0.04\n(0.15, 0.32)\n5.64\n&lt; .001\n\n\nwrkhome recode (6)\n0.40\n0.06\n(0.29, 0.51)\n7.20\n&lt; .001\n\n\n\n\n\n\n\n\n\n\n\n\n\nCheck for Overdispersion\nHint: performance package has the function you’re looking for\n\n\nCode\nperformance::check_overdispersion(model2)\n\n\n# Overdispersion test\n\n       dispersion ratio =   15.102\n  Pearson's Chi-Squared = 8804.224\n                p-value =  &lt; 0.001\n\n\nWhat do you notice? And what’s a good next step forward? Can there be another model class that can fit the data? If so, fit this model to the data.\n\nThere is overdispersion, which means there is more variation in the response than what’s implied by a Poisson model. We can try to fit a negative-binomial regression model.\n\n\n\nCode\nmodel3 = glm.nb(wwwhr~age+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, \n              data=data_pos2)\n\nmodel4 = MASS::glm.nb(wwwhr~age+wordsum+sex_recode+reliten_recode+polviews_recode+wrkhome_recode, \n              data=data_pos2)"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#which-one-is-better--your-earlier-model-or-later-model",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#which-one-is-better--your-earlier-model-or-later-model",
+    "title": "Lab: Poisson Regression",
+    "section": "Which one is better- your earlier model, or later model?",
+    "text": "Which one is better- your earlier model, or later model?\n\n\nCode\ntest_likelihoodratio(model2, model3) %&gt;%\n  kable()\n\n\n\n\n\n\nName\nModel\ndf\ndf_diff\nChi2\np\n\n\n\n\nmodel2\nmodel2\nglm\n18\nNA\nNA\nNA\n\n\nmodel3\nmodel3\nnegbin\n19\n1\n4510.038\n0\n\n\n\n\n\nCode\ntest_likelihoodratio(model2, model4) %&gt;%\n  kable()\n\n\n\n\n\n\nName\nModel\ndf\ndf_diff\nChi2\np\n\n\n\n\nmodel2\nmodel2\nglm\n18\nNA\nNA\nNA\n\n\nmodel4\nmodel4\nnegbin\n19\n1\n4510.038\n0\n\n\n\n\n\nThe later model is better here, which means the previous poisson model was not a good fit to the data."
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#what-is-zero-inflation-is-there-zero-inflation-in-your-chosen-model",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#what-is-zero-inflation-is-there-zero-inflation-in-your-chosen-model",
+    "title": "Lab: Poisson Regression",
+    "section": "What is zero inflation? Is there zero-inflation in your chosen model?",
+    "text": "What is zero inflation? Is there zero-inflation in your chosen model?\n\n\nCode\nperformance::check_zeroinflation(model3)\n\n\n# Check for zero-inflation\n\n   Observed zeros: 40\n  Predicted zeros: 67\n            Ratio: 1.68\n\n\nThere is no zero-inflation here since # of observed zeros &lt; # of predicted zeros.\n\nLog LambdaMean Count\n\n\n\n\nCode\nprint(coef(model4))\n\n\n     (Intercept)              age          wordsum      sex_recode1 \n      1.72933133      -0.01630350       0.10573220       0.14429163 \n reliten_recode2  reliten_recode3  reliten_recode4 polviews_recode2 \n      0.28114285       0.38546776       0.62578244       0.17573144 \npolviews_recode3 polviews_recode4 polviews_recode5 polviews_recode6 \n      0.09431515      -0.04193018       0.13914802      -0.04427420 \npolviews_recode7  wrkhome_recode2  wrkhome_recode3  wrkhome_recode4 \n     -0.15510946       0.11140958       0.31377893       0.30530537 \n wrkhome_recode5  wrkhome_recode6 \n      0.15257360       0.25947760 \n\n\nCode\nprint(exp(coef(model4)))\n\n\n     (Intercept)              age          wordsum      sex_recode1 \n       5.6368834        0.9838287        1.1115242        1.1552210 \n reliten_recode2  reliten_recode3  reliten_recode4 polviews_recode2 \n       1.3246428        1.4703019        1.8697083        1.1921179 \npolviews_recode3 polviews_recode4 polviews_recode5 polviews_recode6 \n       1.0989060        0.9589367        1.1492942        0.9566916 \npolviews_recode7  wrkhome_recode2  wrkhome_recode3  wrkhome_recode4 \n       0.8563214        1.1178527        1.3685871        1.3570393 \n wrkhome_recode5  wrkhome_recode6 \n       1.1648282        1.2962527 \n\n\nCode\nmean(exp(predict(model4, type = \"link\")))\n\n\n[1] 9.879506\n\n\n\n\n\n\nCode\nprint(mean(data_pos2$wwwhr, na.rm = TRUE))\n\n\n[1] 9.792543\n\n\nCode\ndata_pos_base = data_pos2 %&gt;%\n  filter(sex_recode==-1, reliten_recode==1, polviews_recode==1, wrkhome_recode==1)\nmean(data_pos_base$wwwhr, na.rm = TRUE)\n\n\n[1] 5.4"
+  },
+  {
+    "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html#report-your-conclusions",
+    "href": "posts/03-05 poisson/poisson_lab_questions-1.html#report-your-conclusions",
+    "title": "Lab: Poisson Regression",
+    "section": "Report your conclusions",
+    "text": "Report your conclusions\nThe coefficients of the model is roughly similar to the log value of the mean of the dependent variable. The exponential of the intercept of the model is 5.637, while the mean number of hours per week that a person spends on the internet (wwwhr) for the baseline group (sex=-1, religosity=1, political_orientation=1, work_from_home=1) is 5.4.\nBecause of the numerous number of levels for different categorical variables, here we don’t look at each level. We can use our full model to predict the dependent variable, and then take the mean of the exponential, which is 9.880, while the mean wwwhr for the whole dataset is 9.793.\nOverall, a negative-binomial regression model is a good fit to the data due to dispersion. We don’t need to use a zero-inflated model since there is no zero-inflation."
   }
 ]
