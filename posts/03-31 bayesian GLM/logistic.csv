@@ -1,0 +1,2591 @@
+age,sex,sei10,polviews,mass_trans_spend_right
+47,Male,87.9,Moderate,0
+61,Male,38.3,Liberal,0
+43,Female,21.8,Moderate,0
+55,Female,39.7,Slightly liberal,0
+53,Female,44.6,Slightly liberal,1
+50,Male,80.7,Slightly liberal,0
+23,Female,20.1,Slghtly conservative,0
+71,Male,32,Conservative,0
+86,Female,13.2,Slghtly conservative,1
+32,Male,20.8,Slightly liberal,0
+60,Female,24.2,Liberal,1
+76,Male,67.7,Moderate,0
+33,Female,61.4,Moderate,0
+56,Male,23.3,Conservative,1
+62,Female,25.7,Slightly liberal,0
+31,Male,80.9,Liberal,0
+43,Male,39.2,Liberal,1
+58,Female,24.2,Liberal,0
+32,Female,33.3,Slghtly conservative,1
+23,Female,21.6,Slightly liberal,1
+37,Female,66.2,Extrmly conservative,0
+25,Female,14.8,Liberal,1
+71,Male,82.5,Liberal,0
+22,Male,39.9,Moderate,1
+74,Male,82.5,Moderate,1
+75,Female,37.6,Conservative,0
+32,Male,20.7,Liberal,1
+68,Female,46.7,Moderate,1
+55,Male,65.3,Slghtly conservative,1
+46,Male,65.3,Slghtly conservative,1
+58,Female,80.9,Moderate,1
+35,Male,52.5,Conservative,1
+59,Male,26.1,Conservative,1
+58,Female,83.8,Conservative,1
+79,Female,38.3,Moderate,1
+40,Female,39.7,Extrmly conservative,0
+44,Female,21.8,Moderate,1
+68,Female,35.8,Moderate,0
+36,Female,82.7,Liberal,0
+70,Male,24.2,Moderate,1
+28,Male,83.4,Extremely liberal,1
+35,Female,80.2,Liberal,1
+33,Male,86.8,Extremely liberal,0
+23,Male,0,Slightly liberal,0
+47,Female,91.1,Extremely liberal,0
+25,Female,43,Liberal,0
+70,Female,24.6,Extremely liberal,0
+20,Male,36.8,Slghtly conservative,1
+41,Male,91.1,Moderate,0
+53,Female,55.3,Conservative,1
+42,Female,20.1,Extremely liberal,1
+40,Female,41.1,Moderate,1
+57,Female,39.7,Slightly liberal,0
+59,Female,84.5,Liberal,1
+35,Female,21.6,Slghtly conservative,0
+26,Male,29.5,Moderate,1
+35,Male,39.9,Conservative,1
+51,Female,0,Moderate,0
+39,Female,34.7,Slightly liberal,0
+27,Female,0,Moderate,0
+30,Male,23.3,Extrmly conservative,0
+29,Male,32.6,Slightly liberal,0
+39,Female,24.2,Extrmly conservative,0
+60,Female,24.2,Slghtly conservative,0
+74,Female,0,Moderate,0
+57,Female,73.2,Moderate,1
+80,Male,58.1,Moderate,0
+70,Male,70.5,Slghtly conservative,1
+35,Female,84.2,Slightly liberal,0
+49,Female,0,Liberal,1
+36,Female,55.1,Extremely liberal,0
+37,Female,72.7,Extremely liberal,1
+78,Female,67.7,Extremely liberal,1
+42,Male,83.8,Slightly liberal,1
+35,Female,32.6,Slghtly conservative,1
+33,Male,65.1,Slghtly conservative,0
+44,Male,25.2,Moderate,1
+41,Male,61.9,Moderate,0
+52,Male,55.3,Moderate,1
+45,Female,81.9,Moderate,1
+41,Female,20.7,Moderate,1
+68,Male,58.4,Slightly liberal,0
+57,Female,24.2,Moderate,0
+72,Male,56.3,Extremely liberal,0
+50,Male,86.6,Slightly liberal,0
+40,Male,57.8,Slightly liberal,0
+58,Male,60.1,Extremely liberal,0
+43,Male,27.6,Extremely liberal,0
+25,Male,61.4,Moderate,0
+33,Male,92.8,Slightly liberal,1
+27,Male,38.8,Slightly liberal,1
+58,Female,56.8,Moderate,1
+66,Female,43,Moderate,1
+66,Male,28.7,Moderate,0
+29,Female,67.7,Extremely liberal,0
+89,Female,13.2,Moderate,0
+78,Female,38.3,Moderate,1
+52,Female,26.1,Slightly liberal,0
+50,Male,32,Moderate,0
+25,Female,41.8,Conservative,1
+37,Male,37.6,Slightly liberal,0
+54,Female,76.3,Moderate,1
+52,Male,28.5,Moderate,1
+48,Male,24,Moderate,1
+32,Female,92.8,Moderate,1
+29,Female,60.3,Liberal,1
+75,Female,54.1,Slightly liberal,0
+59,Female,83.4,Extremely liberal,0
+81,Male,56.9,Moderate,0
+69,Female,45.1,Moderate,1
+55,Female,82.5,Slightly liberal,0
+52,Female,25.7,Moderate,0
+33,Female,38.3,Extrmly conservative,1
+56,Male,67.7,Moderate,1
+71,Male,80.9,Slghtly conservative,1
+21,Male,0,Moderate,0
+49,Female,46.5,Moderate,1
+26,Male,67.7,Slghtly conservative,0
+33,Female,72.7,Liberal,0
+36,Male,39.7,Slghtly conservative,0
+68,Male,31.6,Moderate,1
+27,Female,64.2,Conservative,1
+60,Female,52,Moderate,1
+48,Male,38.2,Moderate,1
+47,Female,54.6,Moderate,1
+36,Female,37.8,Slightly liberal,1
+89,Female,38.3,Moderate,1
+64,Female,59.9,Conservative,0
+38,Female,38.8,Moderate,1
+62,Male,25.1,Slghtly conservative,0
+62,Female,82.5,Conservative,1
+65,Female,42.9,Extremely liberal,0
+60,Male,67.7,Slghtly conservative,0
+62,Male,45.4,Extrmly conservative,0
+51,Female,67.7,Liberal,0
+43,Female,78.3,Slightly liberal,1
+47,Male,43,Moderate,0
+57,Female,67.7,Slghtly conservative,1
+30,Male,59.1,Liberal,0
+39,Male,52.3,Liberal,0
+37,Female,61.4,Slightly liberal,0
+61,Female,82.5,Liberal,0
+58,Male,31.1,Moderate,1
+52,Female,61.4,Moderate,0
+46,Female,0,Moderate,1
+25,Female,65.3,Moderate,1
+54,Male,31.2,Liberal,1
+33,Female,46.6,Extrmly conservative,1
+33,Male,77,Slightly liberal,0
+61,Female,19.6,Slightly liberal,0
+65,Female,13.2,Slghtly conservative,0
+66,Female,0,Extrmly conservative,1
+57,Female,73.6,Moderate,0
+50,Male,28.5,Moderate,0
+75,Male,38.3,Slghtly conservative,0
+22,Female,21.6,Moderate,0
+27,Male,41,Slightly liberal,0
+55,Male,33.4,Moderate,0
+49,Female,65.3,Slightly liberal,0
+51,Female,52,Moderate,1
+56,Male,59.1,Extremely liberal,0
+41,Female,43,Moderate,1
+67,Male,59.4,Slghtly conservative,0
+38,Female,29.4,Moderate,0
+76,Female,84.2,Conservative,0
+66,Male,20.7,Liberal,0
+84,Female,38.3,Extrmly conservative,1
+32,Male,0,Extrmly conservative,0
+46,Male,20.9,Moderate,0
+25,Male,39.7,Conservative,0
+67,Male,77.4,Slightly liberal,1
+34,Male,80.2,Extremely liberal,1
+29,Female,0,Slghtly conservative,1
+51,Female,26.5,Moderate,0
+39,Female,38.8,Moderate,1
+39,Female,12.4,Moderate,1
+51,Female,12.6,Conservative,1
+40,Female,39.6,Moderate,1
+32,Male,25.2,Moderate,1
+38,Male,35.8,Liberal,1
+79,Female,21.6,Conservative,1
+49,Male,64.5,Slghtly conservative,0
+22,Male,13.6,Moderate,0
+30,Male,69.3,Moderate,0
+47,Male,67.7,Slghtly conservative,0
+55,Male,28.7,Moderate,1
+30,Male,39.7,Moderate,0
+29,Male,60.3,Slightly liberal,0
+37,Male,73.6,Slightly liberal,0
+67,Female,67.7,Liberal,0
+38,Female,76.3,Moderate,1
+81,Female,24.6,Moderate,0
+35,Male,27,Moderate,0
+46,Male,69.3,Slghtly conservative,0
+21,Male,0,Slghtly conservative,1
+43,Male,66.1,Moderate,1
+45,Female,61.4,Moderate,0
+76,Female,71.7,Slghtly conservative,0
+77,Male,32,Moderate,1
+61,Female,35.8,Moderate,1
+45,Female,32,Moderate,1
+47,Male,46,Liberal,0
+41,Male,85.2,Liberal,0
+25,Male,53,Liberal,0
+45,Male,77.4,Slghtly conservative,0
+21,Male,25.7,Extrmly conservative,1
+48,Female,37.2,Moderate,0
+25,Male,85.2,Slightly liberal,0
+33,Female,52,Moderate,1
+72,Male,74.8,Conservative,0
+70,Female,38.1,Conservative,0
+66,Female,87.3,Moderate,0
+57,Female,87.9,Conservative,0
+81,Male,89.1,Slghtly conservative,0
+23,Male,82.5,Slghtly conservative,0
+48,Female,84.2,Conservative,0
+62,Female,21.6,Conservative,1
+43,Male,67.7,Conservative,0
+34,Female,21.8,Liberal,1
+36,Male,28.7,Slghtly conservative,1
+37,Male,24,Slghtly conservative,1
+32,Male,55.3,Slightly liberal,1
+53,Female,12.6,Liberal,0
+42,Male,28.4,Conservative,1
+44,Female,87.9,Liberal,0
+36,Female,41.1,Moderate,1
+49,Male,74.8,Moderate,1
+35,Female,62,Conservative,0
+47,Male,87.9,Slghtly conservative,1
+29,Male,23.3,Liberal,0
+36,Male,71,Moderate,0
+31,Male,19.7,Slghtly conservative,0
+19,Male,0,Moderate,1
+25,Male,32,Slightly liberal,1
+30,Female,26.1,Moderate,1
+62,Male,46.5,Slightly liberal,0
+35,Female,80.9,Conservative,0
+41,Male,99.9,Moderate,0
+62,Female,84.5,Extremely liberal,0
+20,Male,27,Slghtly conservative,0
+42,Male,52,Moderate,1
+30,Female,41.1,Liberal,1
+26,Female,65.3,Slghtly conservative,0
+58,Female,84.2,Moderate,1
+47,Female,92.2,Extremely liberal,0
+44,Male,32,Moderate,1
+75,Female,84.5,Extremely liberal,0
+44,Female,71.4,Moderate,0
+36,Female,46.6,Moderate,0
+62,Female,67.7,Slightly liberal,0
+37,Male,80.7,Slghtly conservative,0
+69,Female,39.7,Moderate,0
+48,Male,34.6,Moderate,0
+44,Female,80.9,Extremely liberal,0
+59,Male,39.7,Extrmly conservative,1
+61,Female,77.2,Slightly liberal,0
+31,Male,84,Moderate,1
+49,Female,21.8,Moderate,0
+47,Female,0,Moderate,0
+83,Female,35.1,Conservative,1
+38,Male,62.9,Slghtly conservative,0
+47,Male,46.6,Extremely liberal,0
+28,Male,24.6,Extremely liberal,1
+73,Female,38.8,Conservative,1
+31,Female,76.3,Liberal,0
+55,Male,91.1,Liberal,0
+61,Male,59.1,Slightly liberal,1
+50,Male,65.3,Moderate,0
+67,Female,21.8,Moderate,1
+41,Male,36.4,Slghtly conservative,1
+22,Female,21.8,Conservative,1
+60,Female,55.1,Extremely liberal,0
+36,Female,43,Slightly liberal,0
+39,Female,91.1,Liberal,1
+40,Male,59.1,Moderate,0
+23,Female,0,Moderate,1
+63,Female,38.3,Moderate,0
+60,Male,13.6,Moderate,1
+40,Male,32,Extrmly conservative,1
+40,Male,73.6,Moderate,1
+30,Female,62.9,Moderate,1
+43,Female,37.6,Moderate,0
+58,Male,87.6,Moderate,0
+44,Male,73.4,Moderate,0
+69,Male,43.8,Liberal,0
+66,Male,74.8,Slightly liberal,1
+43,Male,20.9,Moderate,1
+37,Male,46,Slightly liberal,1
+28,Male,17.5,Moderate,1
+69,Female,73.4,Liberal,0
+27,Female,0,Extremely liberal,1
+60,Female,61.4,Conservative,1
+62,Female,36.5,Moderate,1
+74,Male,0,Extrmly conservative,1
+32,Female,14,Slghtly conservative,1
+68,Female,35.8,Moderate,0
+39,Male,43.9,Slghtly conservative,0
+21,Female,24.6,Moderate,1
+52,Female,68.6,Slightly liberal,0
+46,Male,71,Slghtly conservative,1
+56,Male,59.1,Slghtly conservative,1
+60,Male,70.5,Slghtly conservative,0
+22,Male,61.2,Slghtly conservative,1
+35,Male,39.9,Moderate,1
+42,Female,78.3,Slghtly conservative,0
+58,Male,43,Conservative,1
+32,Female,43.9,Moderate,1
+59,Female,25.7,Conservative,0
+20,Male,59.1,Moderate,1
+44,Male,43.8,Moderate,0
+34,Female,24.6,Slightly liberal,0
+62,Female,71.8,Conservative,1
+59,Male,31.6,Slightly liberal,1
+51,Female,38.8,Slghtly conservative,1
+37,Male,77.2,Moderate,0
+50,Male,99.9,Liberal,1
+40,Female,37.6,Moderate,1
+53,Male,18.6,Moderate,1
+52,Male,31,Moderate,1
+52,Female,21.8,Slightly liberal,1
+36,Female,99.9,Liberal,0
+56,Male,63.7,Extrmly conservative,0
+64,Female,37.6,Liberal,1
+62,Female,80.9,Moderate,1
+35,Female,77.2,Slghtly conservative,1
+60,Male,52,Moderate,1
+36,Female,38.8,Moderate,1
+62,Female,55.3,Slghtly conservative,0
+30,Male,65.1,Moderate,1
+27,Male,28.7,Moderate,1
+60,Female,67.8,Moderate,0
+51,Male,34.5,Moderate,0
+42,Female,35.3,Conservative,1
+59,Male,24,Slightly liberal,1
+49,Male,32.6,Liberal,1
+53,Female,67.7,Conservative,1
+47,Male,68,Slghtly conservative,1
+47,Female,88.7,Conservative,1
+80,Female,84.5,Liberal,1
+34,Female,85.5,Moderate,0
+31,Male,45.1,Moderate,1
+29,Female,41.1,Moderate,0
+68,Female,84.5,Liberal,0
+89,Male,75.5,Moderate,1
+76,Female,77.4,Moderate,0
+64,Male,43,Slightly liberal,1
+40,Female,43,Slightly liberal,1
+27,Female,67.7,Slghtly conservative,1
+56,Female,75.5,Slightly liberal,0
+71,Female,38.8,Moderate,1
+29,Female,20.1,Liberal,1
+74,Female,71.8,Extremely liberal,1
+30,Female,75.6,Slightly liberal,0
+65,Female,62.9,Liberal,1
+41,Female,24.6,Moderate,0
+38,Male,73.4,Liberal,0
+49,Male,82.7,Extremely liberal,0
+25,Male,84.5,Liberal,0
+25,Female,88.3,Liberal,0
+26,Female,20.1,Slightly liberal,0
+34,Female,67.8,Liberal,1
+34,Female,37.6,Liberal,0
+36,Male,37.6,Moderate,1
+59,Male,18.6,Liberal,1
+49,Female,41,Conservative,1
+45,Female,84.2,Slghtly conservative,0
+34,Male,20.7,Moderate,1
+44,Male,86.1,Slghtly conservative,1
+66,Female,82.4,Slightly liberal,0
+53,Female,74.8,Moderate,1
+59,Female,84.5,Extremely liberal,0
+43,Female,77.4,Slightly liberal,0
+44,Male,65.3,Slightly liberal,1
+37,Male,80.9,Conservative,1
+37,Male,56.9,Moderate,0
+48,Male,44.6,Conservative,1
+34,Female,41.1,Moderate,1
+25,Male,59.1,Conservative,1
+44,Female,25.7,Slghtly conservative,1
+63,Female,24.2,Conservative,0
+26,Male,58.4,Slightly liberal,0
+64,Female,38.8,Moderate,0
+21,Male,20.7,Moderate,0
+31,Female,24.2,Liberal,0
+27,Female,37.6,Moderate,1
+53,Female,84.2,Liberal,0
+70,Female,67.7,Slightly liberal,1
+53,Female,69.3,Moderate,1
+59,Male,85.2,Liberal,0
+47,Male,80.2,Slightly liberal,1
+27,Male,55.3,Liberal,1
+52,Male,34.8,Slghtly conservative,1
+26,Female,39.7,Liberal,0
+24,Female,25.2,Conservative,1
+25,Female,41.1,Moderate,1
+44,Male,27.6,Liberal,1
+29,Male,31.2,Conservative,1
+57,Female,67.8,Slghtly conservative,1
+61,Male,32,Moderate,1
+66,Male,52.4,Slghtly conservative,0
+48,Female,12.6,Extremely liberal,0
+26,Male,87.9,Liberal,0
+29,Female,86.9,Slightly liberal,1
+48,Male,44.6,Slightly liberal,0
+30,Male,55.1,Liberal,0
+56,Male,38.8,Slghtly conservative,0
+28,Male,20.7,Slghtly conservative,0
+65,Male,36.2,Moderate,1
+43,Male,18.6,Extremely liberal,0
+49,Male,73.9,Slightly liberal,0
+19,Female,61.4,Moderate,1
+30,Female,61.4,Slghtly conservative,1
+67,Male,58.4,Moderate,1
+37,Female,37.2,Moderate,1
+40,Male,34.6,Extremely liberal,0
+65,Male,87.9,Moderate,1
+63,Female,21.8,Slghtly conservative,1
+34,Female,68.6,Slightly liberal,1
+37,Female,73.9,Moderate,0
+48,Female,57.8,Moderate,0
+81,Male,18.6,Moderate,0
+58,Female,92.8,Extremely liberal,1
+64,Female,69.3,Moderate,0
+37,Female,67.7,Liberal,1
+66,Male,81.9,Liberal,1
+31,Male,69.4,Slghtly conservative,0
+64,Male,59.4,Slghtly conservative,0
+57,Female,76.3,Liberal,0
+59,Female,84.5,Liberal,0
+29,Female,19.7,Moderate,1
+59,Male,77.4,Extremely liberal,0
+59,Female,82.5,Slightly liberal,0
+71,Male,85.2,Liberal,1
+36,Male,65.3,Slghtly conservative,0
+29,Male,32.6,Liberal,0
+28,Male,65.3,Liberal,0
+76,Female,38.8,Moderate,0
+71,Female,20.7,Moderate,0
+24,Male,44.5,Liberal,1
+61,Female,72.7,Extremely liberal,0
+34,Female,92.2,Liberal,0
+48,Male,37.8,Moderate,1
+27,Male,25.4,Liberal,0
+26,Female,19.6,Slghtly conservative,0
+31,Female,43.8,Moderate,0
+61,Female,71.8,Conservative,0
+44,Female,74.6,Moderate,1
+84,Male,72.6,Slghtly conservative,0
+73,Male,84.5,Extremely liberal,1
+37,Male,28.7,Slightly liberal,1
+82,Female,76.3,Slghtly conservative,1
+72,Female,28.4,Extrmly conservative,0
+37,Male,23.3,Extremely liberal,0
+32,Male,84.5,Liberal,0
+50,Male,25.2,Moderate,0
+34,Male,13.6,Conservative,0
+42,Female,39.7,Moderate,1
+58,Female,60.3,Liberal,0
+33,Female,20.1,Extremely liberal,1
+58,Female,20.1,Moderate,0
+22,Male,64.5,Liberal,0
+24,Female,19.6,Moderate,1
+32,Female,37.6,Moderate,1
+20,Male,19.7,Conservative,1
+19,Male,0,Moderate,1
+54,Female,76.3,Slightly liberal,0
+21,Female,39.7,Liberal,0
+55,Female,80.7,Moderate,0
+42,Female,62.9,Liberal,1
+65,Female,24.2,Moderate,1
+68,Female,99.9,Moderate,0
+59,Female,24.2,Slghtly conservative,0
+32,Male,28.4,Liberal,0
+51,Male,57.5,Moderate,0
+69,Male,30.9,Moderate,0
+34,Female,80.7,Slightly liberal,0
+24,Male,23.3,Moderate,0
+45,Female,20.1,Moderate,0
+34,Female,26.8,Moderate,1
+58,Male,77.4,Moderate,0
+47,Female,24.2,Moderate,1
+50,Male,77.4,Slightly liberal,0
+33,Female,91.1,Liberal,0
+85,Male,75.5,Liberal,0
+45,Female,92.8,Liberal,0
+23,Female,21.8,Liberal,1
+33,Male,70.5,Liberal,1
+51,Female,20.7,Moderate,0
+52,Female,67.7,Moderate,1
+78,Female,38.8,Liberal,0
+69,Male,63.7,Liberal,0
+62,Female,39.7,Moderate,0
+74,Female,88.6,Slightly liberal,0
+76,Male,65.3,Moderate,0
+76,Female,77.2,Moderate,1
+47,Male,27.4,Slightly liberal,1
+87,Female,37.6,Slightly liberal,1
+28,Male,28.7,Moderate,1
+47,Male,82.5,Extremely liberal,0
+58,Female,85.8,Slightly liberal,0
+32,Male,69.3,Moderate,1
+47,Female,71.4,Extremely liberal,1
+27,Female,91.1,Liberal,0
+57,Female,63.7,Slightly liberal,1
+32,Female,64.2,Slightly liberal,1
+24,Male,32,Moderate,1
+81,Female,21.8,Conservative,1
+19,Female,26.1,Moderate,1
+41,Male,31.2,Moderate,1
+67,Male,34.7,Slightly liberal,0
+36,Male,85.2,Moderate,1
+33,Male,87.9,Slightly liberal,0
+48,Male,61.2,Conservative,1
+47,Female,38.3,Moderate,1
+72,Female,45.3,Moderate,0
+60,Female,76.7,Slightly liberal,1
+45,Female,0,Conservative,1
+70,Female,82.5,Liberal,0
+37,Female,43,Moderate,1
+39,Female,80.9,Slightly liberal,0
+57,Female,38.8,Slghtly conservative,1
+55,Female,38.8,Extremely liberal,1
+28,Male,18.6,Moderate,0
+58,Male,32,Conservative,0
+64,Female,19.6,Moderate,0
+32,Male,39.7,Slightly liberal,0
+63,Male,42.9,Conservative,1
+47,Female,76.3,Slightly liberal,0
+40,Female,32,Moderate,1
+38,Male,42.7,Slightly liberal,0
+63,Female,41.1,Conservative,1
+49,Female,76.3,Conservative,1
+74,Female,18.8,Slghtly conservative,0
+66,Female,24.2,Slghtly conservative,1
+34,Male,25.2,Moderate,0
+42,Male,35.4,Moderate,0
+66,Male,25.1,Slightly liberal,1
+46,Female,27.6,Extremely liberal,1
+51,Male,58.2,Moderate,0
+20,Female,0,Liberal,1
+54,Female,19.6,Extremely liberal,0
+55,Male,28.4,Liberal,1
+58,Male,28.7,Moderate,1
+53,Male,99.9,Moderate,1
+36,Male,70.5,Conservative,1
+76,Male,38.8,Conservative,0
+33,Female,39.9,Moderate,1
+32,Male,59.1,Conservative,0
+48,Female,53,Slghtly conservative,1
+72,Female,75.5,Conservative,1
+66,Female,77.4,Moderate,0
+85,Female,38.8,Extrmly conservative,1
+68,Female,43,Slghtly conservative,0
+53,Male,71.8,Conservative,1
+25,Female,24.6,Conservative,1
+52,Male,26.5,Conservative,1
+80,Female,24.2,Moderate,1
+67,Male,79.4,Conservative,0
+21,Female,21.8,Moderate,1
+31,Female,22.1,Moderate,1
+69,Male,58.2,Extrmly conservative,0
+47,Female,80.9,Conservative,0
+34,Male,57.8,Moderate,0
+53,Female,20.1,Moderate,1
+47,Female,33.3,Slghtly conservative,1
+57,Male,45.4,Slightly liberal,1
+58,Female,75.5,Moderate,0
+55,Female,35.8,Extrmly conservative,1
+65,Female,37.6,Moderate,1
+62,Female,75.5,Conservative,1
+26,Female,28.6,Moderate,1
+31,Female,66.1,Moderate,1
+44,Male,69.3,Conservative,1
+68,Female,21.8,Slightly liberal,0
+73,Female,29.6,Slightly liberal,0
+57,Female,43.9,Slightly liberal,1
+57,Female,79.9,Moderate,1
+48,Female,61.4,Slghtly conservative,0
+58,Female,20.1,Slghtly conservative,0
+36,Female,45,Moderate,1
+79,Female,82.5,Extremely liberal,0
+55,Male,78.3,Moderate,1
+19,Male,0,Conservative,1
+54,Female,41,Slghtly conservative,0
+60,Male,68,Slghtly conservative,0
+52,Female,38.3,Conservative,1
+80,Female,79.9,Slghtly conservative,0
+58,Male,79.3,Conservative,1
+69,Female,20.8,Moderate,1
+49,Female,88.3,Liberal,1
+75,Male,39.7,Slghtly conservative,1
+67,Female,54.6,Moderate,1
+51,Female,28.6,Moderate,1
+57,Female,60.5,Slightly liberal,1
+34,Male,80.7,Moderate,1
+29,Female,0,Slightly liberal,1
+49,Female,37.6,Moderate,1
+52,Female,88,Moderate,0
+54,Male,92.8,Conservative,0
+48,Female,41.1,Conservative,1
+34,Female,68.6,Liberal,0
+30,Female,92.8,Slghtly conservative,1
+77,Female,0,Conservative,0
+78,Female,20.1,Moderate,1
+47,Male,38.8,Moderate,0
+58,Male,13.6,Moderate,1
+52,Male,46,Conservative,0
+49,Female,35.8,Conservative,1
+83,Female,75.5,Moderate,0
+23,Male,0,Liberal,0
+36,Female,80.7,Moderate,1
+79,Female,80.9,Liberal,1
+61,Female,51.7,Conservative,0
+40,Male,42.2,Slghtly conservative,1
+27,Female,14.6,Conservative,1
+57,Female,57.1,Extremely liberal,0
+27,Male,39.9,Slightly liberal,1
+66,Female,14,Slightly liberal,1
+57,Female,33.4,Moderate,1
+28,Female,13.6,Moderate,1
+33,Female,63.7,Slghtly conservative,1
+39,Male,67.7,Moderate,1
+27,Male,71.7,Slightly liberal,0
+34,Male,80.7,Moderate,0
+28,Male,65.3,Slghtly conservative,0
+50,Male,54.6,Moderate,0
+30,Male,51.8,Slightly liberal,1
+68,Female,31.6,Conservative,1
+70,Female,26.5,Slghtly conservative,0
+55,Male,32,Liberal,1
+59,Male,31.3,Moderate,1
+60,Female,35.8,Moderate,1
+19,Female,9,Conservative,1
+19,Male,0,Conservative,0
+27,Male,38.8,Liberal,0
+33,Female,56.9,Conservative,0
+79,Male,21.3,Extremely liberal,0
+56,Male,17.5,Moderate,0
+53,Male,24.1,Moderate,0
+32,Male,31.2,Extremely liberal,1
+21,Male,20.7,Liberal,1
+42,Male,25.2,Slghtly conservative,0
+28,Female,37.2,Moderate,0
+40,Male,52.1,Slghtly conservative,0
+44,Male,31.1,Moderate,1
+22,Male,38.2,Moderate,1
+35,Female,87.9,Moderate,0
+64,Female,26.1,Moderate,0
+40,Female,80.9,Slghtly conservative,0
+36,Female,50.3,Slghtly conservative,0
+51,Female,13.6,Slghtly conservative,0
+54,Male,61.4,Moderate,0
+36,Male,51.9,Moderate,1
+37,Male,36.2,Slightly liberal,1
+50,Female,20.7,Liberal,0
+25,Female,38.1,Liberal,1
+22,Female,37.6,Liberal,1
+40,Female,19.7,Extrmly conservative,1
+28,Female,0,Extremely liberal,1
+40,Female,38.8,Moderate,1
+59,Female,61.9,Moderate,0
+26,Male,61.4,Liberal,1
+27,Male,27,Slightly liberal,1
+69,Female,20.1,Conservative,1
+53,Female,27,Extremely liberal,1
+52,Male,39.7,Conservative,0
+42,Male,62.6,Extremely liberal,1
+60,Male,62,Moderate,0
+59,Female,80.7,Slightly liberal,0
+57,Male,54.3,Moderate,1
+30,Female,20.1,Moderate,0
+37,Female,80.9,Extremely liberal,1
+40,Female,13.6,Extrmly conservative,1
+33,Male,17.1,Moderate,0
+51,Female,57.8,Slghtly conservative,1
+46,Male,46.2,Conservative,1
+52,Female,82.5,Slightly liberal,1
+56,Female,76.3,Conservative,1
+25,Male,59.1,Conservative,1
+48,Female,21.8,Slghtly conservative,1
+19,Female,0,Slightly liberal,1
+36,Female,12.6,Liberal,0
+28,Female,13.6,Extremely liberal,0
+23,Male,19.6,Extremely liberal,0
+29,Female,37.2,Moderate,1
+69,Male,31.6,Moderate,0
+35,Male,64.5,Liberal,0
+38,Female,41.1,Slghtly conservative,1
+31,Female,20.1,Moderate,1
+42,Female,33.4,Conservative,0
+78,Male,84.5,Liberal,0
+31,Female,20.7,Extrmly conservative,1
+67,Female,12.6,Slightly liberal,0
+48,Female,73.5,Conservative,0
+68,Male,38.1,Extremely liberal,0
+42,Male,25,Slghtly conservative,1
+65,Female,69.5,Liberal,1
+44,Female,54.6,Liberal,1
+77,Female,38.8,Slghtly conservative,0
+62,Female,69.3,Liberal,1
+51,Male,59.1,Slightly liberal,0
+21,Female,0,Moderate,1
+28,Female,71.6,Moderate,1
+20,Female,0,Liberal,0
+19,Female,38.3,Slghtly conservative,1
+53,Female,43,Conservative,1
+40,Female,28.7,Slightly liberal,0
+51,Male,67.7,Moderate,0
+65,Male,20.5,Slghtly conservative,0
+51,Female,64.5,Moderate,0
+60,Male,60.3,Moderate,1
+57,Male,84,Moderate,1
+70,Female,38.8,Slightly liberal,1
+53,Female,0,Slightly liberal,1
+37,Female,63.3,Moderate,1
+56,Male,25.2,Conservative,0
+59,Female,21.8,Moderate,1
+21,Female,0,Slightly liberal,0
+59,Male,70.4,Slghtly conservative,0
+66,Male,38.2,Moderate,0
+56,Male,60.5,Moderate,0
+56,Female,21.8,Liberal,1
+87,Female,15.8,Conservative,1
+22,Female,37.6,Moderate,1
+51,Male,20.7,Moderate,1
+56,Female,35.8,Moderate,1
+47,Female,45.3,Slghtly conservative,1
+18,Male,0,Moderate,1
+26,Female,49.3,Moderate,0
+27,Female,24.2,Slightly liberal,0
+33,Female,35.8,Slghtly conservative,1
+31,Female,29.9,Conservative,1
+70,Female,84.5,Moderate,0
+51,Female,43,Extremely liberal,0
+87,Female,59.1,Moderate,1
+54,Female,77.4,Moderate,0
+81,Female,79.3,Liberal,0
+25,Male,34.7,Liberal,0
+47,Male,32.6,Conservative,1
+65,Male,69.4,Slghtly conservative,1
+46,Male,37.6,Slghtly conservative,0
+51,Male,99.9,Slightly liberal,0
+53,Male,87.3,Moderate,1
+45,Female,89.4,Moderate,1
+18,Female,19.6,Slightly liberal,0
+52,Female,72.7,Extremely liberal,0
+56,Female,28.7,Moderate,1
+34,Male,37.6,Slightly liberal,0
+58,Female,41.1,Conservative,1
+59,Male,42.7,Moderate,1
+69,Female,63.7,Conservative,0
+67,Female,20.7,Liberal,0
+54,Female,62.9,Moderate,1
+53,Male,65.1,Conservative,0
+47,Female,71.8,Extremely liberal,1
+47,Male,65.3,Slightly liberal,0
+32,Female,56.8,Moderate,1
+28,Female,43,Slightly liberal,1
+23,Female,27,Moderate,1
+53,Female,84.2,Conservative,0
+51,Male,32,Moderate,1
+66,Female,63.7,Liberal,0
+54,Male,86.5,Slghtly conservative,1
+68,Male,36.2,Liberal,0
+58,Male,62,Conservative,1
+47,Male,77.4,Conservative,0
+33,Female,56.9,Slghtly conservative,0
+66,Female,38.8,Moderate,0
+27,Male,46.5,Liberal,0
+54,Male,32,Liberal,1
+53,Male,34.4,Slightly liberal,0
+54,Male,84.2,Moderate,1
+67,Male,43,Slightly liberal,1
+67,Female,20.1,Extrmly conservative,1
+65,Female,84.2,Moderate,1
+23,Female,73.9,Slightly liberal,0
+27,Female,54.6,Moderate,1
+28,Male,25,Moderate,1
+34,Female,55.3,Moderate,0
+27,Female,66.1,Moderate,0
+60,Male,20.7,Moderate,0
+26,Male,25,Slightly liberal,1
+74,Female,24.6,Moderate,1
+31,Male,27.4,Slightly liberal,0
+63,Male,39.6,Moderate,0
+72,Female,50.1,Moderate,1
+25,Male,73.4,Liberal,0
+35,Male,21.6,Moderate,0
+56,Male,52.4,Slghtly conservative,1
+20,Female,0,Slightly liberal,1
+75,Male,45.4,Moderate,0
+43,Female,69.3,Slghtly conservative,0
+28,Female,41.1,Liberal,1
+68,Male,46,Moderate,0
+61,Female,41.1,Moderate,1
+46,Female,19.6,Slightly liberal,0
+53,Male,76.3,Moderate,0
+35,Female,67.7,Moderate,0
+70,Female,87.9,Moderate,0
+59,Female,20.9,Moderate,1
+47,Male,36.4,Slightly liberal,1
+22,Female,38.2,Moderate,0
+65,Female,84.2,Slghtly conservative,1
+81,Female,63.7,Slghtly conservative,0
+74,Male,69.3,Moderate,0
+77,Female,80.9,Liberal,0
+22,Male,19.6,Moderate,0
+54,Male,81.9,Moderate,0
+48,Female,67.7,Liberal,0
+43,Male,59.8,Moderate,0
+27,Female,37.6,Slghtly conservative,1
+30,Female,87.9,Moderate,1
+55,Female,0,Slightly liberal,1
+40,Male,87.9,Liberal,1
+51,Male,55.3,Moderate,0
+21,Female,22.4,Slghtly conservative,0
+29,Male,27,Slghtly conservative,1
+83,Female,25,Moderate,0
+81,Female,35.8,Slightly liberal,1
+66,Female,43.8,Moderate,0
+72,Male,59.1,Slghtly conservative,1
+78,Female,59.1,Conservative,0
+80,Male,59.1,Slightly liberal,0
+60,Female,62.1,Conservative,0
+24,Male,18.6,Liberal,0
+81,Male,43,Liberal,0
+33,Female,32.6,Moderate,0
+23,Male,43.9,Moderate,1
+22,Female,46.6,Moderate,1
+31,Male,63.1,Slightly liberal,1
+34,Female,39.7,Liberal,0
+87,Female,28.7,Moderate,0
+47,Female,39.7,Moderate,1
+35,Male,31.3,Moderate,1
+76,Female,20.1,Moderate,1
+44,Female,62.6,Moderate,1
+27,Female,80.9,Conservative,1
+19,Female,42.9,Conservative,1
+39,Female,21.5,Moderate,1
+58,Female,84.2,Liberal,0
+42,Female,23.8,Moderate,1
+71,Female,24.6,Slghtly conservative,0
+43,Female,35.8,Moderate,1
+30,Female,39.7,Slightly liberal,1
+51,Female,82.5,Slghtly conservative,0
+39,Female,78.3,Moderate,1
+27,Female,0,Slightly liberal,1
+66,Male,89.3,Slghtly conservative,0
+60,Male,79.4,Slightly liberal,1
+19,Female,21.6,Moderate,0
+30,Male,65.3,Conservative,1
+37,Female,33.4,Extremely liberal,1
+50,Male,24,Conservative,0
+35,Female,20.1,Moderate,1
+44,Male,67.7,Liberal,1
+70,Female,12.6,Moderate,1
+20,Female,17,Liberal,0
+33,Female,0,Moderate,1
+51,Male,46,Moderate,1
+62,Male,18.6,Liberal,1
+46,Female,21.6,Moderate,0
+47,Male,28.7,Moderate,0
+56,Female,38.3,Moderate,0
+27,Female,62.9,Moderate,1
+63,Female,68.6,Liberal,0
+38,Female,84.2,Moderate,1
+35,Male,25.2,Slghtly conservative,0
+79,Female,15.8,Extrmly conservative,0
+47,Male,46,Moderate,1
+43,Male,63.7,Liberal,0
+34,Female,0,Liberal,0
+43,Female,20.7,Moderate,0
+44,Female,99.9,Slightly liberal,0
+54,Female,21.8,Moderate,0
+79,Female,43.9,Liberal,0
+59,Male,32.6,Liberal,1
+28,Female,24.2,Liberal,1
+63,Female,47.9,Extrmly conservative,1
+24,Female,99.9,Moderate,0
+29,Male,32,Moderate,1
+46,Male,26.1,Liberal,0
+73,Female,14,Moderate,1
+57,Male,28.7,Slightly liberal,0
+20,Female,23.8,Moderate,1
+51,Male,91.1,Conservative,0
+43,Male,57.4,Slghtly conservative,1
+65,Male,62.4,Moderate,0
+28,Male,27.6,Moderate,1
+25,Male,19.7,Liberal,1
+40,Male,13.6,Conservative,1
+34,Male,81,Moderate,0
+27,Male,59.4,Moderate,1
+59,Female,84.2,Slightly liberal,1
+25,Female,43,Moderate,1
+56,Male,25.2,Extrmly conservative,1
+61,Female,76.3,Slghtly conservative,1
+56,Female,63.7,Moderate,1
+46,Female,19.6,Slghtly conservative,1
+35,Female,62.9,Liberal,0
+31,Female,54.6,Liberal,0
+57,Male,36.2,Moderate,1
+50,Female,68.6,Moderate,0
+25,Male,23.3,Moderate,1
+59,Female,37.6,Moderate,1
+73,Male,39.6,Liberal,0
+60,Male,31.2,Moderate,1
+66,Male,50.4,Moderate,0
+84,Male,43.9,Moderate,1
+57,Female,21.8,Slightly liberal,1
+68,Male,50.4,Conservative,1
+35,Female,60.3,Moderate,0
+28,Female,71.8,Conservative,1
+42,Female,78.3,Moderate,0
+38,Female,18.6,Moderate,0
+69,Male,44.5,Moderate,1
+68,Male,67.7,Moderate,1
+44,Male,27.4,Slightly liberal,1
+67,Male,33.9,Conservative,0
+28,Female,43,Slghtly conservative,1
+45,Female,88.7,Moderate,1
+62,Male,84.5,Conservative,1
+68,Female,82.5,Liberal,0
+34,Female,59.1,Slghtly conservative,1
+32,Female,82.5,Liberal,1
+24,Female,14,Extremely liberal,0
+31,Female,41.1,Liberal,0
+32,Female,62.4,Moderate,1
+22,Male,19.6,Liberal,1
+25,Male,34.7,Moderate,0
+35,Female,12.6,Conservative,1
+64,Female,41.8,Slightly liberal,1
+26,Male,23.7,Moderate,1
+30,Male,19.6,Moderate,0
+63,Male,82.5,Extremely liberal,0
+46,Male,62.4,Slghtly conservative,0
+24,Male,19.6,Moderate,1
+61,Male,62,Moderate,1
+57,Female,84.2,Conservative,1
+40,Male,72.7,Extremely liberal,0
+42,Female,41.1,Liberal,1
+64,Female,52,Slghtly conservative,0
+50,Female,23.3,Extremely liberal,0
+41,Male,84.5,Slghtly conservative,1
+58,Male,59.9,Slightly liberal,1
+71,Female,43,Moderate,0
+58,Female,77.4,Slghtly conservative,0
+55,Male,69.3,Moderate,1
+65,Female,39.7,Extremely liberal,0
+27,Male,62,Moderate,1
+43,Male,59.1,Liberal,0
+29,Female,37.2,Liberal,0
+56,Male,51.5,Liberal,0
+67,Female,80.9,Liberal,0
+21,Male,25.4,Liberal,0
+69,Male,31.2,Extrmly conservative,1
+62,Female,39.7,Moderate,1
+23,Female,24.2,Moderate,1
+43,Female,57.4,Conservative,0
+46,Female,43.9,Conservative,0
+34,Male,69.3,Slightly liberal,0
+40,Male,91.1,Moderate,0
+56,Male,42.9,Moderate,1
+25,Female,80.9,Slightly liberal,0
+77,Female,38.8,Moderate,1
+30,Male,61.4,Extremely liberal,0
+70,Male,52.1,Extremely liberal,0
+70,Female,69.3,Liberal,1
+79,Male,33.9,Conservative,0
+59,Male,51.7,Moderate,0
+61,Female,62.9,Liberal,1
+68,Male,46.5,Moderate,0
+29,Male,66.2,Conservative,1
+31,Female,24.2,Moderate,0
+32,Male,62.9,Liberal,0
+27,Female,13.6,Liberal,1
+47,Male,32,Extremely liberal,0
+35,Male,50.4,Moderate,1
+54,Male,38.4,Moderate,1
+54,Male,99.9,Moderate,1
+31,Male,38.8,Liberal,1
+55,Female,25,Moderate,0
+61,Female,75.5,Moderate,1
+26,Male,83.8,Liberal,1
+60,Female,49.4,Conservative,1
+60,Female,26.5,Moderate,0
+25,Male,67.8,Conservative,0
+56,Male,62.6,Moderate,1
+57,Male,65.3,Moderate,0
+49,Male,34.7,Extrmly conservative,1
+82,Male,13.6,Slghtly conservative,1
+53,Male,32.6,Slightly liberal,1
+22,Female,12.6,Moderate,0
+29,Male,25.2,Moderate,0
+50,Female,46.6,Moderate,1
+35,Female,26.5,Moderate,0
+56,Male,87.9,Conservative,0
+82,Male,99.9,Slightly liberal,0
+39,Male,43.9,Moderate,0
+50,Female,39.7,Conservative,1
+50,Female,19.6,Moderate,1
+22,Male,58.4,Moderate,0
+52,Female,46.5,Liberal,0
+38,Female,34.8,Slghtly conservative,1
+39,Female,43,Slightly liberal,0
+38,Male,33.9,Moderate,0
+62,Female,35.8,Conservative,1
+43,Female,33.2,Liberal,0
+53,Female,42.8,Slghtly conservative,1
+39,Male,28.4,Slghtly conservative,0
+23,Female,19.6,Moderate,1
+69,Female,68,Liberal,1
+56,Female,14,Moderate,0
+77,Male,84.5,Conservative,0
+77,Male,38.3,Slghtly conservative,0
+61,Male,35.3,Extrmly conservative,1
+39,Female,71.6,Conservative,0
+83,Female,20.7,Extremely liberal,1
+65,Male,32,Slghtly conservative,1
+59,Male,32,Conservative,1
+63,Female,66.4,Moderate,0
+50,Male,28.7,Moderate,0
+72,Male,48.3,Slghtly conservative,1
+42,Female,57.8,Moderate,0
+75,Male,62,Moderate,1
+40,Female,37.6,Moderate,1
+69,Female,59.1,Liberal,0
+62,Female,76.3,Extremely liberal,0
+42,Male,83.8,Conservative,1
+82,Female,84.2,Slghtly conservative,0
+74,Female,25.7,Extrmly conservative,1
+83,Female,55.3,Moderate,1
+76,Male,79.3,Slightly liberal,1
+23,Male,84.5,Slightly liberal,0
+19,Male,21.6,Liberal,0
+51,Female,25.7,Moderate,1
+37,Female,45.4,Liberal,0
+28,Male,47.9,Slghtly conservative,1
+31,Male,87.9,Slghtly conservative,1
+43,Male,61.4,Moderate,0
+89,Male,57.4,Slightly liberal,1
+19,Female,21.6,Moderate,1
+58,Male,28.4,Moderate,1
+38,Male,70.5,Moderate,1
+47,Female,80.9,Extrmly conservative,1
+48,Female,12.6,Conservative,0
+38,Male,20.7,Moderate,0
+26,Male,26.1,Moderate,0
+23,Female,21.8,Extrmly conservative,1
+44,Female,21.6,Moderate,0
+30,Female,20.7,Moderate,0
+35,Male,20.9,Conservative,1
+49,Female,26.1,Liberal,1
+52,Male,23.3,Moderate,1
+73,Male,58.4,Conservative,1
+52,Female,38.8,Slightly liberal,1
+22,Male,60.3,Moderate,0
+26,Female,64.2,Moderate,1
+42,Male,24.2,Liberal,0
+46,Female,59.8,Moderate,0
+24,Male,23.3,Moderate,0
+27,Female,41.8,Moderate,1
+33,Female,32.6,Moderate,1
+54,Female,86.7,Conservative,0
+47,Male,35.2,Moderate,1
+62,Male,72.7,Extremely liberal,0
+48,Male,32,Moderate,0
+41,Female,19.6,Extrmly conservative,0
+32,Male,84.5,Extremely liberal,0
+31,Male,32,Moderate,0
+40,Male,64.5,Moderate,0
+37,Female,60.3,Conservative,1
+40,Female,76.7,Slghtly conservative,1
+36,Male,57.3,Slghtly conservative,0
+47,Male,37.2,Extremely liberal,0
+37,Female,91.1,Slightly liberal,0
+89,Male,39,Moderate,0
+71,Female,26.1,Moderate,1
+21,Female,24.6,Liberal,0
+67,Female,59.1,Extremely liberal,0
+34,Male,20.7,Slightly liberal,1
+65,Male,23.8,Moderate,0
+68,Female,21.6,Conservative,1
+38,Female,0,Slghtly conservative,1
+67,Female,77.2,Slightly liberal,1
+59,Female,24.2,Liberal,0
+52,Female,58.4,Moderate,1
+49,Female,80.9,Moderate,1
+26,Male,53,Moderate,0
+70,Female,68.6,Slghtly conservative,0
+21,Female,19.6,Slghtly conservative,0
+69,Male,12.4,Moderate,1
+51,Male,20.9,Conservative,1
+39,Male,73.5,Slghtly conservative,0
+35,Male,43,Liberal,1
+29,Male,39.7,Slghtly conservative,1
+45,Male,62,Slghtly conservative,0
+41,Male,52,Liberal,1
+46,Male,65.3,Moderate,0
+23,Male,34.7,Conservative,1
+31,Female,37.6,Slightly liberal,0
+47,Male,73.9,Extrmly conservative,1
+58,Female,77.4,Liberal,0
+26,Male,31.2,Moderate,0
+66,Male,84,Slightly liberal,0
+35,Female,84.2,Slghtly conservative,1
+44,Female,28.6,Conservative,1
+66,Male,79.4,Slghtly conservative,1
+57,Male,23.3,Moderate,1
+27,Female,52,Moderate,1
+43,Male,31.2,Slightly liberal,1
+64,Male,24.2,Moderate,1
+44,Female,43,Conservative,0
+65,Female,52,Liberal,0
+24,Female,61.4,Moderate,0
+72,Female,20.1,Conservative,0
+22,Male,13.6,Liberal,0
+57,Female,71.8,Slghtly conservative,1
+63,Female,23.7,Slightly liberal,1
+55,Female,26.9,Moderate,1
+56,Male,62.9,Slghtly conservative,0
+87,Male,92,Conservative,1
+53,Female,67.7,Moderate,0
+36,Male,92.1,Slghtly conservative,0
+52,Female,24.6,Slghtly conservative,1
+37,Male,71.4,Liberal,0
+75,Male,45.1,Liberal,0
+28,Female,62.9,Conservative,1
+21,Female,21.8,Moderate,0
+68,Female,39.7,Slghtly conservative,1
+59,Female,67.7,Liberal,1
+40,Male,45.4,Slghtly conservative,1
+35,Female,55.3,Moderate,1
+51,Male,55.3,Slghtly conservative,0
+40,Male,31.3,Slghtly conservative,0
+47,Female,39.7,Conservative,0
+45,Male,87.9,Conservative,0
+48,Female,61.4,Moderate,1
+23,Male,22.9,Moderate,1
+26,Male,92.8,Moderate,0
+33,Male,84.5,Liberal,0
+48,Female,84.2,Moderate,0
+36,Female,92,Moderate,1
+19,Male,26.1,Moderate,1
+49,Male,28.5,Conservative,0
+38,Male,71.7,Liberal,1
+44,Female,27.6,Extremely liberal,0
+29,Female,76.3,Slightly liberal,0
+28,Female,38.8,Slghtly conservative,0
+42,Female,75.5,Extrmly conservative,1
+60,Male,31,Slightly liberal,0
+43,Male,24,Slghtly conservative,0
+37,Female,52,Conservative,0
+54,Male,68.6,Slghtly conservative,0
+30,Male,43,Moderate,1
+55,Female,38.8,Moderate,0
+63,Male,43.9,Extrmly conservative,1
+50,Male,38.3,Moderate,1
+68,Female,38.8,Moderate,1
+36,Female,38.8,Moderate,1
+77,Male,86.1,Conservative,1
+25,Female,26.1,Moderate,0
+26,Male,60.3,Extremely liberal,0
+49,Female,20.7,Moderate,1
+77,Female,19.6,Slightly liberal,0
+30,Female,79.6,Liberal,0
+54,Male,75.6,Liberal,0
+29,Male,59.4,Moderate,1
+52,Male,20.7,Slightly liberal,0
+25,Female,21.5,Moderate,0
+21,Female,0,Conservative,1
+42,Female,20.1,Conservative,0
+37,Female,13.3,Slghtly conservative,1
+49,Female,24.2,Moderate,1
+56,Female,31.6,Moderate,0
+30,Female,41,Moderate,0
+67,Male,10.6,Slghtly conservative,0
+23,Female,82.5,Moderate,1
+31,Male,38.3,Slightly liberal,1
+55,Male,43.9,Extrmly conservative,1
+24,Female,28.7,Conservative,0
+67,Male,28.6,Conservative,0
+62,Female,24.6,Moderate,1
+62,Female,26.1,Slightly liberal,0
+23,Male,24.2,Conservative,1
+50,Male,46,Moderate,1
+54,Male,99.9,Moderate,1
+58,Female,31.6,Moderate,0
+34,Female,23.8,Extremely liberal,0
+37,Female,25.7,Liberal,1
+29,Female,48.8,Moderate,1
+52,Female,38.3,Slghtly conservative,0
+39,Female,84.2,Conservative,1
+70,Female,80.9,Conservative,1
+73,Female,67.7,Moderate,1
+31,Female,35.8,Slghtly conservative,1
+25,Female,62,Moderate,1
+62,Male,74.6,Extrmly conservative,1
+66,Male,34.8,Liberal,1
+65,Female,13.3,Moderate,1
+58,Male,29.4,Liberal,1
+65,Female,24.2,Slightly liberal,1
+57,Male,28.7,Moderate,0
+57,Male,25.2,Slghtly conservative,1
+30,Male,14,Conservative,1
+26,Female,13.6,Moderate,1
+58,Male,18.6,Moderate,1
+77,Male,13.6,Moderate,0
+39,Female,67.7,Moderate,1
+67,Male,78.3,Conservative,1
+70,Male,31.2,Conservative,1
+69,Female,21.8,Extrmly conservative,1
+87,Female,21.6,Conservative,1
+66,Female,20.8,Conservative,1
+31,Male,76.3,Conservative,0
+63,Female,47.9,Moderate,1
+78,Female,43,Conservative,1
+68,Male,67.7,Moderate,0
+51,Male,76.3,Extrmly conservative,1
+30,Male,37.6,Conservative,0
+32,Female,64.5,Slightly liberal,0
+39,Male,88,Moderate,1
+42,Male,68.6,Conservative,0
+48,Female,84.2,Slightly liberal,0
+34,Female,82.4,Liberal,0
+68,Male,73.6,Liberal,0
+52,Male,43,Moderate,0
+83,Female,82.5,Moderate,1
+73,Male,84,Liberal,1
+38,Male,59.1,Slightly liberal,1
+77,Female,14.6,Moderate,1
+36,Male,32,Moderate,0
+36,Male,20.9,Liberal,1
+65,Male,28.5,Moderate,0
+24,Male,0,Liberal,0
+63,Male,77.4,Moderate,0
+53,Female,23.3,Moderate,1
+35,Female,60.2,Slightly liberal,1
+76,Male,45.4,Slghtly conservative,0
+48,Male,77.4,Slghtly conservative,1
+27,Male,34.7,Slghtly conservative,0
+72,Female,39.7,Slghtly conservative,1
+34,Male,37.6,Moderate,1
+38,Female,99.9,Slghtly conservative,1
+30,Female,60.5,Conservative,0
+42,Male,80.9,Liberal,1
+43,Male,45.1,Conservative,0
+80,Female,60.3,Moderate,1
+80,Male,18.8,Extrmly conservative,1
+42,Female,24.2,Moderate,1
+41,Male,68.6,Conservative,0
+57,Male,18.6,Liberal,0
+49,Male,20.9,Moderate,0
+40,Female,0,Conservative,0
+66,Female,31.6,Moderate,1
+87,Female,22.9,Moderate,1
+59,Male,54.3,Extremely liberal,0
+52,Male,57,Liberal,0
+58,Female,24.6,Moderate,1
+30,Male,23.3,Moderate,0
+26,Female,62.9,Extremely liberal,1
+20,Male,23.8,Slightly liberal,1
+20,Male,39.7,Conservative,1
+23,Male,99.9,Moderate,0
+25,Female,25.7,Moderate,1
+20,Male,21.6,Slightly liberal,1
+31,Male,84.5,Slghtly conservative,0
+26,Female,87.9,Extremely liberal,0
+19,Female,19.6,Extremely liberal,0
+30,Male,19.6,Moderate,0
+23,Female,39.7,Moderate,0
+23,Male,99.9,Moderate,0
+53,Male,77.4,Moderate,0
+19,Female,37.6,Liberal,1
+40,Female,84.2,Slightly liberal,1
+47,Male,46.5,Moderate,1
+38,Male,21.4,Liberal,1
+54,Female,45.1,Conservative,1
+47,Female,37.6,Moderate,1
+67,Female,80.9,Slghtly conservative,1
+57,Male,80.9,Conservative,1
+89,Male,73.1,Extremely liberal,0
+51,Female,52,Moderate,1
+32,Female,23.3,Slightly liberal,0
+22,Female,25.7,Conservative,1
+42,Male,25.2,Slghtly conservative,0
+37,Female,0,Liberal,0
+54,Male,29.5,Slghtly conservative,1
+24,Female,37.6,Moderate,0
+25,Female,37.6,Moderate,0
+44,Female,67.8,Liberal,1
+25,Male,27.6,Liberal,1
+24,Male,36.4,Slightly liberal,0
+78,Female,67.7,Slghtly conservative,0
+23,Female,38.8,Liberal,1
+38,Male,23,Liberal,1
+57,Male,38.1,Slghtly conservative,1
+70,Female,38.8,Extremely liberal,1
+69,Male,25,Liberal,0
+77,Female,12.6,Moderate,1
+25,Male,69.4,Slightly liberal,0
+62,Male,65.1,Slghtly conservative,0
+84,Female,38.3,Conservative,0
+71,Female,52,Moderate,0
+54,Female,52,Slghtly conservative,0
+74,Male,45.4,Slghtly conservative,0
+37,Male,57.5,Slightly liberal,0
+80,Male,58.1,Liberal,0
+74,Male,25,Moderate,0
+37,Female,49.4,Moderate,0
+33,Female,62.1,Moderate,1
+62,Female,60.5,Moderate,0
+74,Male,31.2,Moderate,0
+83,Female,62.9,Conservative,1
+40,Female,20.1,Liberal,1
+57,Female,88.7,Conservative,1
+50,Male,77.7,Slghtly conservative,1
+31,Male,27,Slightly liberal,0
+36,Male,84,Liberal,0
+83,Male,43,Extrmly conservative,0
+58,Male,68.6,Slightly liberal,0
+29,Male,32.6,Slightly liberal,0
+50,Male,46.6,Moderate,0
+64,Male,70.5,Moderate,1
+43,Male,84.2,Conservative,1
+54,Male,71.6,Slghtly conservative,1
+72,Male,82.5,Liberal,0
+31,Female,80.9,Slightly liberal,1
+30,Male,62.4,Slghtly conservative,0
+36,Female,37.2,Moderate,0
+72,Male,0,Extrmly conservative,0
+29,Female,52,Slghtly conservative,1
+83,Female,0,Liberal,0
+80,Female,84.2,Slghtly conservative,1
+61,Male,59.1,Slghtly conservative,1
+53,Male,46,Conservative,0
+61,Female,68.6,Liberal,0
+52,Female,26.5,Slghtly conservative,0
+37,Male,28.3,Slightly liberal,0
+24,Female,37.2,Moderate,1
+50,Female,53.7,Liberal,1
+28,Female,67.8,Moderate,1
+30,Female,0,Extremely liberal,0
+36,Male,83.8,Moderate,1
+24,Male,63.7,Slightly liberal,1
+63,Female,39.7,Moderate,1
+22,Male,25,Liberal,1
+20,Male,35.8,Liberal,0
+31,Female,41.1,Moderate,1
+74,Male,69.4,Conservative,0
+83,Female,38.1,Extrmly conservative,1
+61,Male,86.5,Conservative,1
+22,Male,39.7,Liberal,1
+63,Female,26.1,Slghtly conservative,1
+46,Male,38.1,Moderate,0
+38,Female,38.8,Slghtly conservative,0
+80,Male,43,Conservative,1
+58,Female,38.8,Moderate,0
+52,Female,21.6,Moderate,0
+31,Female,45.3,Extrmly conservative,0
+34,Male,63.2,Moderate,0
+63,Male,59.8,Conservative,0
+57,Female,62.1,Conservative,0
+45,Male,20.7,Conservative,1
+60,Male,31.2,Moderate,0
+67,Female,24.6,Extrmly conservative,1
+63,Male,20.7,Slightly liberal,0
+50,Male,53.7,Moderate,0
+29,Male,45.4,Slghtly conservative,1
+23,Female,19.6,Moderate,1
+59,Male,43.5,Conservative,1
+38,Female,82.5,Slghtly conservative,1
+32,Female,57.8,Slightly liberal,1
+32,Male,71.8,Conservative,1
+48,Male,63.7,Moderate,1
+64,Female,23.3,Conservative,1
+30,Female,78.3,Slightly liberal,0
+25,Female,33.4,Moderate,0
+48,Female,37.6,Slightly liberal,1
+29,Female,12.4,Slghtly conservative,1
+23,Male,86.6,Slghtly conservative,1
+44,Male,57.5,Slightly liberal,0
+55,Female,87.9,Moderate,0
+25,Male,61.4,Moderate,0
+59,Male,92,Conservative,0
+60,Male,78.3,Conservative,1
+53,Female,37.6,Extremely liberal,0
+46,Male,27.7,Conservative,0
+29,Female,21.6,Moderate,0
+50,Female,75.5,Moderate,1
+79,Female,80.9,Moderate,1
+29,Male,23.3,Slghtly conservative,1
+50,Female,57.5,Moderate,1
+61,Male,34.7,Liberal,0
+21,Female,19.6,Conservative,1
+29,Female,39.7,Slghtly conservative,1
+80,Female,32.6,Moderate,1
+25,Female,13.6,Slghtly conservative,1
+68,Female,38.8,Moderate,1
+47,Male,75.5,Conservative,1
+64,Male,58.4,Moderate,1
+57,Female,30.9,Moderate,1
+55,Female,36.9,Liberal,0
+86,Female,52,Slightly liberal,0
+47,Male,82.5,Conservative,0
+52,Male,78.3,Liberal,0
+34,Male,25.7,Liberal,1
+65,Male,32.6,Conservative,1
+69,Female,12.6,Liberal,1
+53,Male,84.5,Liberal,0
+64,Female,91.1,Extremely liberal,0
+68,Male,88.6,Slghtly conservative,0
+66,Female,41.8,Conservative,0
+43,Male,43,Extrmly conservative,1
+21,Female,23.3,Moderate,1
+60,Female,24.2,Slghtly conservative,1
+46,Female,38.8,Moderate,0
+23,Male,13.6,Conservative,1
+33,Male,25.2,Conservative,1
+66,Male,80.9,Extremely liberal,0
+43,Female,12.6,Liberal,1
+40,Female,10.6,Moderate,1
+59,Female,71.8,Liberal,0
+66,Male,52,Liberal,0
+54,Male,78.3,Extremely liberal,0
+24,Male,23.8,Liberal,1
+36,Female,56.8,Liberal,0
+52,Male,25,Slghtly conservative,1
+26,Male,44.5,Moderate,0
+64,Female,39.7,Moderate,0
+77,Male,77.4,Moderate,1
+58,Male,37.6,Slghtly conservative,1
+76,Female,37.2,Moderate,0
+68,Male,32.6,Moderate,0
+20,Female,24.2,Moderate,0
+63,Female,46,Conservative,1
+57,Female,76.3,Moderate,1
+66,Female,33.2,Moderate,1
+63,Female,67.7,Slightly liberal,0
+75,Male,73.9,Liberal,0
+66,Female,73.6,Moderate,0
+53,Male,59.1,Liberal,0
+49,Female,75.5,Liberal,0
+57,Male,75.5,Liberal,0
+41,Female,49.2,Liberal,1
+42,Female,71.7,Slightly liberal,1
+38,Male,86.7,Liberal,0
+34,Male,27,Moderate,0
+72,Male,32,Moderate,1
+39,Female,24.2,Moderate,0
+38,Female,21.6,Moderate,0
+55,Male,39.7,Moderate,1
+85,Male,82.5,Slightly liberal,0
+32,Male,32.6,Moderate,1
+35,Male,71.8,Slghtly conservative,1
+32,Female,12.6,Moderate,0
+67,Female,34.8,Slightly liberal,0
+28,Male,37.6,Liberal,0
+59,Female,82.5,Conservative,0
+57,Male,27.2,Slghtly conservative,1
+51,Male,57.4,Moderate,0
+66,Female,62.9,Moderate,1
+35,Male,67.7,Slghtly conservative,1
+28,Female,36.9,Moderate,1
+52,Female,84.5,Liberal,1
+89,Male,75.2,Moderate,0
+69,Female,25.7,Slghtly conservative,0
+48,Male,65.3,Extrmly conservative,1
+36,Female,67.7,Moderate,1
+66,Female,46.6,Conservative,1
+31,Female,37.6,Moderate,1
+57,Female,20.1,Slghtly conservative,0
+48,Female,43.9,Conservative,1
+35,Female,20.1,Slghtly conservative,1
+59,Female,17.1,Liberal,1
+52,Female,64.5,Moderate,1
+37,Male,69.3,Extremely liberal,1
+35,Male,12.6,Slghtly conservative,1
+61,Male,35.8,Conservative,1
+67,Female,39.7,Moderate,1
+80,Female,27,Slghtly conservative,1
+30,Male,45.3,Extremely liberal,1
+56,Female,65.3,Slghtly conservative,0
+20,Male,38.1,Liberal,1
+53,Female,71.7,Conservative,1
+31,Female,69.3,Slightly liberal,1
+51,Female,13.6,Moderate,0
+29,Female,13.6,Moderate,1
+80,Male,43.9,Moderate,1
+67,Female,67.8,Slghtly conservative,1
+58,Female,60.5,Moderate,1
+19,Female,19.6,Extremely liberal,1
+19,Female,21.6,Slghtly conservative,0
+25,Male,20.7,Moderate,1
+34,Female,14,Moderate,1
+78,Male,46.6,Moderate,1
+62,Male,23.8,Moderate,1
+30,Female,43,Slghtly conservative,0
+65,Female,24.2,Slghtly conservative,1
+45,Female,41.1,Slightly liberal,1
+65,Male,52.5,Moderate,1
+68,Female,84.2,Slightly liberal,0
+37,Male,45.4,Moderate,0
+59,Male,28.7,Moderate,1
+80,Male,65.3,Extrmly conservative,1
+29,Female,58.6,Moderate,1
+57,Female,37.6,Conservative,0
+73,Female,80.9,Conservative,1
+75,Male,22.9,Slghtly conservative,0
+74,Male,52.3,Moderate,1
+86,Female,35.3,Conservative,1
+81,Female,35.3,Liberal,0
+69,Female,21.6,Slghtly conservative,0
+59,Male,46.5,Conservative,0
+68,Male,31.6,Conservative,1
+28,Female,66.4,Conservative,1
+62,Male,42.8,Slghtly conservative,1
+30,Female,37.6,Moderate,1
+30,Female,56.8,Moderate,1
+52,Male,63.1,Liberal,1
+50,Female,74.6,Slightly liberal,0
+62,Male,33.9,Moderate,1
+46,Female,59.4,Conservative,1
+43,Female,45.3,Liberal,0
+27,Male,55.3,Moderate,1
+36,Male,65.1,Moderate,0
+50,Female,84.5,Liberal,1
+23,Male,0,Moderate,1
+27,Male,82.5,Conservative,1
+21,Female,19.6,Slightly liberal,0
+23,Female,24.1,Slightly liberal,0
+67,Female,84.5,Liberal,0
+36,Female,75.6,Extremely liberal,0
+28,Male,0,Moderate,1
+47,Female,39.7,Slightly liberal,0
+30,Female,12.6,Conservative,0
+52,Male,59.4,Liberal,0
+66,Male,84.5,Moderate,1
+60,Male,25.2,Extremely liberal,0
+31,Female,60.1,Extremely liberal,0
+68,Female,75.5,Conservative,1
+38,Male,77.2,Slghtly conservative,0
+81,Male,18.6,Extrmly conservative,0
+56,Female,75.5,Conservative,1
+42,Male,25.2,Moderate,0
+24,Female,14,Moderate,0
+26,Female,82.4,Conservative,0
+50,Female,52,Moderate,1
+19,Female,0,Liberal,1
+31,Female,19.6,Moderate,1
+74,Female,20.5,Slightly liberal,1
+60,Female,58.4,Moderate,1
+84,Female,39.7,Moderate,0
+33,Female,24.2,Moderate,1
+40,Female,43,Moderate,0
+59,Female,41.1,Liberal,1
+19,Male,0,Conservative,1
+61,Male,53.6,Liberal,1
+48,Female,34.4,Extrmly conservative,1
+54,Female,71.8,Slightly liberal,1
+41,Female,82.5,Moderate,1
+34,Male,46.6,Conservative,1
+19,Female,0,Slightly liberal,0
+51,Male,42.9,Moderate,1
+32,Female,64.5,Extremely liberal,1
+64,Male,67.7,Conservative,0
+41,Male,32,Moderate,0
+80,Female,38.8,Moderate,1
+28,Male,43.9,Moderate,1
+41,Female,41.1,Conservative,1
+45,Female,82.5,Slghtly conservative,1
+35,Female,45.1,Moderate,0
+51,Female,24.2,Slghtly conservative,1
+76,Male,20.7,Conservative,0
+26,Female,24.1,Moderate,1
+62,Male,23.8,Extrmly conservative,1
+19,Male,13.6,Moderate,0
+18,Female,21.6,Moderate,1
+55,Female,38.8,Moderate,1
+52,Female,27,Moderate,0
+59,Male,43.5,Slghtly conservative,1
+67,Female,38.8,Slightly liberal,0
+31,Female,39.7,Moderate,1
+58,Male,26.1,Slghtly conservative,0
+83,Female,13.3,Extremely liberal,0
+27,Female,43,Slightly liberal,1
+72,Male,32,Moderate,0
+58,Female,59.8,Conservative,1
+19,Male,53.7,Moderate,1
+69,Female,80.9,Moderate,0
+65,Female,73.2,Liberal,1
+63,Male,32,Conservative,0
+49,Male,69.4,Liberal,1
+76,Male,50.4,Conservative,0
+65,Male,39.7,Moderate,1
+28,Male,54.6,Conservative,0
+82,Female,20.1,Slightly liberal,0
+49,Male,25,Moderate,1
+33,Male,62.9,Conservative,1
+60,Male,52.3,Conservative,0
+69,Female,39.7,Conservative,0
+39,Female,37.6,Moderate,0
+37,Female,73.5,Slghtly conservative,1
+44,Female,37.6,Moderate,0
+36,Female,71.8,Slightly liberal,1
+43,Male,25.2,Extremely liberal,1
+44,Male,24.1,Slghtly conservative,1
+66,Female,71.8,Moderate,0
+75,Female,15.8,Extrmly conservative,1
+73,Female,38.8,Slghtly conservative,1
+61,Male,20.1,Conservative,1
+58,Male,20.5,Extremely liberal,1
+37,Female,24.6,Moderate,0
+30,Male,24.6,Slightly liberal,1
+44,Female,20.7,Extremely liberal,0
+48,Male,43.4,Liberal,0
+57,Female,19.6,Liberal,1
+47,Male,64.9,Slghtly conservative,1
+67,Male,53.6,Moderate,1
+70,Female,14.8,Slightly liberal,0
+38,Female,24.2,Slightly liberal,1
+39,Female,87.9,Moderate,1
+55,Female,35.8,Conservative,1
+27,Male,43,Moderate,0
+21,Female,37.6,Conservative,0
+59,Female,49.2,Liberal,0
+61,Female,82.5,Moderate,1
+58,Female,24.2,Moderate,0
+52,Male,75.6,Slghtly conservative,0
+61,Female,64.2,Conservative,0
+63,Female,80.9,Conservative,1
+86,Male,69.3,Liberal,0
+32,Male,28.7,Moderate,1
+50,Male,37.2,Slghtly conservative,0
+55,Female,49.4,Moderate,0
+38,Male,32,Moderate,0
+39,Female,20.1,Moderate,1
+19,Male,39.7,Liberal,1
+45,Female,37.6,Moderate,0
+23,Male,21.6,Slightly liberal,1
+73,Female,59.1,Conservative,0
+50,Female,61.2,Conservative,0
+67,Female,82.5,Moderate,1
+37,Female,23.3,Extrmly conservative,1
+40,Female,38.3,Conservative,1
+41,Male,67.7,Slghtly conservative,0
+65,Male,76.3,Extremely liberal,1
+57,Male,57.4,Slghtly conservative,1
+37,Male,68.6,Liberal,1
+86,Male,50.4,Moderate,0
+67,Female,71.8,Extremely liberal,0
+80,Male,67.7,Conservative,1
+32,Male,85.9,Moderate,0
+33,Female,73.9,Moderate,1
+56,Female,21.5,Slightly liberal,1
+61,Female,84.2,Liberal,1
+80,Male,80.9,Moderate,0
+48,Male,26.9,Conservative,0
+65,Male,18.6,Moderate,1
+61,Male,81.6,Conservative,1
+73,Female,28.6,Liberal,1
+57,Male,32.8,Slightly liberal,0
+71,Female,33.2,Conservative,1
+58,Female,20.1,Slghtly conservative,1
+78,Male,31.9,Conservative,0
+52,Female,37.8,Moderate,0
+48,Female,19.6,Conservative,1
+61,Male,28.4,Slghtly conservative,0
+50,Male,80.9,Conservative,0
+45,Female,39.7,Moderate,0
+53,Female,37.6,Moderate,0
+28,Male,43.9,Extrmly conservative,0
+89,Female,38.1,Moderate,1
+89,Male,39.1,Slightly liberal,1
+62,Female,43,Moderate,0
+52,Female,12.6,Moderate,0
+43,Male,32,Slghtly conservative,1
+61,Male,31,Moderate,0
+37,Female,69.3,Slghtly conservative,1
+57,Male,32,Extremely liberal,0
+53,Female,43,Moderate,1
+66,Female,21.6,Moderate,0
+44,Male,35.4,Extrmly conservative,1
+27,Female,27,Moderate,1
+24,Male,36.4,Liberal,1
+44,Female,80.9,Slghtly conservative,1
+35,Female,24.2,Conservative,1
+39,Female,38.8,Moderate,0
+79,Male,43,Conservative,0
+22,Female,68.6,Liberal,1
+70,Male,53.2,Moderate,0
+33,Male,34.4,Moderate,0
+52,Female,29.4,Conservative,1
+71,Female,80.7,Slightly liberal,1
+78,Female,24.2,Slightly liberal,1
+42,Female,60.5,Slightly liberal,0
+57,Female,67.7,Conservative,1
+76,Male,29.6,Extrmly conservative,1
+62,Female,25,Liberal,0
+58,Female,84.2,Slghtly conservative,1
+29,Female,21.6,Slghtly conservative,1
+85,Female,26.2,Slghtly conservative,1
+38,Male,73.9,Moderate,0
+80,Female,29.4,Moderate,1
+66,Male,60.4,Conservative,1
+58,Female,38.8,Extrmly conservative,1
+75,Female,71.8,Conservative,0
+65,Male,67.7,Slightly liberal,0
+72,Male,52,Conservative,0
+73,Female,0,Slghtly conservative,0
+68,Male,52,Slightly liberal,0
+75,Female,38.3,Conservative,0
+56,Male,78.3,Moderate,1
+54,Female,13.6,Slghtly conservative,0
+79,Female,43,Conservative,0
+53,Male,84.5,Slghtly conservative,1
+39,Male,43,Moderate,0
+22,Female,0,Moderate,0
+43,Male,51.9,Conservative,1
+20,Female,35.8,Extrmly conservative,0
+76,Male,91.9,Conservative,1
+70,Female,33.4,Moderate,1
+69,Male,70.1,Conservative,0
+27,Male,59.1,Moderate,0
+52,Male,85.2,Conservative,0
+29,Male,77.2,Moderate,1
+38,Female,24.1,Conservative,1
+63,Female,39.7,Moderate,1
+35,Female,38.3,Moderate,0
+44,Female,59.1,Extrmly conservative,1
+41,Female,43,Moderate,0
+53,Female,17.1,Liberal,0
+25,Female,58.4,Moderate,1
+24,Female,21.6,Extremely liberal,1
+54,Female,43.9,Moderate,1
+58,Male,46.5,Slghtly conservative,1
+66,Male,45.4,Slghtly conservative,1
+48,Male,27,Conservative,0
+39,Female,26.1,Moderate,0
+47,Female,91.1,Liberal,0
+28,Male,25.2,Moderate,1
+28,Female,38.8,Extrmly conservative,1
+76,Female,13.2,Moderate,0
+55,Male,43.9,Conservative,1
+72,Male,46.5,Moderate,1
+78,Female,24.6,Conservative,1
+67,Female,21.8,Moderate,1
+55,Female,62.9,Slightly liberal,0
+51,Male,13.6,Moderate,0
+55,Male,31,Liberal,0
+64,Female,65.3,Moderate,1
+58,Male,62.6,Liberal,1
+22,Female,63.7,Moderate,1
+62,Male,86.1,Conservative,1
+43,Male,25.2,Moderate,1
+62,Male,62.7,Slightly liberal,1
+39,Female,38.8,Moderate,0
+79,Female,35.8,Conservative,1
+80,Female,80.9,Conservative,0
+22,Male,67.7,Slightly liberal,1
+27,Female,38.8,Slightly liberal,0
+50,Male,0,Moderate,0
+42,Female,31.6,Moderate,1
+72,Male,54.6,Slghtly conservative,0
+22,Female,0,Liberal,1
+47,Male,25,Moderate,0
+50,Male,65.3,Moderate,0
+46,Male,56.9,Moderate,0
+57,Female,43.9,Conservative,1
+35,Male,57.3,Moderate,1
+43,Male,57.5,Moderate,1
+23,Male,13.6,Moderate,1
+33,Male,41.4,Slghtly conservative,1
+70,Female,39.7,Slghtly conservative,1
+59,Female,41,Slghtly conservative,0
+82,Female,0,Moderate,1
+58,Male,24.1,Liberal,0
+25,Male,0,Conservative,0
+62,Female,17.1,Moderate,0
+28,Female,37.6,Moderate,0
+34,Male,28.7,Conservative,1
+33,Male,77.4,Slghtly conservative,1
+49,Female,92.8,Liberal,0
+52,Male,92.8,Conservative,0
+47,Female,84.2,Moderate,0
+81,Female,38.8,Conservative,1
+65,Male,76.3,Slghtly conservative,0
+70,Female,92.2,Slightly liberal,0
+44,Male,20.7,Moderate,1
+26,Male,32,Slghtly conservative,1
+62,Male,45.4,Moderate,1
+26,Female,24.2,Moderate,0
+57,Male,52,Conservative,0
+60,Male,22.9,Liberal,0
+51,Male,25,Moderate,1
+73,Female,26.5,Extrmly conservative,0
+27,Male,57.8,Conservative,1
+27,Male,28.7,Moderate,1
+25,Female,0,Slghtly conservative,1
+89,Female,31.9,Conservative,0
+84,Male,57.5,Extrmly conservative,1
+46,Male,53.9,Slightly liberal,1
+69,Female,24.2,Extrmly conservative,1
+44,Female,24.2,Extrmly conservative,0
+40,Male,59.1,Conservative,1
+48,Female,45.1,Conservative,1
+74,Female,20.7,Conservative,1
+67,Male,65.3,Conservative,1
+54,Female,44.6,Moderate,0
+61,Male,23.3,Slightly liberal,0
+61,Male,39.6,Conservative,0
+29,Female,38.8,Extrmly conservative,1
+37,Male,18.8,Moderate,0
+74,Female,63.7,Moderate,1
+20,Female,20.8,Slghtly conservative,1
+83,Female,31.9,Moderate,0
+60,Male,28.7,Moderate,1
+42,Female,37.6,Moderate,1
+44,Male,46.6,Conservative,0
+39,Male,43.9,Moderate,0
+29,Male,27.7,Slightly liberal,1
+37,Female,72.5,Slightly liberal,1
+60,Female,75.5,Moderate,0
+62,Female,60.3,Liberal,0
+85,Male,91.1,Liberal,0
+33,Male,69.3,Moderate,1
+30,Male,84.2,Liberal,0
+78,Male,87.6,Moderate,0
+23,Female,80.9,Moderate,1
+52,Female,20.1,Moderate,1
+62,Male,83.8,Moderate,0
+41,Female,80.9,Slghtly conservative,0
+71,Female,84.2,Moderate,1
+62,Female,35.8,Slghtly conservative,1
+71,Female,80.9,Moderate,1
+24,Male,25.2,Slightly liberal,1
+86,Female,38.3,Conservative,0
+89,Female,14.8,Moderate,1
+59,Male,32,Extrmly conservative,0
+37,Female,69.3,Moderate,1
+67,Female,80.9,Conservative,1
+44,Female,28.5,Conservative,1
+67,Female,32,Slghtly conservative,1
+81,Female,38.8,Moderate,1
+22,Female,24.2,Moderate,1
+63,Male,20.7,Slghtly conservative,0
+23,Male,39.2,Liberal,1
+33,Male,84.2,Liberal,1
+78,Female,38.3,Moderate,1
+58,Female,21.8,Conservative,1
+19,Male,13.6,Extremely liberal,1
+63,Female,38.3,Moderate,0
+47,Female,63.7,Slightly liberal,1
+22,Female,38.1,Extrmly conservative,0
+69,Female,59.8,Moderate,1
+26,Male,99.9,Moderate,1
+35,Male,22.9,Extremely liberal,1
+40,Male,10.6,Moderate,1
+82,Female,38.8,Moderate,0
+38,Female,68.6,Conservative,1
+34,Male,67.8,Moderate,1
+26,Female,38.3,Slghtly conservative,0
+32,Male,42.9,Liberal,0
+60,Male,45.3,Liberal,0
+64,Female,60.5,Moderate,0
+50,Male,20.9,Moderate,1
+65,Male,45.4,Moderate,1
+41,Female,67.7,Liberal,0
+88,Male,62.9,Slghtly conservative,0
+83,Female,38.3,Slghtly conservative,1
+62,Female,63.7,Extremely liberal,0
+52,Male,43.9,Slghtly conservative,1
+59,Male,20.7,Moderate,0
+23,Male,0,Extremely liberal,1
+22,Male,0,Slightly liberal,1
+28,Male,81,Moderate,0
+52,Male,68.6,Slghtly conservative,0
+54,Female,84.5,Liberal,0
+86,Male,84.5,Liberal,0
+42,Male,77.4,Moderate,1
+81,Male,25.2,Conservative,0
+41,Female,25.7,Moderate,1
+57,Male,62,Slightly liberal,0
+23,Male,20.7,Liberal,0
+50,Female,23.7,Moderate,0
+46,Male,75.5,Conservative,0
+39,Female,80.9,Liberal,1
+66,Female,35.8,Moderate,0
+45,Female,21.8,Moderate,1
+42,Male,80.7,Extrmly conservative,1
+60,Male,30.3,Moderate,1
+33,Male,67.7,Extrmly conservative,1
+36,Male,25.2,Moderate,0
+84,Female,28.6,Conservative,1
+63,Female,24.2,Conservative,1
+60,Female,55.1,Liberal,0
+68,Female,82.5,Conservative,0
+69,Male,62.6,Moderate,1
+53,Male,84.2,Conservative,0
+81,Male,43.9,Conservative,0
+60,Female,59.4,Liberal,0
+65,Female,24.6,Moderate,1
+64,Male,82.5,Liberal,0
+70,Male,36.2,Moderate,1
+30,Male,60.5,Liberal,0
+31,Female,38.1,Slightly liberal,1
+35,Male,35.1,Conservative,1
+56,Female,25,Moderate,1
+68,Female,39.7,Slightly liberal,1
+61,Female,57,Liberal,1
+48,Female,24.2,Moderate,1
+53,Female,38.1,Moderate,0
+32,Male,23.3,Moderate,1
+33,Male,13.6,Slightly liberal,0
+29,Female,13.6,Moderate,1
+52,Male,20.9,Moderate,1
+57,Male,27,Slghtly conservative,1
+31,Female,20.8,Extrmly conservative,1
+53,Female,20.7,Moderate,1
+37,Male,83.8,Slghtly conservative,1
+76,Female,80.9,Moderate,1
+53,Female,19.6,Conservative,1
+21,Female,62.1,Moderate,1
+53,Male,62,Conservative,0
+53,Female,62.1,Slghtly conservative,0
+47,Female,82.5,Slghtly conservative,0
+59,Female,60.5,Conservative,1
+78,Female,43.9,Moderate,1
+49,Male,34.6,Slghtly conservative,0
+65,Male,57.8,Conservative,1
+41,Male,27,Moderate,1
+64,Male,80.7,Conservative,0
+32,Female,76.3,Conservative,1
+78,Female,13.6,Slightly liberal,1
+48,Female,65.3,Slghtly conservative,1
+45,Male,32,Slghtly conservative,1
+58,Male,23.3,Slghtly conservative,0
+55,Female,53.8,Conservative,0
+46,Male,32,Slghtly conservative,1
+41,Male,81.6,Slghtly conservative,1
+80,Male,25.2,Extrmly conservative,1
+83,Female,12.4,Liberal,0
+85,Female,21.6,Slghtly conservative,0
+22,Male,12.6,Extremely liberal,0
+38,Female,80.9,Conservative,1
+42,Male,28.1,Moderate,1
+74,Female,41.4,Conservative,1
+29,Female,19.6,Moderate,0
+37,Male,47.9,Conservative,1
+61,Female,37.9,Liberal,0
+71,Male,63.7,Moderate,0
+35,Female,49.2,Moderate,1
+21,Male,46,Moderate,1
+63,Female,36.9,Moderate,1
+67,Male,68,Moderate,1
+27,Female,24.2,Conservative,1
+75,Male,27.2,Conservative,0
+47,Female,39.7,Conservative,1
+26,Male,70.5,Moderate,1
+36,Female,24.2,Conservative,1
+64,Male,31,Slightly liberal,1
+81,Male,29.6,Slghtly conservative,1
+76,Female,77.2,Slightly liberal,0
+23,Female,14,Slghtly conservative,0
+71,Male,18.6,Moderate,1
+30,Male,14.8,Conservative,0
+39,Female,24,Moderate,1
+71,Female,68.6,Moderate,1
+23,Male,45.1,Moderate,0
+53,Female,59.8,Moderate,1
+63,Female,32,Moderate,1
+23,Female,84.2,Liberal,0
+60,Female,26.9,Slghtly conservative,1
+78,Female,13.6,Moderate,1
+32,Male,57.3,Slghtly conservative,0
+62,Female,70.3,Moderate,1
+31,Female,69.4,Moderate,1
+69,Male,57.8,Slghtly conservative,1
+67,Male,84,Conservative,1
+24,Female,65.3,Liberal,0
+29,Male,81,Extremely liberal,0
+30,Female,18.8,Extremely liberal,0
+77,Female,34.7,Liberal,0
+25,Male,38.1,Slightly liberal,1
+50,Male,64.5,Extremely liberal,1
+78,Female,41.1,Conservative,1
+33,Male,85.2,Liberal,0
+67,Male,24.2,Slightly liberal,1
+67,Female,38.8,Moderate,0
+67,Female,37.2,Moderate,1
+45,Male,37.6,Conservative,0
+34,Male,21.8,Conservative,1
+29,Female,68.6,Liberal,1
+84,Female,32.6,Moderate,0
+39,Female,21.6,Moderate,0
+76,Female,38.8,Moderate,1
+69,Female,71.8,Moderate,1
+43,Male,67.7,Moderate,1
+89,Female,99.9,Extremely liberal,1
+67,Male,50.1,Moderate,0
+59,Male,25.2,Moderate,1
+64,Male,65.3,Moderate,1
+23,Female,19.6,Moderate,1
+32,Male,13.6,Extremely liberal,0
+46,Female,32.6,Moderate,1
+48,Male,0,Slightly liberal,0
+64,Female,57.5,Moderate,1
+46,Male,73.5,Slightly liberal,1
+86,Male,86.5,Moderate,0
+18,Male,18.6,Slightly liberal,0
+20,Female,35.8,Moderate,1
+65,Male,71,Liberal,0
+63,Male,32,Conservative,0
+21,Male,52.9,Slightly liberal,1
+33,Male,81.6,Moderate,0
+22,Female,20.1,Moderate,1
+32,Male,18.6,Moderate,1
+57,Male,99.9,Extrmly conservative,1
+55,Female,12.6,Moderate,0
+21,Female,13.6,Moderate,1
+18,Male,17.5,Extrmly conservative,1
+39,Male,34.6,Extrmly conservative,0
+27,Male,65.3,Conservative,0
+29,Male,32,Slightly liberal,0
+70,Female,57.8,Conservative,0
+41,Female,99.9,Extrmly conservative,1
+40,Male,68.6,Slghtly conservative,0
+20,Female,19.7,Extrmly conservative,1
+27,Male,23.8,Slightly liberal,1
+53,Female,12.6,Extrmly conservative,0
+49,Female,12.6,Slghtly conservative,0
+49,Male,41,Moderate,1
+48,Male,50,Slightly liberal,0
+23,Female,0,Moderate,1
+61,Male,49.6,Conservative,1
+77,Female,0,Extrmly conservative,1
+44,Female,20.1,Extremely liberal,1
+60,Female,20.7,Extremely liberal,1
+51,Female,13.3,Extremely liberal,0
+52,Female,38.8,Conservative,0
+58,Female,84.2,Slghtly conservative,1
+56,Male,14,Moderate,0
+43,Male,31.6,Conservative,1
+41,Female,84.2,Conservative,0
+42,Male,43.4,Moderate,1
+65,Male,31.6,Moderate,1
+19,Male,0,Moderate,0
+44,Female,84.2,Slghtly conservative,1
+53,Male,53.9,Moderate,1
+33,Male,36.7,Slightly liberal,1
+26,Female,30.9,Moderate,1
+56,Female,69.3,Slghtly conservative,0
+40,Male,31,Conservative,0
+59,Male,84.2,Slghtly conservative,1
+52,Female,12.6,Extrmly conservative,0
+60,Male,32,Extrmly conservative,1
+27,Male,23.3,Conservative,1
+70,Male,69.4,Conservative,0
+38,Female,14.6,Moderate,1
+57,Male,45.4,Extremely liberal,0
+54,Female,13.6,Slightly liberal,1
+21,Female,21.6,Moderate,1
+83,Male,14,Moderate,0
+46,Female,31.2,Slightly liberal,1
+24,Male,31,Moderate,1
+37,Male,25.2,Slghtly conservative,1
+47,Female,43.9,Moderate,0
+24,Female,28.6,Conservative,1
+66,Male,28.7,Conservative,0
+63,Female,43,Conservative,1
+58,Male,62,Extrmly conservative,1
+42,Female,21.8,Slightly liberal,1
+48,Male,74.8,Liberal,0
+54,Female,33.4,Moderate,1
+65,Female,0,Conservative,1
+37,Male,62,Slightly liberal,0
+59,Female,24.2,Slightly liberal,1
+54,Male,36.4,Slightly liberal,1
+35,Female,52,Moderate,1
+29,Female,80.7,Liberal,1
+35,Female,13.6,Moderate,0
+68,Male,18.6,Liberal,1
+55,Male,13.6,Moderate,1
+57,Male,45.1,Slghtly conservative,1
+78,Male,85,Slightly liberal,0
+71,Male,67.7,Conservative,0
+64,Male,77.4,Liberal,1
+57,Female,99.9,Moderate,0
+25,Female,35.8,Moderate,0
+30,Male,65.3,Liberal,1
+58,Female,43,Conservative,1
+76,Male,67.7,Slghtly conservative,1
+28,Female,20.1,Liberal,1
+51,Male,25.2,Slightly liberal,1
+35,Male,84,Slightly liberal,0
+22,Female,24.2,Conservative,1
+25,Female,82.4,Moderate,1
+59,Female,61.4,Slghtly conservative,0
+55,Female,37.2,Conservative,0
+84,Male,55.3,Conservative,0
+55,Female,13.6,Moderate,0
+79,Male,24.8,Slightly liberal,0
+84,Female,76.3,Conservative,1
+65,Female,84.2,Moderate,0
+61,Male,77.4,Liberal,0
+26,Female,19.6,Slghtly conservative,1
+57,Female,50.3,Moderate,0
+31,Female,84.2,Slightly liberal,1
+38,Male,67.7,Slghtly conservative,1
+51,Male,32,Extrmly conservative,1
+55,Male,71.4,Conservative,1
+46,Female,43,Moderate,0
+80,Female,52.6,Moderate,0
+53,Male,23.3,Moderate,1
+31,Male,13.6,Moderate,0
+53,Male,24,Slghtly conservative,1
+24,Female,25.7,Moderate,1
+63,Female,61.4,Liberal,1
+38,Male,79.4,Slghtly conservative,1
+44,Male,68.6,Moderate,1
+54,Female,39.7,Moderate,0
+75,Male,55.3,Slightly liberal,1
+52,Female,70.3,Liberal,0
+54,Female,68.6,Conservative,0
+43,Female,75.5,Conservative,1
+31,Male,74.8,Conservative,0
+48,Female,38.8,Slghtly conservative,1
+86,Male,77.4,Conservative,1
+50,Female,76.7,Moderate,1
+58,Female,49.6,Slghtly conservative,0
+50,Female,38.1,Conservative,1
+62,Female,76.3,Moderate,0
+60,Male,68,Conservative,0
+20,Female,21.8,Moderate,1
+30,Female,60.5,Liberal,0
+35,Male,37.6,Conservative,1
+68,Male,83.8,Liberal,0
+60,Male,20.7,Slghtly conservative,0
+36,Female,73.9,Liberal,0
+58,Female,35.8,Extremely liberal,0
+71,Female,76.3,Extrmly conservative,0
+22,Male,32,Conservative,0
+59,Female,28.7,Moderate,0
+37,Female,52,Conservative,0
+25,Female,60.1,Moderate,1
+30,Female,37.6,Moderate,1
+61,Male,77.4,Moderate,0
+44,Female,37.6,Slightly liberal,1
+36,Female,24.2,Slightly liberal,1
+68,Female,62.6,Liberal,0
+39,Female,20.1,Liberal,1
+46,Male,31.2,Conservative,1
+20,Female,37.6,Moderate,1
+64,Female,0,Moderate,1
+49,Male,14,Moderate,1
+42,Female,14,Slightly liberal,0
+53,Male,23,Conservative,1
+28,Male,34.7,Liberal,1
+68,Male,14,Moderate,0
+19,Male,13.6,Moderate,1
+52,Female,57.5,Moderate,0
+66,Female,54.6,Moderate,0
+42,Female,60.3,Slightly liberal,0
+33,Male,31.5,Liberal,0
+29,Male,50.4,Moderate,1
+39,Female,37.6,Slghtly conservative,0
+37,Male,18.6,Moderate,0
+54,Male,31.2,Moderate,1
+22,Female,19.6,Slightly liberal,0
+21,Male,31.1,Moderate,0
+19,Male,18.8,Slghtly conservative,0
+49,Male,23.3,Moderate,1
+34,Male,25.2,Slightly liberal,1
+33,Female,14,Moderate,1
+36,Female,59.8,Moderate,0
+30,Female,21.6,Moderate,1
+67,Male,81,Extremely liberal,0
+66,Female,24.2,Moderate,1
+33,Male,14,Slghtly conservative,1
+50,Female,38.8,Conservative,1
+86,Female,52.6,Slghtly conservative,0
+31,Female,99.9,Conservative,0
+56,Male,31.2,Extrmly conservative,0
+29,Female,51.5,Extremely liberal,0
+69,Male,32,Slightly liberal,0
+31,Female,46.5,Extrmly conservative,0
+67,Male,32,Extrmly conservative,0
+59,Female,14,Moderate,0
+61,Male,20.5,Liberal,0
+56,Female,28.6,Moderate,0
+37,Female,82.5,Slightly liberal,0
+67,Male,67.7,Moderate,1
+61,Female,24.2,Liberal,1
+42,Male,26.1,Conservative,1
+56,Female,63.7,Moderate,1
+59,Female,24.2,Liberal,1
+68,Female,84.2,Liberal,1
+62,Female,52,Liberal,1
+27,Female,71.7,Slghtly conservative,0
+69,Female,20.7,Extremely liberal,0
+38,Female,26.1,Slightly liberal,1
+63,Male,84.2,Conservative,1
+81,Female,41,Conservative,1
+20,Female,0,Slghtly conservative,1
+26,Female,37.6,Liberal,0
+24,Female,28.6,Slghtly conservative,1
+35,Female,62.9,Liberal,0
+52,Male,62,Slghtly conservative,1
+43,Female,78.3,Slightly liberal,0
+68,Female,31.6,Slghtly conservative,1
+77,Male,89.3,Liberal,0
+22,Male,39.7,Moderate,1
+58,Female,88.7,Liberal,0
+24,Female,0,Liberal,0
+23,Male,10.6,Moderate,0
+53,Female,84.2,Extrmly conservative,1
+70,Male,38.3,Extrmly conservative,0
+45,Male,20.7,Moderate,0
+72,Male,20.7,Extremely liberal,0
+23,Male,37.6,Slightly liberal,1
+19,Male,14,Slghtly conservative,1
+70,Male,63.1,Moderate,0
+53,Male,28.7,Slightly liberal,0
+85,Male,52.4,Conservative,0
+57,Female,45.3,Slghtly conservative,1
+62,Female,31.3,Moderate,1
+64,Female,24.6,Liberal,1
+62,Female,13.3,Moderate,0
+51,Female,31.1,Extrmly conservative,1
+36,Female,88.7,Slghtly conservative,1
+20,Female,0,Extremely liberal,1
+26,Male,13.6,Slightly liberal,1
+64,Male,23,Slghtly conservative,0
+46,Female,84.5,Liberal,0
+25,Female,17,Slightly liberal,0
+69,Male,53.8,Liberal,1
+62,Female,35.8,Extremely liberal,1
+65,Female,13.6,Liberal,1
+26,Male,69.3,Slghtly conservative,1
+25,Male,43,Liberal,1
+55,Male,20.7,Slightly liberal,1
+34,Male,32,Moderate,1
+39,Female,38.3,Liberal,0
+61,Male,78.3,Extremely liberal,0
+48,Male,57.5,Moderate,0
+46,Female,32.6,Conservative,1
+73,Male,67.7,Conservative,0
+83,Female,86.1,Slghtly conservative,1
+56,Male,45.1,Conservative,0
+61,Male,27.4,Slghtly conservative,0
+50,Female,49.4,Slghtly conservative,0
+57,Female,24.2,Moderate,1
+78,Male,46,Moderate,1
+31,Female,26.1,Slightly liberal,0
+73,Male,60.1,Moderate,1
+67,Male,59,Slghtly conservative,0
+71,Female,80.2,Moderate,0
+55,Female,0,Conservative,0
+58,Male,25.2,Moderate,0
+43,Female,0,Slightly liberal,1
+42,Male,28.7,Extrmly conservative,1
+45,Female,38.8,Conservative,0
+49,Female,39.7,Moderate,1
+50,Female,62.9,Liberal,0
+76,Male,80.9,Moderate,1
+28,Female,39.7,Moderate,0
+51,Female,0,Moderate,1
+35,Male,20.7,Extremely liberal,1
+54,Male,20.5,Moderate,0
+27,Female,37.6,Slghtly conservative,0
+55,Female,23.8,Slghtly conservative,0
+57,Female,37.2,Liberal,0
+44,Female,37.6,Liberal,1
+27,Female,60.3,Liberal,1
+35,Male,63.1,Moderate,1
+27,Male,62,Conservative,1
+27,Female,0,Extrmly conservative,1
+48,Male,67.7,Slghtly conservative,0
+30,Male,21.3,Moderate,0
+34,Female,63.7,Moderate,1
+36,Female,46.6,Slghtly conservative,0
+25,Female,41.1,Moderate,1
+67,Male,50.1,Conservative,0
+33,Female,38.2,Moderate,0
+50,Female,21.6,Moderate,0
+23,Female,23.8,Moderate,1
+35,Male,52.5,Moderate,1
+28,Male,52,Slghtly conservative,0
+62,Female,39.7,Moderate,1
+25,Female,18.6,Moderate,0
+54,Male,50,Moderate,0
+47,Female,61.4,Liberal,0
+54,Female,83.8,Slghtly conservative,1
+55,Female,57.8,Slghtly conservative,1
+66,Female,87.9,Slghtly conservative,1
+60,Female,38.3,Slightly liberal,1
+27,Female,63.7,Conservative,1
+33,Male,32,Slghtly conservative,1
+34,Female,80.9,Conservative,1
+89,Female,21.6,Moderate,1
+58,Male,87.9,Moderate,0
+22,Male,49.6,Moderate,0
+40,Male,41.8,Moderate,1
+57,Female,59.8,Conservative,1
+29,Male,28.4,Slghtly conservative,1
+58,Male,39.2,Moderate,1
+70,Female,38.1,Moderate,1
+53,Female,26.8,Slightly liberal,0
+19,Female,19.6,Moderate,1
+55,Male,72.6,Moderate,0
+21,Male,81,Moderate,0
+45,Male,20.1,Moderate,0
+51,Female,38.3,Moderate,1
+57,Male,68.6,Slghtly conservative,0
+51,Male,57.3,Moderate,0
+41,Male,53.8,Slghtly conservative,1
+78,Female,76.3,Conservative,1
+43,Male,83.8,Moderate,1
+38,Female,59.8,Moderate,1
+56,Male,35.4,Slightly liberal,0
+46,Female,62.9,Conservative,0
+56,Male,44.5,Slghtly conservative,1
+33,Female,50.3,Slightly liberal,0
+36,Female,39.7,Moderate,1
+73,Female,14,Conservative,0
+39,Female,37.6,Slightly liberal,1
+54,Male,28.5,Slghtly conservative,1
+69,Male,65.3,Extrmly conservative,1
+43,Female,43,Slightly liberal,0
+38,Female,50.3,Moderate,1
+89,Male,62,Conservative,1
+53,Female,12.4,Conservative,1
+62,Female,24.2,Moderate,1
+35,Female,20.1,Moderate,0
+58,Male,32,Conservative,0
+22,Female,19.6,Slghtly conservative,0
+57,Male,22.9,Slghtly conservative,0
+28,Female,17.5,Moderate,1
+33,Female,13.6,Moderate,0
+36,Female,24.2,Slghtly conservative,0
+35,Male,43.9,Slightly liberal,0
+41,Male,24.1,Moderate,1
+57,Male,99.9,Moderate,0
+54,Female,31.6,Slightly liberal,1
+52,Male,43.5,Moderate,1
+83,Female,21.6,Moderate,1
+37,Male,86.1,Extrmly conservative,0
+59,Female,28.4,Moderate,1
+30,Female,41.4,Moderate,0
+60,Female,37.2,Liberal,0
+23,Male,12.6,Conservative,0
+59,Female,62.9,Moderate,1
+61,Female,71.8,Conservative,1
+61,Male,32,Conservative,0
+58,Male,79.4,Slghtly conservative,1
+47,Female,43.9,Liberal,0
+84,Male,39.9,Slghtly conservative,1
+72,Male,62.6,Slghtly conservative,1
+23,Male,39.7,Moderate,1
+65,Male,67.7,Slightly liberal,1
+29,Male,13.6,Slightly liberal,1
+61,Female,21.6,Moderate,0
+52,Female,43,Moderate,1
+54,Female,62.9,Slghtly conservative,1
+62,Female,38.8,Slghtly conservative,1
+29,Male,43,Moderate,1
+37,Male,25.2,Conservative,1
+29,Male,92.8,Moderate,1
+30,Female,24.2,Liberal,0
+57,Female,36.5,Moderate,1
+30,Male,70.1,Slightly liberal,1
+75,Female,25.1,Moderate,0
+45,Female,26.9,Liberal,1
+54,Female,99.9,Moderate,1
+62,Male,51.7,Slightly liberal,0
+27,Male,61.9,Slghtly conservative,0
+22,Male,14.6,Moderate,0
+27,Female,99.9,Moderate,0
+46,Male,27,Conservative,0
+37,Female,24.6,Moderate,1
+33,Male,64.2,Conservative,1
+71,Female,20.8,Conservative,0
+29,Female,65.3,Slightly liberal,0
+29,Female,23.8,Slightly liberal,1
+53,Female,46.6,Slghtly conservative,1
+41,Female,25,Moderate,0
+57,Female,38.8,Conservative,1
+31,Female,32.6,Moderate,1
+60,Male,27.1,Liberal,0
+73,Male,50.4,Moderate,0
+23,Female,21.6,Moderate,1
+36,Female,13.6,Moderate,1
+82,Female,23.8,Conservative,0
+61,Female,80.9,Slghtly conservative,0
+58,Male,41,Moderate,0
+63,Male,36.4,Moderate,0
+83,Female,0,Conservative,0
+80,Female,71.6,Extremely liberal,1
+41,Female,69.3,Slghtly conservative,1
+79,Male,43,Conservative,0
+46,Female,46.5,Slightly liberal,1
+77,Male,70.1,Slghtly conservative,0
+66,Female,21.6,Moderate,0
+77,Female,26.1,Conservative,1
+57,Female,32,Moderate,0
+48,Female,27,Moderate,0
+42,Male,37.6,Moderate,0
+22,Female,28.7,Moderate,0
+49,Male,59.1,Conservative,0
+29,Female,0,Slightly liberal,1
+70,Female,0,Slightly liberal,1
+42,Female,82.5,Slightly liberal,1
+54,Female,69.4,Conservative,0
+25,Male,32,Moderate,1
+53,Female,32.6,Moderate,1
+24,Male,52,Moderate,1
+52,Female,38.8,Extrmly conservative,0
+24,Male,28.4,Slghtly conservative,1
+22,Female,14,Moderate,1
+34,Female,38.8,Moderate,1
+54,Female,84.2,Slghtly conservative,0
+31,Male,31.2,Slghtly conservative,0
+42,Female,84.2,Slghtly conservative,1
+78,Male,32,Slightly liberal,1
+59,Female,49.4,Moderate,1
+56,Male,20,Extrmly conservative,1
+57,Male,39.9,Moderate,1
+55,Female,59.9,Moderate,0
+63,Male,84.5,Liberal,0
+37,Male,50,Slghtly conservative,1
+71,Male,84.5,Liberal,0
+54,Female,84.5,Liberal,0
+78,Female,80.9,Moderate,0
+40,Male,23,Conservative,1
+51,Female,57.4,Conservative,1
+22,Male,14,Extremely liberal,0
+83,Female,25,Slghtly conservative,1
+69,Female,38.8,Slightly liberal,1
+46,Male,24.1,Moderate,1
+34,Female,69.4,Conservative,1
+36,Female,37.6,Liberal,0
+25,Female,24.2,Moderate,1
+43,Male,50,Conservative,0
+36,Female,38.8,Conservative,0
+61,Female,34.8,Moderate,1
+53,Female,24.2,Liberal,1
+72,Female,36.4,Slghtly conservative,0
+31,Male,61.9,Slightly liberal,0
+31,Male,85.2,Extrmly conservative,0
+21,Female,38.8,Moderate,1
+34,Female,80.9,Moderate,1
+32,Female,67.8,Moderate,1
+63,Male,24,Conservative,0
+39,Female,37.6,Moderate,1
+49,Female,82.5,Moderate,1
+34,Male,20.1,Moderate,1
+73,Female,24.2,Slghtly conservative,0
+57,Female,81,Extremely liberal,0
+83,Male,53.6,Extrmly conservative,0
+77,Male,77.4,Conservative,0
+69,Male,28.4,Conservative,0
+29,Male,86.7,Moderate,0
+63,Female,18.6,Slghtly conservative,1
+38,Female,61.4,Slghtly conservative,1
+53,Male,86.5,Conservative,0
+61,Female,20.1,Liberal,0
+43,Female,0,Moderate,1
+48,Male,57.5,Moderate,0
+54,Female,38.8,Moderate,0
+32,Female,62.4,Moderate,1
+56,Male,31,Extrmly conservative,1
+69,Male,35.2,Moderate,1
+39,Male,59.1,Liberal,0
+43,Female,80.9,Extremely liberal,1
+53,Female,57,Moderate,0
+54,Female,24.6,Moderate,0
+79,Female,22.9,Moderate,0
+71,Female,38.8,Slightly liberal,1
+61,Female,26.1,Slghtly conservative,1
+23,Male,13.6,Slghtly conservative,0
+55,Male,59.1,Conservative,1
+60,Female,25.2,Slghtly conservative,0
+72,Male,46.6,Conservative,0
+60,Female,34.7,Slightly liberal,1
+44,Female,25.7,Conservative,1
+50,Male,36.4,Moderate,1
+35,Female,84.2,Conservative,0
+38,Female,21.6,Moderate,1
+61,Male,32,Moderate,0
+26,Male,32.6,Moderate,1
+33,Female,0,Moderate,0
+46,Female,0,Conservative,1
+87,Female,24.2,Moderate,1
+46,Male,28.7,Moderate,0
+50,Male,14,Moderate,1
+39,Male,28.4,Moderate,1
+64,Male,18.6,Slghtly conservative,1
+42,Female,24.2,Moderate,1
+43,Female,43,Moderate,1
+38,Male,67.7,Liberal,0
+24,Female,45.1,Moderate,0
+32,Female,35.8,Conservative,0
+25,Female,29.4,Extremely liberal,0
+20,Male,25.2,Liberal,0
+40,Female,12.6,Extremely liberal,1
+59,Female,38.3,Slghtly conservative,1
+50,Male,52,Conservative,1
+52,Female,46.5,Moderate,1
+67,Female,13.6,Moderate,0
+67,Male,28.6,Moderate,1
+42,Male,10.6,Liberal,0
+30,Male,43.9,Slghtly conservative,1
+69,Female,26.1,Moderate,1
+33,Female,13.6,Moderate,0
+52,Female,14,Extremely liberal,0
+31,Female,24.2,Slightly liberal,1
+43,Female,23.3,Moderate,1
+55,Female,23.3,Extrmly conservative,1
+55,Female,17.1,Moderate,0
+29,Male,0,Extrmly conservative,0
+76,Male,32,Conservative,1
+34,Female,21.6,Moderate,1
+23,Female,21.6,Moderate,1
+66,Male,28.4,Liberal,0
+69,Male,73.9,Conservative,1
+59,Female,46.6,Conservative,1
+26,Male,19.7,Moderate,1
+74,Female,26.9,Moderate,0
+34,Female,12.6,Moderate,1
+83,Female,26.1,Slghtly conservative,0
+54,Female,12.6,Slghtly conservative,0
+38,Female,14,Moderate,0
+61,Female,0,Moderate,0
+56,Male,20,Extrmly conservative,1
+58,Female,26.1,Slghtly conservative,1
+40,Male,34.1,Moderate,1
+53,Female,31.6,Moderate,0
+63,Female,45.1,Conservative,0
+62,Male,25.2,Slightly liberal,1
+66,Female,84.5,Liberal,0
+82,Female,38.8,Moderate,1
+42,Male,84.2,Conservative,1
+46,Male,87.9,Moderate,0
+55,Male,45.4,Conservative,0
+57,Female,84.2,Moderate,1
+51,Male,18.8,Conservative,1
+78,Female,13.6,Extrmly conservative,1
+81,Female,21.8,Conservative,1
+18,Female,0,Moderate,0
+71,Female,38.8,Moderate,1
+64,Female,20.1,Moderate,0
+19,Male,37.6,Moderate,1
+55,Female,51.8,Extrmly conservative,0
+85,Female,21.6,Moderate,1
+62,Male,39.5,Slghtly conservative,0
+65,Female,26.9,Liberal,0
+35,Female,14.6,Conservative,1
+27,Female,80.9,Moderate,0
+88,Male,31,Moderate,0
+78,Female,77.2,Moderate,1
+44,Female,12.6,Moderate,1
+60,Male,80.1,Extremely liberal,0
+47,Male,38.3,Slightly liberal,0
+30,Female,38.3,Moderate,1
+52,Male,82.5,Liberal,0
+72,Female,84.2,Liberal,1
+66,Female,72.7,Slightly liberal,0
+38,Male,18.6,Moderate,1
+74,Male,59.8,Slghtly conservative,0
+24,Female,26.1,Liberal,0
+49,Female,38.3,Conservative,0
+58,Female,77.3,Slghtly conservative,1
+62,Female,32.6,Extremely liberal,0
+34,Female,23.3,Moderate,0
+56,Male,73.9,Moderate,0
+40,Male,43,Moderate,0
+63,Female,64.4,Moderate,1
+40,Male,69.3,Moderate,0
+68,Male,38.3,Moderate,1
+21,Male,14,Liberal,1
+35,Female,84.2,Extremely liberal,1
+41,Female,24.2,Moderate,0
+56,Female,30,Slghtly conservative,1
+57,Male,25.2,Slghtly conservative,0
+68,Female,45.1,Moderate,0
+75,Female,20.5,Conservative,0
+57,Female,54.6,Extremely liberal,0
+77,Male,34.1,Conservative,0
+87,Female,38.3,Moderate,1
+55,Female,13.6,Slghtly conservative,0
+72,Male,39.7,Slghtly conservative,0

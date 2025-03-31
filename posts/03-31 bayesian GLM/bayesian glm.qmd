@@ -1,0 +1,513 @@
+---
+title: "Bayesian GLM"
+subtitle: "   "
+author: "Ken Wang"
+date: '2025-03-31'
+footer: "PSY 504"
+format: 
+  revealjs:
+    theme: white
+    css: slide-style.css
+    multiplex: true
+    transition: fade
+    slide-number: true
+    incremental: false 
+    chalkboard: true
+    auto-stretch: false
+    fontsize: "20pt"
+webr:
+  packages: ["tidyverse", "easystats", "broom", "kableExtra", "interactions", "emmeans", "lme4","lmertest",  "ggeffects"]
+filters:
+  - webr
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+  fig-width: 16
+  fig-height: 12
+  editor_options: 
+  chunk_output_type: inline
+  code-overflow: wrap
+  html:
+    code-fold: true
+    code-tools: true
+---
+
+## Bayesian GLM
+
+-   Bayesian Inference
+-   Generalized Linear Models (GLMs)
+
+
+![](images/pp3.png){.pp width="50%" fig-align="center"}
+
+# Background
+
+## Bayes Rule
+
+::: columns
+::: {.column width="50%"}
+![](images/bayes.gif){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+<!-- ![](images/bayes_side.png){fig-align="center"} -->
+
+$p(\theta|y)\propto p(y|\theta)p(\theta)$
+
+::: {.smalltxt}
+- $p(\theta)$: prior distributions of the parameters
+:::
+
+::: {.smallertxt}
+  - Prior beliefs or the prior knowledge on the parameter distributions, based on the existing knowledge or the results of previous studies
+:::
+
+::: {.smalltxt}
+- $p(y|\theta)$: probability distribution of the data given the parameters
+:::
+
+::: {.smallertxt}
+  - The likelihood function
+:::
+
+::: {.smalltxt}
+- $p(\theta|y)$: posterior distributions of the parameters
+:::
+
+::: {.smallertxt}
+  - Proportional to the prior distributions of the parameter times the likelihood function
+:::  
+
+:::
+:::
+
+## Frequentist vs Bayesian Inference
+
+::: columns
+::: {.column width="50%"}
+
+Frequentist
+
+::: {.addpad}
+- Objective probability:
+:::
+
+::: {.smalltxt}
+  - The limit of the relative frequency of an event occuring in a large number of trials
+  - Probabilities are inherent properties of the phenomena under consideration.
+:::
+
+:::
+::: {.column width="50%"}
+
+Bayesian
+
+::: {.addpad}
+- Subjective probability:
+:::
+
+::: {.smalltxt}
+- Reflects an individual's degree of belief in the occurrence of an event
+- Updated as new evidence becomes available
+:::
+
+:::
+
+:::
+
+## Frequentist vs Bayesian Inference
+
+::: columns
+::: {.column width="50%"}
+
+Frequentist
+
+::: {.addpad}
+- Parameter Estimation:
+:::
+
+::: {.smalltxt}
+  - Parameters are unknown and fixed
+  - Distinguish parameters from random variables
+  - Use sample data to estimate parameters with a certain level of confidence
+:::
+
+:::
+::: {.column width="50%"}
+
+Bayesian
+
+::: {.addpad}
+- Parameter Estimation:
+:::
+
+::: {.smalltxt}
+- Parameters are also random variables with probability distributions
+- A fixed set of parameters implies a distribution over the data, $p(y|\theta)$
+- A fixed set of data implies a distribution over the parameters, $p(\theta|y)$
+- Incorporates information from both the prior distribution and the likelihood function
+:::
+
+:::
+
+:::
+
+## Frequentist vs Bayesian Inference
+
+::: columns
+::: {.column width="50%"}
+
+Frequentist
+
+::: {.addpad}
+- Hypothesis Testing:
+:::
+
+::: {.smalltxt}
+  - Formulating null and alternative hypotheses
+  - Collecting sample data
+  - Making decisions based on the probability of observing the data under the assumption that the null hypothesis is true
+  - p-values: probability of obtaining the observed data or more extreme data if the null is true
+:::
+
+:::
+::: {.column width="50%"}
+
+Bayesian
+
+::: {.addpad}
+- Bayesian Inference:
+:::
+
+::: {.smalltxt}
+- Define a prior distribution based on existing knowledge
+- Collect sample data
+- Develop a likelihood function that describes the probability of observing the collected data given different values of the parameter
+- Use Bayes' Theorem to update the prior distribution and obtain the posterior distribution
+- Make inference about the parameter based on the posterior distribution
+:::
+
+:::
+
+:::
+
+## Frequentist vs Bayesian Inference
+
+::: columns
+::: {.column width="50%"}
+
+Frequentist
+
+::: {.addpad}
+- p-values:
+:::
+
+::: {.smalltxt}
+- the probability of obtaining the observed data or more extreme data under the assumption that the null hypothesis is true
+:::
+
+::: {.addpad}
+- Confidence intervals:
+:::
+
+::: {.smalltxt}
+  - contain the true parameter value with a certain frequency in repeated sampling
+:::
+
+:::
+::: {.column width="50%"}
+
+Bayesian
+
+::: {.addpad}
+- posterior probabilities:
+:::
+
+::: {.smalltxt}
+- the probability of hypotheses given the data
+:::
+
+::: {.addpad}
+- Credible intervals:
+:::
+
+::: {.smalltxt}
+- contain the true parameter value with a certain level of credibility based on the posterior distribution
+:::
+
+:::
+
+:::
+
+## Why Bayesian?
+
+::: columns
+::: {.column width="50%"}
+
+Frequentist
+
+::: {.addpad}
+- Limitations:
+:::
+
+::: {.smalltxt}
+  - Subjectivity in the null hypothesis choice
+  - Confidence intervals can be misinterpreted
+  - Fixed Parameter Assumption
+:::
+
+:::
+::: {.column width="50%"}
+
+Bayesian
+
+::: {.addpad}
+- Advantages:
+:::
+
+::: {.smalltxt}
+- Incorporating prior information
+- Uncertainty quantification
+:::
+:::
+
+:::
+
+## Markov Chain Monte Carlo (MCMC)
+
+::: {.medtxt}
+- Developed in the 1940s by physicists at Los Alamos
+
+- An algorithm used to draw samples from a probability distribution
+
+- Monte Carlo: Use random samples over a distribution to estimate solutions or perform simulations
+
+- Markov Chain: A sequence of random variables where the next state depends only on the current state
+
+- General procedure:
+:::
+
+::: {.smalltxt}
+  - Starts with an initial guess (or "seed") and iteratively propose new values based on the current value and the target distribution
+  - These proposed values are accepted or rejected based on a probability that depends on the target distribution
+  - Over many iterations, the sequence of samples forms a distribution that approximates the target posterior distribution
+:::  
+
+## Generalized Linear Models (GLMs)
+
+::: {.medtxt}
+- Extends ordinary linear regression models
+
+- A link function that connects the linear predictor and the expected value or mean of $y$.
+
+- Examples
+:::
+
+::: {.smalltxt}
+- Logistic regression
+- Ordinal regression
+- Multinomial regression
+- Poisson regression
+- Negative binomial regression
+
+:::
+
+## Bayesian GLM
+
+-   Bayesian Inference
+-   Generalized Linear Models (GLMs)
+
+
+![](images/pp3.png){.pp width="50%" fig-align="center"}
+
+
+# Implementation in R
+
+## Bayesian Logistic Regression
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(brms)
+library(emmeans)
+library(ggeffects)
+library(sjPlot)
+```
+
+```{r}
+# load data
+data <- read.csv("logistic.csv")
+head(data) %>% kable()
+```
+
+
+## Fitting Logistic
+
+
+```{r, include=FALSE}
+data = data %>%
+  mutate(sex = as.factor(sex))
+```
+
+Frequentist Logistic Regression
+```{r, message=FALSE, warning=FALSE}
+log_model_freq = glm(
+  mass_trans_spend_right ~ 1 + age + sex + sei10,
+  family=binomial,
+  data=data
+)
+```
+
+Bayesian Logistic Regression
+```{r, error=FALSE, message=FALSE, warning=FALSE}
+invisible({capture.output({
+
+log_model_bay = brm(
+  mass_trans_spend_right ~ 1 + age + sex + sei10,
+  family=bernoulli(link="logit"),
+  data=data,
+  warmup=500,
+  iter=2000,
+  cores=2,
+  chains=2,
+  seed=123
+)
+
+})})
+```
+## Evaluating Logistic
+
+::: columns
+::: {.column width="50%"}
+```{r}
+tab_model(log_model_freq)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+tab_model(log_model_bay)
+```
+:::
+:::
+
+## Marginal Effects
+
+::: columns
+::: {.column width="50%"}
+```{r, warning=FALSE}
+# predicted probability
+pp_sex <- ggemmeans(log_model_freq, terms = c("sex"))
+ggplot(pp_sex, aes(x = x, y = predicted, color = x)) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  labs(title = "Effect of Sex on Satisfaction with Mass Transportation",
+       x = "Sex", y = "Predicted Probability",
+       color = "Sex") +
+  theme_minimal()
+```
+
+:::
+::: {.column width="50%"}
+```{r, warning=FALSE}
+# marginal effects
+ce = conditional_effects(log_model_bay, effects="sex")
+plot(ce, ask = FALSE)
+```
+
+:::
+:::
+
+## Marginal Effects
+
+::: columns
+::: {.column width="50%"}
+```{r, warning=FALSE}
+# predicted probability
+pp_ses <- ggemmeans(log_model_freq, terms = "sei10 [all]")
+ggplot(pp_ses, aes(x = x, y = predicted)) +
+  geom_line(color = "#2c7fb8", size = 1) + 
+  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = "#2c7fb8", alpha = 0.2) +  # Add a confidence interval band
+  labs(title = "Effect of SES on Satisfaction with Mass Transportation",
+       x = "Socioeconomic Status", y = "Predicted Probability") +
+  theme_minimal() +
+  theme(legend.position = "none")  
+
+```
+
+:::
+::: {.column width="50%"}
+```{r, warning=FALSE}
+# marginal effects
+ce = conditional_effects(log_model_bay, effects="sei10")
+plot(ce, ask = FALSE)
+```
+:::
+:::
+
+
+## Plotting Parameters
+
+Parameter distribution
+
+::: columns
+::: {.column width="50%"}
+```{r}
+mcmc_plot(log_model_bay, type="intervals")
+```
+
+:::
+::: {.column width="50%"}
+```{r}
+mcmc_plot(log_model_bay, type="hist", bins=30)
+# mcmc_plot(log_model_bay, type="dens")
+```
+:::
+:::
+
+## Plotting Parameters
+
+::: columns
+::: {.column width="50%"}
+Trace
+```{r}
+mcmc_plot(log_model_bay, type="trace")
+```
+:::
+:::
+
+## Plotting Parameters
+
+::: columns
+::: {.column width="50%"}
+Two parameters
+```{r}
+mcmc_plot(log_model_bay, variable=c("b_Intercept", "b_age"), type="scatter")
+```
+:::
+:::
+
+## Other GLMs
+
+Lots of Bayesian GLMs, all in one package!
+```{r, eval=FALSE}
+model = brm(
+  y ~ 1 + x1 + x2 + x3 + (1+x4|x3), # multilevel
+  family=bernoulli(link="logit"), # logistic
+  family=cumulative(link="logit"), # ordinal
+  family=categorical(link="logit"), # multinomial
+  family=poisson(link="log"), # poisson
+  family=negbinomial(link="log") # negative binomial
+  family=zero_inflated_poisson(link="log") # zero-inflated poisson
+  family=zero_inflated_negbinomial(link="log") # zero-inflated negbinom
+  data=data,
+  warmup=500,
+  iter=2000,
+  cores=2,
+  chains=2,
+  seed=123
+)
+```

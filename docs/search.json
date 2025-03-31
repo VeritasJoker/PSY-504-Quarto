@@ -179,7 +179,7 @@
     "href": "index.html",
     "title": "Labs & Assignments",
     "section": "",
-    "text": "Lab: Poisson Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Multinomial Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 26, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Ordinal Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 19, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Logistic Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nMillie\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\nKW\n\n\n\n\n\n\nNo matching items"
+    "text": "Bayesian GLM\n\n\n \n\n\n\n\n\n\n\n\nMar 31, 2025\n\n\nKen Wang\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to MLM Exercise/Walkthrough\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 19, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Poisson Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 5, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Multinomial Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 26, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Ordinal Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 19, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nLab: Logistic Regression\n\n\nPrinceton University\n\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\nKW\n\n\n\n\n\n\n\n\n\n\n\n\nMillie\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\nKW\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/03-05 poisson/poisson_lab_questions-1.html",
@@ -243,5 +243,194 @@
     "title": "Lab: Poisson Regression",
     "section": "Report your conclusions",
     "text": "Report your conclusions\nThe coefficients of the model is roughly similar to the log value of the mean of the dependent variable. The exponential of the intercept of the model is 5.637, while the mean number of hours per week that a person spends on the internet (wwwhr) for the baseline group (sex=-1, religosity=1, political_orientation=1, work_from_home=1) is 5.4.\nBecause of the numerous number of levels for different categorical variables, here we don’t look at each level. We can use our full model to predict the dependent variable, and then take the mean of the exponential, which is 9.880, while the mean wwwhr for the whole dataset is 9.793.\nOverall, a negative-binomial regression model is a good fit to the data due to dispersion. We don’t need to use a zero-inflated model since there is no zero-inflation."
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-glm",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-glm",
+    "title": "Bayesian GLM",
+    "section": "Bayesian GLM",
+    "text": "Bayesian GLM\n\nBayesian Inference\nGeneralized Linear Models (GLMs)"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#likelihood",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#likelihood",
+    "title": "Bayesian GLM",
+    "section": "Likelihood",
+    "text": "Likelihood\nHey\n\n\n\nPSY 504"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayes",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayes",
+    "title": "Bayesian GLM",
+    "section": "Bayes",
+    "text": "Bayes\n\nHey\n\n\n\nPSY 504"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-inference",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-inference",
+    "title": "Bayesian GLM",
+    "section": "Bayesian Inference",
+    "text": "Bayesian Inference\n\n\n\n\n\n\n\n\n\n\\(p(\\theta|y)\\propto p(y|\\theta)p(\\theta)\\)\n\n\n\\(p(\\theta)\\): prior distributions of the parameters\n\n\n\n\nprior beliefs or the prior knowledge on the parameter distributions, based on the existing knowledge or the results of previous studies\n\n\n\n\n\\(p(y|\\theta)\\): probability distribution of the data given the parameters\n\n\n\n\nThe likelihood function\n\n\n\n\n\\(p(\\theta|y)\\): posterior distributions of the parameters\n\n\n\n\nProportional to the prior distributions of the parameter times the likelihood function"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#hey",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#hey",
+    "title": "Bayesian GLM",
+    "section": "Hey",
+    "text": "Hey\n\n\n\nPSY 504"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayes-rule",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayes-rule",
+    "title": "Bayesian GLM",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\n\n\n\n\n\n\n\n\n\\(p(\\theta|y)\\propto p(y|\\theta)p(\\theta)\\)\n\n\n\\(p(\\theta)\\): prior distributions of the parameters\n\n\n\n\nPrior beliefs or the prior knowledge on the parameter distributions, based on the existing knowledge or the results of previous studies\n\n\n\n\n\\(p(y|\\theta)\\): probability distribution of the data given the parameters\n\n\n\n\nThe likelihood function\n\n\n\n\n\\(p(\\theta|y)\\): posterior distributions of the parameters\n\n\n\n\nProportional to the prior distributions of the parameter times the likelihood function"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-vs-freqeuntist-inference",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-vs-freqeuntist-inference",
+    "title": "Bayesian GLM",
+    "section": "Bayesian vs Freqeuntist Inference",
+    "text": "Bayesian vs Freqeuntist Inference\n\n\nFrequentist\n\n\nObjective probability:\n\nThe limit of the relative frequency of an event occuring in a large number of trials\nProbabilities are inherent properties of the phenomena under consideration.\n\nParameter Estimation:\n\n\\(\\theta\\) is unknown and fixed\nUse sample data to estimate \\(\\theta\\) with a certain level of confidence\n\nHypothesis Testing:\n\nFormulating null and alternative hypotheses\nCollecting sample data\nMaking decisions based on the probability of observing the data under the assumption that the null hypothesis is true\n\n\n\n\nBayesian\n\n\nSetup: \\(\\theta\\) is a random variable with a distribution\nSubjective probability:\n\n\n\n\n\n\n\nPSY 504"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-vs-frequentist-inference",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-vs-frequentist-inference",
+    "title": "Bayesian GLM",
+    "section": "Bayesian vs Frequentist Inference",
+    "text": "Bayesian vs Frequentist Inference\n\n\nFrequentist\n\n\nObjective probability:\n\n\n\n\nThe limit of the relative frequency of an event occuring in a large number of trials\nProbabilities are inherent properties of the phenomena under consideration.\n\n\n\nBayesian\n\n\nSubjective probability:\n\n\n\n\nReflects an individual’s degree of belief in the occurrence of an event\nUpdated as new evidence becomes available"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-vs-frequentist-inference-1",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-vs-frequentist-inference-1",
+    "title": "Bayesian GLM",
+    "section": "Bayesian vs Frequentist Inference",
+    "text": "Bayesian vs Frequentist Inference\n\n\nFrequentist\n\n\nParameter Estimation:\n\n\n\n\n\\(\\theta\\) is unknown and fixed\nUse sample data to estimate \\(\\theta\\) with a certain level of confidence\n\n\n\nBayesian\n\n\nParameter Estimation:\n\n\n\n\nA probability distribution for the parameter of interest rather than a point estimate\nIncorporates information from both the prior distribution and the likelihood function derived from the observed data\n\n\n\n\n\n\n\nPSY 504"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference",
+    "title": "Bayesian GLM",
+    "section": "Frequentist vs Bayesian Inference",
+    "text": "Frequentist vs Bayesian Inference\n\n\nFrequentist\n\n\nObjective probability:\n\n\n\n\nThe limit of the relative frequency of an event occuring in a large number of trials\nProbabilities are inherent properties of the phenomena under consideration.\n\n\n\nBayesian\n\n\nSubjective probability:\n\n\n\n\nReflects an individual’s degree of belief in the occurrence of an event\nUpdated as new evidence becomes available"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-1",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-1",
+    "title": "Bayesian GLM",
+    "section": "Frequentist vs Bayesian Inference",
+    "text": "Frequentist vs Bayesian Inference\n\n\nFrequentist\n\n\nParameter Estimation:\n\n\n\n\nParameters are unknown and fixed\nDistinguish parameters from random variables\nUse sample data to estimate parameters with a certain level of confidence\n\n\n\nBayesian\n\n\nParameter Estimation:\n\n\n\n\nParameters are also random variables with probability distributions\nA fixed set of parameters implies a distribution over the data, \\(p(y|\\theta)\\)\nA fixed set of data implies a distribution over the parameters, \\(p(\\theta|y)\\)\nIncorporates information from both the prior distribution and the likelihood function"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-2",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-2",
+    "title": "Bayesian GLM",
+    "section": "Frequentist vs Bayesian Inference",
+    "text": "Frequentist vs Bayesian Inference\n\n\nFrequentist\n\n\nHypothesis Testing:\n\n\n\n\nFormulating null and alternative hypotheses\nCollecting sample data\nMaking decisions based on the probability of observing the data under the assumption that the null hypothesis is true\np-values: probability of obtaining the observed data or more extreme data if the null is true\n\n\n\nBayesian\n\n\nBayesian Inference:\n\n\n\n\nDefine a prior distribution based on existing knowledge\nCollect sample data\nDevelop a likelihood function that describes the probability of observing the collected data given different values of the parameter\nUse Bayes’ Theorem to update the prior distribution and obtain the posterior distribution\nMake inference about the parameter based on the posterior distribution"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-3",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-3",
+    "title": "Bayesian GLM",
+    "section": "Frequentist vs Bayesian Inference",
+    "text": "Frequentist vs Bayesian Inference\n\n\nFrequentist\n\n\np-values:\n\n\n\n\nthe probability of obtaining the observed data or more extreme data under the assumption that the null hypothesis is true\n\n\n\n\nConfidence intervals:\n\n\n\n\ncontain the true parameter value with a certain frequency in repeated sampling\n\n\n\nBayesian\n\n\nposterior probabilities:\n\n\n\n\nthe probability of hypotheses given the data\n\n\n\n\nCredible intervals:\n\n\n\n\ncontain the true parameter value with a certain level of credibility based on the posterior distribution"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-4",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#frequentist-vs-bayesian-inference-4",
+    "title": "Bayesian GLM",
+    "section": "Frequentist vs Bayesian Inference",
+    "text": "Frequentist vs Bayesian Inference\n\n\nFrequentist\n\n\nLimitations:\n\n\n\n\nSubjectivity in the null hypothesis choice\nConfidence intervals can be misinterpreted\nFixed Parameter Assumption\n\n\n\nBayesian\n\n\nAdvantages:\n\n\n\n\nIncorporating prior information\nUncertainty quantification\n\n\n\n\n\n\n\nPSY 504"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#why-bayesian",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#why-bayesian",
+    "title": "Bayesian GLM",
+    "section": "Why Bayesian?",
+    "text": "Why Bayesian?\n\n\nFrequentist\n\n\nLimitations:\n\n\n\n\nSubjectivity in the null hypothesis choice\nConfidence intervals can be misinterpreted\nFixed Parameter Assumption\n\n\n\nBayesian\n\n\nAdvantages:\n\n\n\n\nIncorporating prior information\nUncertainty quantification"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#markov-chain-monte-carlo-mcmc",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#markov-chain-monte-carlo-mcmc",
+    "title": "Bayesian GLM",
+    "section": "Markov Chain Monte Carlo (MCMC)",
+    "text": "Markov Chain Monte Carlo (MCMC)\n\n\nDeveloped in the 1940s by physicists at Los Alamos\nAn algorithm used to draw samples from a probability distribution\nMonte Carlo: Use random samples over a distribution to estimate solutions or perform simulations\nMarkov Chain: A sequence of random variables where the next state depends only on the current state\nGeneral procedure:\n\n\n\n\nStarts with an initial guess (or “seed”) and iteratively propose new values based on the current value and the target distribution\nThese proposed values are accepted or rejected based on a probability that depends on the target distribution\nOver many iterations, the sequence of samples forms a distribution that approximates the target posterior distribution"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-glm-1",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-glm-1",
+    "title": "Bayesian GLM",
+    "section": "Bayesian GLM",
+    "text": "Bayesian GLM\n\nBayesian Inference\nGeneralized Linear Models (GLMs)"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#generalized-linear-models-glms",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#generalized-linear-models-glms",
+    "title": "Bayesian GLM",
+    "section": "Generalized Linear Models (GLMs)",
+    "text": "Generalized Linear Models (GLMs)\n\n\nExtends ordinary linear regression models\nA link function that connects the linear predictor and the expected value or mean of \\(y\\).\nExamples\n\n\n\n\nLogistic regression\nOrdinal regression\nMultinomial regression\nPoisson regression\nNegative binomial regression"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-logistic-regression",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-logistic-regression",
+    "title": "Bayesian GLM",
+    "section": "Bayesian Logistic Regression",
+    "text": "Bayesian Logistic Regression\n\n# load data\ndata &lt;- read.csv(\"logistic.csv\")\nhead(data) %&gt;% kable()\n\n\n\n\nage\nsex\nsei10\npolviews\nmass_trans_spend_right\n\n\n\n\n47\nMale\n87.9\nModerate\n0\n\n\n61\nMale\n38.3\nLiberal\n0\n\n\n43\nFemale\n21.8\nModerate\n0\n\n\n55\nFemale\n39.7\nSlightly liberal\n0\n\n\n53\nFemale\n44.6\nSlightly liberal\n1\n\n\n50\nMale\n80.7\nSlightly liberal\n0"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#fitting-logistic",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#fitting-logistic",
+    "title": "Bayesian GLM",
+    "section": "Fitting Logistic",
+    "text": "Fitting Logistic\nFrequentist Logistic Regression\n\nlog_model_freq = glm(\n  mass_trans_spend_right ~ 1 + age + sex + sei10,\n  family=binomial,\n  data=data\n)\n\nBayesian Logistic Regression\n\ninvisible({capture.output({\n\nlog_model_bay = brm(\n  mass_trans_spend_right ~ 1 + age + sex + sei10,\n  family=bernoulli(link=\"logit\"),\n  data=data,\n  warmup=500,\n  iter=2000,\n  cores=2,\n  chains=2,\n  seed=123\n)\n\n})})"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#evaluating-logistic",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#evaluating-logistic",
+    "title": "Bayesian GLM",
+    "section": "Evaluating Logistic",
+    "text": "Evaluating Logistic\n\n\n\ntab_model(log_model_freq)\n\n\n\n\n \nmass_trans_spend_right\n\n\nPredictors\nOdds Ratios\nCI\np\n\n\n(Intercept)\n2.28\n1.74 – 3.00\n&lt;0.001\n\n\nage\n0.99\n0.99 – 1.00\n0.007\n\n\nsex [Male]\n0.77\n0.66 – 0.91\n0.001\n\n\nsei10\n0.99\n0.99 – 1.00\n&lt;0.001\n\n\nObservations\n2590\n\n\nR2 Tjur\n0.014\n\n\n\n\n\n\n\n\n\ntab_model(log_model_bay)\n\n\n\n\n \nmass_trans_spend_right\n\n\nPredictors\nOdds Ratios\nCI (95%)\n\n\nIntercept\n2.28\n1.74 – 2.98\n\n\nage\n0.99\n0.99 – 1.00\n\n\nsex: Male\n0.77\n0.66 – 0.91\n\n\nsei10\n0.99\n0.99 – 1.00\n\n\nObservations\n2590\n\n\nR2 Bayes\n0.015"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#marginal-effects",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#marginal-effects",
+    "title": "Bayesian GLM",
+    "section": "Marginal Effects",
+    "text": "Marginal Effects\n\n\n\n# predicted probability\npp_sex &lt;- ggemmeans(log_model_freq, terms = c(\"sex\"))\nggplot(pp_sex, aes(x = x, y = predicted, color = x)) +\n  geom_point(size = 2) +\n  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +\n  labs(title = \"Effect of Sex on Satisfaction with Mass Transportation\",\n       x = \"Sex\", y = \"Predicted Probability\",\n       color = \"Sex\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n# marginal effects\nce = conditional_effects(log_model_bay, effects=\"sex\")\nplot(ce, ask = FALSE)"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#marginal-effects-1",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#marginal-effects-1",
+    "title": "Bayesian GLM",
+    "section": "Marginal Effects",
+    "text": "Marginal Effects\n\n\n\n# predicted probability\npp_ses &lt;- ggemmeans(log_model_freq, terms = \"sei10 [all]\")\nggplot(pp_ses, aes(x = x, y = predicted)) +\n  geom_line(color = \"#2c7fb8\", size = 1) + \n  geom_ribbon(aes(ymin = conf.low, ymax = conf.high), fill = \"#2c7fb8\", alpha = 0.2) +  # Add a confidence interval band\n  labs(title = \"Effect of SES on Satisfaction with Mass Transportation\",\n       x = \"Socioeconomic Status\", y = \"Predicted Probability\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")  \n\n\n\n\n\n\n\n\n\n\n# marginal effects\nce = conditional_effects(log_model_bay, effects=\"sei10\")\nplot(ce, ask = FALSE)"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#plotting-parameters",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#plotting-parameters",
+    "title": "Bayesian GLM",
+    "section": "Plotting Parameters",
+    "text": "Plotting Parameters\nParameter distribution\n\n\n\nmcmc_plot(log_model_bay, type=\"intervals\")\n\n\n\n\n\n\n\n\n\n\nmcmc_plot(log_model_bay, type=\"hist\", bins=30)\n\n\n\n\n\n\n\n# mcmc_plot(log_model_bay, type=\"dens\")"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#plotting-parameters-1",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#plotting-parameters-1",
+    "title": "Bayesian GLM",
+    "section": "Plotting Parameters",
+    "text": "Plotting Parameters\n\n\nTrace\n\nmcmc_plot(log_model_bay, type=\"trace\")"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#plotting-parameters-2",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#plotting-parameters-2",
+    "title": "Bayesian GLM",
+    "section": "Plotting Parameters",
+    "text": "Plotting Parameters\n\n\nTwo parameters\n\nmcmc_plot(log_model_bay, variable=c(\"b_Intercept\", \"b_age\"), type=\"scatter\")"
+  },
+  {
+    "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#other-glms",
+    "href": "posts/03-31 bayesian GLM/bayesian glm.html#other-glms",
+    "title": "Bayesian GLM",
+    "section": "Other GLMs",
+    "text": "Other GLMs\nLots of Bayesian GLMs, all in one package!\n\nmodel = brm(\n  y ~ 1 + x1 + x2 + x3 + (1+x4|x3), # multilevel\n  family=bernoulli(link=\"logit\"), # logistic\n  family=cumulative(link=\"logit\"), # ordinal\n  family=categorical(link=\"logit\"), # multinomial\n  family=poisson(link=\"log\"), # poisson\n  family=negbinomial(link=\"log\") # negative binomial\n  family=zero_inflated_poisson(link=\"log\") # zero-inflated poisson\n  family=zero_inflated_negbinomial(link=\"log\") # zero-inflated negbinom\n  data=data,\n  warmup=500,\n  iter=2000,\n  cores=2,\n  chains=2,\n  seed=123\n)\n\n\n\n\nPSY 504"
   }
 ]

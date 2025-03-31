@@ -27,5 +27,8 @@
   "posts/03-05 poisson/poisson_lab_questions-1.qmd": {
     "poisson_lab_questions-1.html": "3854a30d",
     "poisson_lab_questions-1.tex": "1794e0e4"
+  },
+  "posts/03-31 bayesian GLM/bayesian glm.qmd": {
+    "bayesian glm.html": "79cf99d8"
   }
 }

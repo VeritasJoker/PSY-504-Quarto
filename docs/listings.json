@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/03-31 bayesian GLM/bayesian glm.html",
+      "/posts/03-19 mlm walkthrough/MLM_Intro_Questions.html",
       "/posts/03-05 poisson/poisson_lab_questions-1.html",
       "/posts/02-26 multinomial/Lab4_multinom_Questions-1.html",
       "/posts/02-19 ordinal/ord_lab_q.html",
