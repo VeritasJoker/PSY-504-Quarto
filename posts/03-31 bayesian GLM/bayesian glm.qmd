@@ -2,6 +2,7 @@
 title: "Bayesian GLM"
 subtitle: "   "
 author: "Ken Wang"
+categories: [code, analysis]
 date: '2025-03-31'
 footer: "PSY 504"
 format: 
