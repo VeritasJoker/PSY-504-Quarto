@@ -104,7 +104,7 @@ ggplot(toy2, aes(x = hrs_week)) +
 `r qend()`
 
 ```{r}
-print("The line is the same for every type of toy since we are fitting a general model for all toys. However, the line obviously does not fit some types of toys (both the intercept and slope.")
+# The line is the same for every type of toy since we are fitting a general model for all toys. However, the line obviously does not fit some types of toys (both the intercept and slope.
 ```
 
 `r solbegin(show=params$SHOW_SOLS, toggle=params$TOGGLE)`
@@ -126,7 +126,7 @@ Note that the lines are exactly the same for each type of toy. This makes total 
 `r solend()`
 
 ```{r}
-# Yes
+# Yeah that makes sense.
 ```
 
 `r qbegin(qcounter())`
@@ -180,7 +180,8 @@ ggplot(toy2, aes(x = hrs_week)) +
 
 ```{r}
 #ENTER YOUR ATTEMPT AND THOUGHTS HERE:
-print("For the first two models, the green and blue lines have different intercepts for different toy types, but still have the same slope for all lines. For the thir model, the orange lines have different intercepts and slopes, which fits some toy types, like Minecraft and Sock Puppets, better.")
+
+# For the first two models, the green and blue lines have different intercepts for different toy types, but still have the same slope for all lines. For the third model, the orange lines have different intercepts and slopes, which fits some toy types, like Minecraft and Sock Puppets, better.
 
 ```
 
@@ -227,7 +228,7 @@ ggplot(toy2, aes(x = hrs_week)) +
 ```{r}
 #ENTER TLDR ON HOW YOUR ANSWER DIFFERED FROM THE SOLUTIONS
 
-print("The solutions are more detailed and also explains the reasons, which are pretty nice.")
+# The solutions are more detailed and also explains the reasons, which are pretty nice.
 
 #... CONTINUE THIS WAY THROUGH THE ASSIGNMENT
 ```
@@ -278,6 +279,14 @@ Choose from these options:
 
 ```{r}
 #ENTER YOUR ATTEMPT AND THOUGHTS HERE:
+
+# A1 is the standard deviation of the distances from all the toy-type lines to the black line
+
+# A2 is the standard deviation of the distances from all the individual datapoints (toys) to their respective toy-type lines
+
+# A3 is where the black line cuts the y axis (at x=0)
+
+# A4 is the slope of the black line
 
 
 ```
@@ -366,6 +375,10 @@ Choose from:
 -   **A4 =** $b_{1}$
 
 `r solend()`
+
+```{r}
+# Yeah that makes sense.
+```
 
 <br>
 
@@ -465,6 +478,25 @@ Does every participant have *some* data for each type of audio?
 Functions like `table()` and `count()` will likely be useful here.
 :::
 
+```{r}
+efdat <- read_csv("https://uoepsy.github.io/data/lmm_ef_sdmt.csv")
+
+# 4.1
+print(length(unique(efdat$PID)))
+
+# 4.2
+efdat %>% count(PID) %>% filter(n == 15)
+print("None")
+
+# 4.3
+efdat %>% count(PID) %>% summary()
+print("Mean is 12, min is 10")
+
+# 4.4
+efdat %>% count(PID, audio) %>% summary()
+print("Yeah, each has at least 2")
+```
+
 `r qend()` `r solbegin(label="1 - read in the data ", slabel=F,show=T, toggle=params$TOGGLE)`
 
 ```{r}
@@ -557,6 +589,26 @@ Consider the following questions about the study:
 -   What varies *within* these clusters?\
 -   What varies *between* these clusters?
 
+```{r}
+# 5.1
+print("SDMT")
+
+# 5.2
+print("audio and headphones")
+
+# 5.3
+print("Each row is a separate trial")
+
+# 5.4
+print("Yes, grouped by participants")
+
+# 5.5
+print("Different trials, type of audio")
+
+# 5.6
+print("Whether participants are wearing headphones or not")
+```
+
 `r qend()` `r solbegin(show=params$SHOW_SOLS, toggle=params$TOGGLE)`
 
 -   What is our outcome of interest?
@@ -581,6 +633,18 @@ Consider the following questions about the study:
 
 Can't remember about setting factors and reference levels? Check back to USMR!
 :::
+
+```{r}
+efdat = efdat %>% mutate(
+  audio = factor(audio,
+                 levels = c("no_audio", "music", "white_noise"),
+                 ordered = TRUE),
+  headphones = factor(headphones,
+                      levels = c("S", "H"),
+                      ordered = TRUE)
+)
+
+```
 
 `r qend()` `r solbegin(show=params$SHOW_SOLS, toggle=params$TOGGLE)`
 
@@ -613,6 +677,11 @@ $$
 
 Make sure to read about multilevel modesl and how to fit them in [Chapter 2: MLM #multilevel-models-in-r](https://uoepsy.github.io/lmm/02_lmm.html#multilevel-models-in-r){target="_blank"}.
 :::
+
+```{r}
+sdmt_mod = lmer(SDMT ~ audio * headphones + (1 + audio | PID), efdat)
+summary(sdmt_mod)
+```
 
 `r qend()` `r solbegin(label="1 - fixed effects", slabel=F,show=T, toggle=params$TOGGLE)`
 
@@ -751,6 +820,16 @@ effect(term = "audio*headphones", mod = sdmt_mod) |>
 You can see the effects package in [Chapter 2: MLM #visualising-models](https://uoepsy.github.io/lmm/02_lmm.html#visualising-models){target="_blank"}. The logic is just the same as it was for USMR, it's just that the estimated effects are from an `lmer()` instead of an `lm()`/`glm()`.
 :::
 
+```{r}
+library(effects)
+effects = effect(term = "audio*headphones", mod = sdmt_mod) |>
+  as.data.frame()
+effects %>%
+  ggplot(aes(x = audio, y = fit, color = headphones)) +
+  geom_point(size = 2)+
+  geom_errorbar(aes(ymin=lower, ymax=upper))
+```
+
 `r qend()` `r solbegin(show=params$SHOW_SOLS, toggle=params$TOGGLE)`
 
 ```{r}
@@ -766,6 +845,10 @@ effect(term = "audio*headphones", mod = sdmt_mod) |>
 `r solend()`
 
 `r qbegin(qcounter())` Now we have some p-values and a plot, try to create a short write-up of the analysis and results.
+
+```{r}
+# Executive funtion are affected by different types of audio. Listening to music is associated with lower SDMT scores while listening to white noise is not significantly different from the no-audio condition. Participants with headphones are associated with higher SDMT scores in the no-audio condition. The interaction between headphones and audio-type was also significant in our model. The wearing headphones condition is associated with higher SDMT scores when listening to white noise compared to the speaker condition, but does not differ with the speaker condition when listening to music.
+```
 
 ::: {.callout-tip collapse="true"}
 #### Hints

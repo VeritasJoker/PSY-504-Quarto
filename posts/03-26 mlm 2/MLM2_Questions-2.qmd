@@ -1,0 +1,348 @@
+---
+title: "MLM2 - Questions"
+subtitle: "Princeton University"
+date: "2025-03-26"
+author: "KW"
+format: 
+  html:
+    toc: true
+    theme: white
+    code-fold: true
+    code-tools: true
+---
+
+# Lab 1: MLM
+
+Today's lab uses data from a study conducted by Coyne et al. (2019), which examined the impact of a high-quality, evidence-based vocabulary instruction intervention in kindergarten. The data consists of **1,428 students** who were **nested in 233 clusters** or classrooms (`clu_id`).
+
+In the sample of at-risk youth in the classroom (N = 6), half were allocated to **treatment** and the other half to **control**. The treatment group received supplemental small-group vocabulary instruction in addition to the whole-group instruction, while the control group received only whole-group vocabulary instruction. Since the observations were not independent (due to students being nested within classrooms), the researchers needed to account for this in their analysis.
+
+***The main question that the researchers aimed to answer was whether the supplemental small-group kindergarten vocabulary instruction intervention increased students' knowledge of the vocabulary words taught in the intervention.*** To measure vocabulary knowledge, the researchers used an ETW (`ETW_SpringK`) assessment, which evaluated students' ability to explain the meaning of a given word. The assessment was administered after the intervention concluded, in the spring of kindergarten. In the sample, ETW scores ranged from 0 to 52 (the maximum score), with a mean of 13.65 and a standard deviation of 11.10. To answer the research question, the researchers used two fixed effects and their interaction: TRT (1 = treatment and 0 = control) and PPVT (Peabody Picture Vocabulary Test, which measures students' vocabulary before the intervention; `PPVT_FallK`).
+
+*Coyne, M. D., McCoach, D. B., Ware, S., Austin, C. R., Loftus-Rattan, S. M., & Baker, D. L. (2019). Racing Against the Vocabulary Gap: Matthew Effects in Early Vocabulary Instruction and Intervention. Exceptional Children*, 85(2), 163–179. <https://doi.org/10.1177/0014402918789162>
+
+## Load packages
+
+```{r message=FALSE, warning=FALSE}
+# fill in packages you need as you go here
+library(tidyverse) # data wrangling
+library(knitr) # nice tables
+library(patchwork) # combine figures
+library(lme4) # fit mixed models
+library(lmerTest) # mixed models
+library(broom.mixed) # tidy output of mixed models
+library(afex) # fit mixed models for lrt test
+library(emmeans) # marginal means
+library(ggeffects) # marginal means
+library(ggrain) # rain plots
+library(easystats) # nice ecosystem of packages
+library(interactions)
+```
+
+## Load data
+
+```{r}
+# read in data file
+data <- read.csv("Ch3_MLM_R.csv")
+```
+
+# Lab 1
+
+## Data structure
+
+Q1. What are the Level 1 and Level 2 variables in this study? How many units are in Level 1? Level 2? Are the fixed effects at Level 1 or Level 2?
+
+Q2. What are the Level 1 and Level 2 variables in this study? How many units are in Level 1? Level 2? Are the fixed effects at Level 1 or Level 2?
+
+Answers: Type here
+
+```{r}
+# Computing Dataset Statistics:
+
+# assuming 'data' is the dataframe and 'clu_id' identifies the clusters/classrooms
+summary_stats <- data %>%
+  group_by(clu_id) %>%
+  summarise(N_students = n()) %>%
+  ungroup() %>%
+  summarise(
+    N_clusters = n(),
+    Total_students = sum(N_students),
+    Average_students_per_classroom = mean(N_students),
+    SD_students_per_classroom = sd(N_students),
+    Min_students_in_classroom = min(N_students),
+    Max_students_in_classroom = max(N_students)
+  )
+
+# Extracting the values to variables for easier printing
+n_clusters <- summary_stats$N_clusters
+total_students <- summary_stats$Total_students
+average_students <- summary_stats$Average_students_per_classroom
+sd_students <- summary_stats$SD_students_per_classroom
+min_students <- summary_stats$Min_students_in_classroom
+max_students <- summary_stats$Max_students_in_classroom
+```
+
+```{r}
+cat("Number of clusters (classrooms):", n_clusters, "\n")
+```
+
+```{r}
+cat("Total number of students:", total_students, "\n")
+```
+
+```{r}
+cat("Average number of students per classroom:", round(average_students, 1), "\n")
+```
+
+```{r}
+cat("Standard deviation of students per classroom:", round(sd_students, 1), "\n")
+```
+
+```{r}
+cat("Minimum number of students in a classroom:", min_students, "\n")
+```
+
+```{r}
+cat("Maximum number of students in a classroom:", max_students, "\n")
+```
+
+## 2. Deviation code (0.5, -0.5), aka effect code for the treatment variable
+
+::: callout-note
+**NOTE**: Deviation/Effect coding is one way to recode categorical variables for regression analysis. They transform the treatment variable (TRT) from: treatment → 0.5 control → -0.5
+
+Remember that different ways of coding categorical variables do not actually influence the results/ predictions. But they can influence how we interpret coefficients.
+
+Now, with deviation coding (-0.5,0.5): Intercept = grand mean across all groups ; Treatment coefficient = difference between groups (divided by 2)
+
+With dummy coding (0/1), it'd be: Intercept = mean of reference group; Treatment coefficient = difference from reference group
+
+The key advantage? When interpreting interactions, deviation coding makes results more intuitive since coefficients show deviations from overall means (or overall main effect) rather than from a reference group (which may not always be clear or relevant, making interpretation harder) .
+:::
+
+```{r}
+
+#deviation code the TRT var
+data <- data %>%
+  mutate(TRT = ifelse(TRT == 1, 0.5, -0.5))
+
+# Note, one can also use contr.sum to instantiate such codings. 
+# Contr.sum defaults to -1/1 coding (not 0,1).
+# data$TRT <- factor(data$TRT)
+# contrasts(data$TRT) <- contr.sum(2)/2
+```
+
+## 3. Group mean center `PPVT_Fallk`
+
+Q3. Insert code below to center the variable PPVT_Fallk within the clusters/classrooms
+
+```{r}
+#within-clustering centering
+# data <- data %>%
+#   mutate(datawizard::demean(data, ... INSERT CODE HERE....)
+```
+
+## Visualizations
+
+Q4. Create two nicely looking visualizations: One for the relationship between PPTV and EWR and one for the relationship between TRT and EWR. Make sure you plot the between-cluster (class) variability when you graph these (given how many clusters there are, randomly sample 20 of them to plot).
+
+```{r}
+# fig 1
+# Randomly sample 20 clusters to plot
+set.seed(500) # for reproducibility
+clusters_sample <- data %>%
+  distinct(clu_id) %>%
+  mutate(clu_id = as.character(clu_id)) %>%
+  sample_n(20) %>%
+  pull(clu_id)
+
+# INSERT VISUALIZATION CODE BELOW
+```
+
+## Model comparisons
+
+Q5. Fit an unconditional means (null model), and print its summary
+
+::: callout-tip
+make sure you have loaded `lmerTest` to get *p*-values
+
+When you load lmerTest, it modifies how summary() works on lmer models. This happens automatically, and there isn't a specific new function you need to call.
+:::
+
+::: callout-note
+The "model" with linear regression sets the intercept to be mean The unconditional means "null model" ends up setting the group intercepts to group means. Neither of these models have slopes.
+
+Null model in lm() --- lm(Y \~ 1) Null model in lmer() --- lm(Y \~ 1 + (1\|grouping_factor))
+
+REML (Restricted Maximum Likelihood) is better for variance estimation - and that's exactly what null models are trying to do for the data without considering any fixed effect predictor. So, choose REML in your lmer call.
+:::
+
+::: cell
+```{r .cell-code}
+#TYPE YOUR CODE BELOW:
+```
+:::
+
+:::
+
+Q6. The intraclass correlation coefficient (ICC) measures proportion of total variance due to group membership Calculate it manually for the fitted model from the output, and print it out. Is multilevel modeling warranted here?
+
+::: callout-tip
+A common heuristic: ICC \< 0.05 = Probably not needed ICC \> 0.05-0.1 = Multilevel warranted ICC \> 0.1 = Strong indication for multilevel models.
+:::
+
+```{r}
+#TYPE YOUR CODE BELOW
+# a. Extract the variance components from the model output
+# b. Calculate ICC
+
+```
+
+Now use the `icc` function in easystats / performance package to calculate the icc
+
+```{r}
+
+```
+
+Now use the `icc` function in easystats / performance package to calculate the icc
+
+```{r}
+#performance::icc(model1)
+```
+
+Is multilevel modeling warranted here? Yep! What does the ICC mean? It tells us how much variability there is between clusters. It also tells how how correlated our level 1 units are to one another. In this case, we have observe an ICC of 0.160, which indicates that 16% of the total variance in our outcome variable (students' vocabulary knowledge scores `ETW_SpringK`) is attributable to differences between classroom (Level 2 variance).
+
+Q7. Build up from the last model. Fit a model that includes all level 1 variables (no interaction)
+
+```{r}
+#Type your code here
+```
+
+::: callout-tip
+Tip: You're building from the last model. So you're building on the clustering structure. So, you'd make sure to keep the random intercept intact.
+:::
+
+::: callout-tip
+Maximum likelihood (as opposed Restricted maximum likelihood is best once you begin to have fixed effects), so set your REML flag appropriately. By default it's True.
+:::
+
+Q8. Fit a model that includes the fixed interaction between the level-1 variables
+
+```{r}
+
+```
+
+::: callout-note
+Note, in case you're ever counfused about this in R formulas format Y \~ A + B + A:B (main effects + interaction term) is the same as Y \~ A\*B
+:::
+
+Q9. Compare the main effects and interaction models. Which model is the best? Try the likelihood ratio test, AIC and BIC, and jot down your thoughts.
+
+```{r}
+
+```
+
+::: callout-tip
+AIC and BIC can be used with the models you've already fitted.
+
+However, for likelihood ratio tests of nested models, Maximum likelihood (as opposed Restricted maximum likelihood) is best for model comparison. So such a likelihood ratio test will require models to be re-fit with REML=TRUE, just to give better model comparison results. )
+:::
+
+Q10. Use the best model from above and fit a model that adds random slopes for `TRT`
+
+```{r}
+
+```
+
+Next, let's create a model with a random slope for treatment and PPVT scores. This will be our maximal model.
+
+::: callout-warning
+We could include a random slope for the interaction between the two, but we only have 6 students per classroom and makes our model too complex.
+:::
+
+```{r}
+#complex_model <- lmer(ETW_SpringK ~ TRT * PPVT_FallK + (1 + TRT + PPVT_FallK|clu_id), data = data)
+```
+
+```{r}
+#| code-fold: false
+#isSingular(complex_model)
+```
+
+Take a look at the maximal model output. The message is that we observe that the more complex model has a singular fit, which likely results from overfitting the data. In particular, the more complex model contains random slopes for both `TRT` and `PPVT_FallK` within clusters (`clu_id`). We can infer that there is not enough variation in `TRT` or `PPVT_FallK` within clusters, so the model may not be able to estimate random effects reliably. To get rid of this warning, we could reduce complexity in the model by removing some of the random slopes.
+
+## Model interpretation
+
+Through model comparisons like before, we can tell that the model with random slopes for TRT and random intercepts for classroom is the best. Now let's use this best model and examine the fixed effects.
+
+```{r}
+# fit the best model and output a nice summary table of results.:
+
+# library(afex) # load afex in
+# 
+# m <- mixed(ETW_SpringK ~ TRT * PPVT_FallK + (1+ TRT|clu_id), data=data)
+# nice(m) %>%
+#   kable()
+```
+
+```{r}
+# emtrends(best_model, ~TRT, var="PPVT_FallK") %>%
+#   test() %>%
+#   kable()
+```
+
+Q 11. Run the code above and please interpret the effects/coefs in a sentence or two.
+
+Now, let's evaluate the variance components of the model.
+
+```{r}
+#model_parameters(best_model, effects="random") %>% kable()
+```
+
+Q12. How do you interpet the modeling results, in terms of varaince in intercept, treatment effect, and residuals?
+
+## Model fit
+
+We can then calculate the conditional and marginal pseudo-$R^2$ of the model
+
+```{r}
+#r2(best_model)
+```
+
+The semi-$R^2$ for the `PPVT` variable is calculated using the `partR2` function from `partR2` package
+
+```{r}
+# library(partR2)
+# partR2(best_model, data = data, partvars = c("PPVT_FallK"), R2_type = "marginal")
+```
+
+We can visualize the random intercepts and slopes in your model
+
+```{r}
+# random <- estimate_grouplevel(best_model)
+# plot(random) + theme_lucid()
+```
+
+## Assumptions
+
+Q12. Check model assumptions with `check_model`. Do any of the assumptions appear to be violated?
+
+```{r}
+#check_model(best_model)
+```
+
+Type your Answer here:
+
+We can also visualize the interaction between `TRT` and `PPVT` score on ETW (I would check out the `interactions` or `ggeffects` packages. They have some nice features for plotting interactions.)
+
+```{r}
+#interact_plot(best_model, pred = "PPVT_FallK", modx = "TRT", data = data)
+```
+
+## Reporting Results
+
+Q14. Briefly highlight what you think needs to be present in the results. I will share what a complete report would look like in the solution.
+
+```{r}
+#equatiomatic::extract_eq(best_model)
+```
