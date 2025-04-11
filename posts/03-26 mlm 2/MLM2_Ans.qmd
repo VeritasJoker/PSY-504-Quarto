@@ -3,8 +3,10 @@ title: "MLM2 - Answer Walkthrough"
 subtitle: "Princeton University"
 date: "2025-03-26"
 author: "KW"
-format: 
+categories: [code, analysis]
+format:
   html:
+    self-contained: false
     toc: true
     theme: white
     code-fold: true
