@@ -1,6 +1,12 @@
 ---
 title: "Bayes_Lab_2"
-format: html
+subtitle: "Princeton University"
+date: "2025-04-09"
+author: "KW"
+categories: [code, analysis]
+format:
+  html:
+    self-contained: false
 editor: visual
 ---
 
@@ -18,7 +24,7 @@ Given it's a continuation of Lab 1, let's begin by loading relevant packages, cl
 
 We load the primary packages.
 
-```{r, warning = F, message = F}
+```{r, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(brms)
 library(tidybayes)
@@ -83,7 +89,17 @@ In many respect, it's distributions 'all the way down,' with Bayesians. This can
 Hint 1: Many of these terms were in the Bayes Rule.
 :::
 
-### Answer: ....
+### Answer:
+
+Likelihood: $P(D|\theta)$
+
+Prior parameter distribution: $P_0(\theta)$
+
+Prior predictive distribution $P0_0(D)=\int P(D∣\theta)P_0​(\theta)d\theta$
+
+Posterior parameter distribution: $P(\theta∣D)$
+
+Posterior predictive distribution: $P(D_n​∣D)=\int P(D_n​∣\theta)P(\theta∣D)d\theta$
 
 We also have some other distributions that follow from these. For example, - the distributions of the model expectations (i.e., the predicted means)
 
@@ -393,7 +409,7 @@ fitted(fit1.b,
   theme_classic()
 ```
 
- The conditional mean, $\mu_i$, has its own distribution. We can take this visualization approach even further to make a color gradient.
+The conditional mean, $\mu_i$, has its own distribution. We can take this visualization approach even further to make a color gradient.
 
 ```{r}
 fitted(fit1.b, 
@@ -570,8 +586,6 @@ The similarities and differences among the individual density lines give you a s
 
 #Part 4: Beginning to look at priors
 
-
-
 ## Bayes' rule
 
 Bayes' theorem will allow us to determine the plausibility of various values of our parameter(s) of interest, $\theta$, given the data $d$, which we can express formally as $\Pr(\theta \mid d)$. Bayes' rule takes on the form
@@ -582,10 +596,10 @@ $$
 
 where
 
-* $\Pr(d \mid \theta)$ is the *likelihood*,
-* $\Pr(\theta)$ is the *prior*,
-* $\Pr(d)$ is the *average probability of the data*, and
-* $\Pr(\theta \mid d)$ is the *posterior*.
+-   $\Pr(d \mid \theta)$ is the *likelihood*,
+-   $\Pr(\theta)$ is the *prior*,
+-   $\Pr(d)$ is the *average probability of the data*, and
+-   $\Pr(\theta \mid d)$ is the *posterior*.
 
 We can express this in words as
 
@@ -689,16 +703,193 @@ summary(fit2.b)
 ```
 
 ## QUESTION 2 Are the priors the same? What do you think is going on?
-### Answer: ....
+
+```{r}
+fit1.b$prior
+fit2.b$prior
+```
+
+### Answer:
+
+The priors seem to be the same between these two models. For model 1, all three priors are by default. For model 2, we are specifying the priors for the intercept and for sigma, while we are still using the default prior for the slope.
 
 If you want to learn more about the default prior settings for **brms**, read through the `set_prior` section of the **brms** reference manual (https://CRAN.R-project.org/package=brms/brms.pdf).
-
 
 # EXERCISE 1
 
 In the previous lab, we made a subset of the `penguins` data called `gentoo`, which was only the cases for which `species == "Gentoo"`. Do that again and refit the Bayesian model to those data. Remake some of the figures (From Part 3) in this file with the new version of the model?
 
-### Answer/ Your solution below: ....
+### Answer/ Your solution below:
+
+```{r, results = "hide"}
+# subset the data
+gentoo = penguins %>% 
+  filter(species == "Gentoo") %>%
+  drop_na(bill_length_mm, body_mass_g)
+
+# Bayes
+fit3.b <- brm(
+  data = gentoo,
+  bill_length_mm ~ 1 + body_mass_g
+)
+```
+
+```{r}
+# Posterior Means
+b0    = posterior_summary(fit3.b)[1, 1]
+b1    = posterior_summary(fit3.b)[2, 1]
+sigma = posterior_summary(fit3.b)[3, 1]
+
+crossing(body_mass_g    = seq(from = 3800, to = 6400, length.out = 200),
+         bill_length_mm = seq(from = 40, to = 60, length.out = 200))  %>% 
+  mutate(density = dnorm(x = bill_length_mm, 
+                         mean = b0 + b1 * body_mass_g,
+                         sd = sigma)) %>% 
+  
+  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  geom_raster(aes(fill = density),
+              interpolate = TRUE) +
+  geom_point(data = gentoo,
+             shape = 21, color = "white", fill = "black", stroke = 1/4) +
+  scale_fill_viridis_c(option = "A", begin = .15, limits = c(0, NA)) +
+  coord_cartesian(xlim = range(gentoo$body_mass_g),
+                  ylim = range(gentoo$bill_length_mm))
+```
+
+```{r, warning=FALSE}
+# Parameter Distributions
+as_draws_df(fit3.b) %>% 
+  rename(`beta[0]` = b_Intercept,
+         `beta[1]` = b_body_mass_g) %>% 
+  pivot_longer(cols = c(`beta[0]`, `beta[1]`, sigma), 
+               names_to = "parameter") %>% 
+  
+  ggplot(aes(x = value)) +
+  stat_histinterval(.width = .95, normalize = "panels") +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(title = "fit1.b",
+       subtitle = "Using good old 95% intervals, but switching to histograms",
+       x = "parameter space") +
+  facet_wrap(~ parameter, scales = "free", labeller = label_parsed)
+```
+
+```{r}
+# Model Expectations
+nd <- tibble(body_mass_g = seq(
+  from = min(gentoo$body_mass_g),
+  to = max(gentoo$body_mass_g),
+  length.out = 100))
+
+fitted(fit3.b, newdata = nd) %>% 
+  data.frame() %>% 
+  bind_cols(nd) %>% 
+  ggplot(aes(x = body_mass_g)) +
+  geom_ribbon(aes(ymin = Q2.5, ymax = Q97.5),
+              alpha = 1/3) +
+  geom_line(aes(y = Estimate)) +
+  # add the data
+  geom_point(data = gentoo,
+             aes(y = bill_length_mm))
+
+fitted(fit3.b, 
+       newdata = nd,
+       summary = F) %>% 
+  data.frame() %>% 
+  set_names(pull(nd, body_mass_g)) %>% 
+  mutate(draw = 1:n()) %>% 
+  pivot_longer(-draw) %>% 
+  mutate(body_mass_g = as.double(name)) %>%
+  ggplot(aes(x = body_mass_g, y = value)) +
+  # make more ribbons
+  stat_lineribbon(.width = c(.1, .2, .3, .4, .5, .6, .7, .8, .9),
+                  # remove the line
+                  linewidth = 0) +
+  scale_fill_brewer() +
+  coord_cartesian(ylim = range(gentoo$bill_length_mm)) +
+  theme_classic()
+```
+
+```{r}
+# Posterior-predictive Distributions
+f <- fitted(fit3.b, newdata = nd) %>% 
+  data.frame() %>% 
+  bind_cols(nd) 
+
+predict(fit3.b, newdata = nd) %>% 
+  data.frame() %>% 
+  bind_cols(nd) %>% 
+  ggplot(aes(x = body_mass_g)) +
+  # 95% posterior-predictive range
+  geom_ribbon(aes(ymin = Q2.5, ymax = Q97.5),
+              alpha = 1/4) +
+  # 95% conditional mean range
+  geom_ribbon(data = f,
+              aes(ymin = Q2.5, ymax = Q97.5),
+              alpha = 1/4) +
+  # posterior mean of the conditional mean
+  geom_line(data = f,
+            aes(y = Estimate)) +
+  # original data
+  geom_point(data = gentoo,
+             aes(y = bill_length_mm)) +
+  coord_cartesian(ylim = range(gentoo$bill_length_mm))
+```
+
+```{r}
+predict(fit3.b, summary = FALSE, ndraws = 6) %>% 
+  data.frame() %>% 
+  mutate(draw = 1:n()) %>% 
+  pivot_longer(-draw) %>% 
+  mutate(row = str_remove(name, "X") %>% as.double()) %>% 
+  left_join(gentoo %>% 
+              mutate(row = 1:n()),
+            by = join_by(row)) %>% 
+  ggplot(aes(x = body_mass_g, y = value)) + 
+  geom_point() +
+  ylab("bill_length_mm") +
+  facet_wrap(~ draw, labeller = label_both)
+```
+
+```{r, warning=FALSE}
+set.seed(1)
+
+as_draws_df(fit3.b) %>% 
+  rename(beta0 = b_Intercept,
+         beta1 = b_body_mass_g) %>% 
+  select(.draw, beta0, beta1, sigma) %>% 
+  slice_sample(n = 50) %>%  # increase the number of random draws
+  expand_grid(gentoo %>% select(body_mass_g)) %>% 
+  mutate(bill_length_mm = rnorm(n = n(),
+                                mean = beta0 + beta1 * body_mass_g,
+                                sd = sigma)) %>% 
+  
+  ggplot(aes(x = bill_length_mm, group = .draw)) + 
+  geom_density(size = 1/4, color = alpha("black", 1/2)) +
+  coord_cartesian(xlim = range(gentoo$bill_length_mm) + c(-2, 2))
+```
+
+```{r}
+# Prior parameter distribution
+fit3.b$prior
+
+c(prior(student_t(3, 47.3, 3.1))) %>% 
+  parse_dist() %>% 
+  
+  ggplot(aes(xdist = .dist_obj, y = prior)) + 
+  stat_halfeye() +
+  labs(x = expression(italic(p)(beta[0])),
+       y = NULL) +
+  coord_cartesian(xlim = c(25, 75))
+
+
+c(prior(student_t(3, 0, 3.1), lb = 0)) %>% 
+  parse_dist() %>% 
+  ggplot(aes(xdist = .dist_obj, y = prior)) + 
+  stat_halfeye(point_interval = mean_qi, .width = c(.90, .99)) +
+  labs(x = expression(italic(p)(sigma)),
+       y = NULL) +
+  coord_cartesian(xlim = c(0, 30))
+```
 
 ## References
 

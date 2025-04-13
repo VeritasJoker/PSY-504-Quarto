@@ -7,6 +7,17 @@ categories: [code, analysis]
 format:
   html:
     self-contained: false
+  pdf:
+    pdf-engine: lualatex
+    toc: false
+    number-sections: true
+    number-depth: 2
+    top-level-division: section
+    reference-location: document
+    listings: false
+    header-includes:
+      \usepackage{marginnote, here, relsize, needspace, setspace}
+      \def\it{\emph}
 editor: visual
 ---
 
@@ -20,7 +31,7 @@ Please read and run through this worksheet and answer the conceptual questions t
 
 Load the primary packages.
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 library(ggside)
 library(brms)
@@ -114,23 +125,15 @@ The distribution of body_mass_g and bill_length_mm are probably not gaussian. Th
 
 We'll fit the model
 
-$$
-\begin{align}
-\text{bill_length_mm}_i & = \beta_0 + \beta_1 \text{body_mass_g}_i + \epsilon_i \\
-\epsilon_i & \sim \operatorname{Normal}(0, \sigma_\epsilon) 
-\end{align}
-$$
+$\text{bill_length_mm}_i = \beta_0 + \beta_1 \text{body_mass_g}_i + \epsilon_i$
+$\epsilon_i \sim \operatorname{Normal}(0, \sigma_\epsilon)$
 
 where `bill_length_mm` is the *dependent* variable or a *response* variable. The sole predictor is `body_mass_g`. Both variables have $i$ subscripts, which indicate they vary across the $i$ rows in the data set. For now, you might think if $i$ as standing for "index." The last term in the first line, $\epsilon$, is often called the *error*, or *noise* term. In the second line, we see we're making the conventional assumption the "errors" are normally distributed around the regression line.
 
 An alternative and equivalent way to write that equation is
 
-$$
-\begin{align}
-\text{bill_length_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
-\mu_i & = \beta_0 + \beta_1 \text{body_mass_g}_i,
-\end{align}
-$$
+$\text{bill_length_mm}_i \sim \operatorname{Normal}(\mu_i, \sigma)$
+$\mu_i = \beta_0 + \beta_1 \text{body_mass_g}_i$
 
 which is meant to convey we are modeling `bill_length_mm` as normally distributed, with a conditional mean. You don't tend to see equations written this way in the OLS paradigm. However, this style of notation will serve us better when we start modeling our data with other distributions.
 
@@ -256,11 +259,7 @@ The estimate for the intercept is 32.17 with a standard deviation of 3.40. The s
 The mean value for the slope is 0.0045 and the standard deviation is 9.26e-06. These are quite similar to the values from our ols model.
 ```
 
-$$
-\begin{align}
-\text{bill_length_mm}_i & = 32.17 + 0.0045 * \text{body_mass_g}_i\\
-\end{align}
-$$
+$\text{bill_length_mm}_i = 32.17 + 0.0045 * \text{body_mass_g}_i$
 
 ## Bayes with default settings
 
@@ -568,7 +567,7 @@ Since we hae 4000 posterior samples, the spread can tell us how uncertain we are
 For each value of x, the predictions are made by averaging the predicted values across the 4000 samples of the parameters.
 ```
 
-$$\widehat{\text{bill_length_mm}}_i = \beta_0 + \beta_1 \text{body_mass_g}_i.$$
+$\widehat{\text{bill_length_mm}}_i = \beta_0 + \beta_1 \text{body_mass_g}_i.$
 
 Let's break the 4000 draws down with our `draws` object.
 
@@ -693,7 +692,6 @@ First, it can't be negative, so it is bounded below 0.
 Second, we might have a weak prior for $\sigma$, which will result in posterior uncertainty that includes the possibility of high residual variability, resulting in a longer right tail in the posterior.
 
 Third, there could be some outliers that inflates $\sigma$, making its posterior distribution more right-skewed.
-
 ```
 
 -   The mean is the **brms** default summary, and McElreath (2015, 2020) defaulted to the mean in his texts.
@@ -709,7 +707,7 @@ fixef(fit1.b, robust = TRUE)  # medians
 
 ### Question 2.4: Given the skew in sigma and what you know about summary statistics, what might be the implication of using just the mean, median, or mode of posteriors to make a prediction?
 
-```
+```         
 The mean is pulled toward the tail, so using the mean of sigma will lead to wider predicted intervals (more conservative), but we might overestimate uncertainty in new predictions if the skew is strong.
 
 The median is robust to the skew, so using the median provides a balanced summary that is not too influenced by tail values.
@@ -718,7 +716,6 @@ The mode is often below the mean when the distribution is right skewed, so using
 
 Overall, it is better to use the entire posterior, which full captures the uncertainty, including the skew, instead of using only a single value of the distribution.
 ```
-
 
 #### SD's and MAD SD's.
 
@@ -862,15 +859,13 @@ Do you remember how we said $\beta_0$ and $\beta_1$ had a strong negative correl
 
 ### Question 2.5: We have done all this without yet specifying a prior. What do you think is going on?
 
-```
+```         
 The brms package assigns default priors (weakly informative priors) to all the parameters, even though we didn't specify any.
 ```
-
 
 ## Question/Exercise:
 
 In the last part, we made a subset of the `penguins` data called `gentoo`, which was only the cases for which `species == "Gentoo"`. Do that again and refit the Bayesian model to those data. Can you then remake some of the figures in this file with the new version of the model?
-
 
 ```{r}
 # wrangle
@@ -885,6 +880,7 @@ as_draws_df(fit2.b) %>%
 
 pairs(fit2.b)
 ```
+
 ```{r, warning = F}
 draws2 <- as_draws_df(fit2.b)
 
