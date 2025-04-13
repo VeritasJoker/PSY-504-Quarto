@@ -24,17 +24,6 @@ format:
     table-captions: true
     tbl-cap-location: margin
     reference-location: margin
-  pdf:
-    pdf-engine: lualatex
-    toc: false
-    number-sections: true
-    number-depth: 2
-    top-level-division: section
-    reference-location: document
-    listings: false
-    header-includes:
-      \usepackage{marginnote, here, relsize, needspace, setspace}
-      \def\it{\emph}
 execute:
   freeze: auto
   echo: true
