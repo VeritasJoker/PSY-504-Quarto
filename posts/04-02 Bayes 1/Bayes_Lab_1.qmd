@@ -7,17 +7,6 @@ categories: [code, analysis]
 format:
   html:
     self-contained: false
-  pdf:
-    pdf-engine: lualatex
-    toc: false
-    number-sections: true
-    number-depth: 2
-    top-level-division: section
-    reference-location: document
-    listings: false
-    header-includes:
-      \usepackage{marginnote, here, relsize, needspace, setspace}
-      \def\it{\emph}
 editor: visual
 ---
 

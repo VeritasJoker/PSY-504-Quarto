@@ -35,9 +35,13 @@
     "MLM2_Ans.html": "f21ae410"
   },
   "posts/04-02 Bayes 1/Bayes_Lab_1.qmd": {
-    "Bayes_Lab_1.html": "aceeb18f"
+    "Bayes_Lab_1.html": "aceeb18f",
+    "Bayes_Lab_1.tex": "ba5ae604"
   },
   "posts/04-09 Bayes 2/Bayes_Lab_2.qmd": {
     "Bayes_Lab_2.html": "c43f8118"
+  },
+  "posts/03-19 mlm walkthrough/MLM_Intro_Questions.qmd": {
+    "MLM_Intro_Questions.html": "e41a4d78"
   }
 }
