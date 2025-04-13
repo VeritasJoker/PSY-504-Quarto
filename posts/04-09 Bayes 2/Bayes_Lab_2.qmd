@@ -1,5 +1,5 @@
 ---
-title: "Bayes_Lab_2"
+title: "Lab: Bayes_Lab_2"
 subtitle: "Princeton University"
 date: "2025-04-09"
 author: "KW"

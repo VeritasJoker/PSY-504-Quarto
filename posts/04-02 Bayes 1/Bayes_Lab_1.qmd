@@ -1,5 +1,5 @@
 ---
-title: "Bayes and Penguins"
+title: "Lab: Bayes and Penguins"
 subtitle: "Princeton University"
 date: "2025-04-02"
 author: "KW"
@@ -125,15 +125,13 @@ The distribution of body_mass_g and bill_length_mm are probably not gaussian. Th
 
 We'll fit the model
 
-$\text{bill_length_mm}_i = \beta_0 + \beta_1 \text{body_mass_g}_i + \epsilon_i$
-$\epsilon_i \sim \operatorname{Normal}(0, \sigma_\epsilon)$
+$\text{bill_length_mm}_i = \beta_0 + \beta_1 \text{body_mass_g}_i + \epsilon_i$ $\epsilon_i \sim \operatorname{Normal}(0, \sigma_\epsilon)$
 
 where `bill_length_mm` is the *dependent* variable or a *response* variable. The sole predictor is `body_mass_g`. Both variables have $i$ subscripts, which indicate they vary across the $i$ rows in the data set. For now, you might think if $i$ as standing for "index." The last term in the first line, $\epsilon$, is often called the *error*, or *noise* term. In the second line, we see we're making the conventional assumption the "errors" are normally distributed around the regression line.
 
 An alternative and equivalent way to write that equation is
 
-$\text{bill_length_mm}_i \sim \operatorname{Normal}(\mu_i, \sigma)$
-$\mu_i = \beta_0 + \beta_1 \text{body_mass_g}_i$
+$\text{bill_length_mm}_i \sim \operatorname{Normal}(\mu_i, \sigma)$ $\mu_i = \beta_0 + \beta_1 \text{body_mass_g}_i$
 
 which is meant to convey we are modeling `bill_length_mm` as normally distributed, with a conditional mean. You don't tend to see equations written this way in the OLS paradigm. However, this style of notation will serve us better when we start modeling our data with other distributions.
 

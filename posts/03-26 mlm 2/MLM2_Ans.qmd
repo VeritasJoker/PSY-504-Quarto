@@ -1,5 +1,5 @@
 ---
-title: "MLM2 - Answer Walkthrough"
+title: "Lab: MLM2 - Answer Walkthrough"
 subtitle: "Princeton University"
 date: "2025-03-26"
 author: "KW"
