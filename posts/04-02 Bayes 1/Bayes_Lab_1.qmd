@@ -7,6 +7,48 @@ categories: [code, analysis]
 format:
   html:
     self-contained: false
+    anchor-sections: true
+    code-tools: true
+    code-fold: true
+    fig-width: 8
+    fig-height: 4
+    code-block-bg: "#f1f3f5"
+    code-block-border-left: "#31BAE9"
+    mainfont: Source Sans Pro
+    theme: journal
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    captions: true
+    cap-location: margin
+    table-captions: true
+    tbl-cap-location: margin
+    reference-location: margin
+  pdf:
+    pdf-engine: lualatex
+    toc: false
+    number-sections: true
+    number-depth: 2
+    top-level-division: section
+    reference-location: document
+    listings: false
+    header-includes:
+      \usepackage{marginnote, here, relsize, needspace, setspace}
+      \def\it{\emph}
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+  fig-width: 12
+  fig-height: 8
+  editor_options: 
+  chunk_output_type: inline
+  code-overflow: wrap
+  html:
+    code-fold: true
+    code-tools: true
 editor: visual
 ---
 
@@ -114,13 +156,23 @@ The distribution of body_mass_g and bill_length_mm are probably not gaussian. Th
 
 We'll fit the model
 
-$\text{bill_length_mm}_i = \beta_0 + \beta_1 \text{body_mass_g}_i + \epsilon_i$ $\epsilon_i \sim \operatorname{Normal}(0, \sigma_\epsilon)$
+$$
+\begin{aligned}
+\text{bill\_length\_mm}\_i &= \beta_0 + \beta_1 \text{body\_mass\_g}\_i + \epsilon_i \\
+\epsilon_i &\sim \operatorname{Normal}(0, \sigma\_\epsilon) \\
+\end{aligned}
+$$
 
 where `bill_length_mm` is the *dependent* variable or a *response* variable. The sole predictor is `body_mass_g`. Both variables have $i$ subscripts, which indicate they vary across the $i$ rows in the data set. For now, you might think if $i$ as standing for "index." The last term in the first line, $\epsilon$, is often called the *error*, or *noise* term. In the second line, we see we're making the conventional assumption the "errors" are normally distributed around the regression line.
 
 An alternative and equivalent way to write that equation is
 
-$\text{bill_length_mm}_i \sim \operatorname{Normal}(\mu_i, \sigma)$ $\mu_i = \beta_0 + \beta_1 \text{body_mass_g}_i$
+$$
+\begin{aligned}
+\text{bill\_length\_mm}_i &\sim \operatorname{Normal}(\mu_i, \sigma) \\
+\mu_i &= \beta_0 + \beta_1 \text{body\_mass\_g}_i
+\end{aligned} 
+$$
 
 which is meant to convey we are modeling `bill_length_mm` as normally distributed, with a conditional mean. You don't tend to see equations written this way in the OLS paradigm. However, this style of notation will serve us better when we start modeling our data with other distributions.
 
@@ -246,7 +298,11 @@ The estimate for the intercept is 32.17 with a standard deviation of 3.40. The s
 The mean value for the slope is 0.0045 and the standard deviation is 9.26e-06. These are quite similar to the values from our ols model.
 ```
 
-$\text{bill_length_mm}_i = 32.17 + 0.0045 * \text{body_mass_g}_i$
+$$
+\begin{aligned}
+\text{bill\_length\_mm}_i = 32.17 + 0.0045 * \text{body\_mass\_g}_i
+\end{aligned}
+$$
 
 ## Bayes with default settings
 
@@ -393,7 +449,7 @@ predict(fit2.ols,
 
 Can you fit the same default Bayesian `brm()` model to these data?
 
-```{r}
+```{r, results="hide"}
 fit2.b <- brm(
   data = gentoo,
   bill_length_mm ~ 1 + body_mass_g
@@ -554,7 +610,9 @@ Since we hae 4000 posterior samples, the spread can tell us how uncertain we are
 For each value of x, the predictions are made by averaging the predicted values across the 4000 samples of the parameters.
 ```
 
-$\widehat{\text{bill_length_mm}}_i = \beta_0 + \beta_1 \text{body_mass_g}_i.$
+$$
+\widehat{\text{bill\_length\_mm}}_i = \beta_0 + \beta_1 \text{body\_mass\_g}_i.
+$$
 
 Let's break the 4000 draws down with our `draws` object.
 
@@ -708,7 +766,9 @@ Overall, it is better to use the entire posterior, which full captures the uncer
 
 Earlier we said the posterior SD is the Bayesian standard error. This isn't strictly true. You can also use the *median absolute deviation* (MAD SD). If we let $M$ stand for the median of some variable $y$, which varies across $i$ cases, we can define the MAD SD as
 
-$$\textit{MAD SD} = 1.4826 \times \operatorname{median}_{i = 1}^n |y_i - M|,$$
+$$
+\textit{MAD SD} = 1.4826 \times \operatorname{median}_{i = 1}^n |y_i - M|,
+$$
 
 where $1.4826$ is a constant that scales the MAD SD into a standard-deviation metric. Here's what this looks like in practice.
 

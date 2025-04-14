@@ -7,6 +7,48 @@ categories: [code, analysis]
 format:
   html:
     self-contained: false
+    anchor-sections: true
+    code-tools: true
+    code-fold: true
+    fig-width: 8
+    fig-height: 4
+    code-block-bg: "#f1f3f5"
+    code-block-border-left: "#31BAE9"
+    mainfont: Source Sans Pro
+    theme: journal
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    captions: true
+    cap-location: margin
+    table-captions: true
+    tbl-cap-location: margin
+    reference-location: margin
+  pdf:
+    pdf-engine: lualatex
+    toc: false
+    number-sections: true
+    number-depth: 2
+    top-level-division: section
+    reference-location: document
+    listings: false
+    header-includes:
+      \usepackage{marginnote, here, relsize, needspace, setspace}
+      \def\it{\emph}
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+  fig-width: 12
+  fig-height: 8
+  editor_options: 
+  chunk_output_type: inline
+  code-overflow: wrap
+  html:
+    code-fold: true
+    code-tools: true
 editor: visual
 ---
 
@@ -49,10 +91,10 @@ glimpse(chinstrap)
 Once again, we'll fit the model
 
 $$
-\begin{align}
-\text{bill_length_mm}_i & = \beta_0 + \beta_1 \text{body_mass_g}_i + \epsilon_i \\
+\begin{aligned}
+\text{bill\_length\_mm}_i & = \beta_0 + \beta_1 \text{body\_mass\_g}_i + \epsilon_i \\
 \epsilon_i & \sim \operatorname{Normal}(0, \sigma_\epsilon) ,
-\end{align}
+\end{aligned}
 $$
 
 with both `lm()` and `brm()`.
@@ -128,28 +170,28 @@ It's also the assumption
 One of the ways we wrote our model formula back in the first file was
 
 $$
-\begin{align}
-\text{bill_length_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
-\mu_i & = \beta_0 + \beta_1 \text{body_mass_g}_i,
-\end{align}
+\begin{aligned}
+\text{bill\_length\_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
+\mu_i & = \beta_0 + \beta_1 \text{body\_mass\_g}_i,
+\end{aligned}
 $$
 
 and further in the discussion, we updated that equation with the posterior means for our three parameters to
 
 $$
-\begin{align}
-\text{bill_length_mm}_i & \sim \operatorname{Normal}(\mu_i, 2.92) \\
-\mu_i & = 32.2 + 0.004 \text{body_mass_g}_i.
-\end{align}
+\begin{aligned}
+\text{bill\_length\_mm}_i & \sim \operatorname{Normal}(\mu_i, 2.92) \\
+\mu_i & = 32.2 + 0.004 \text{body\_mass\_g}_i.
+\end{aligned}
 $$
 
 Before we get into this, though, let's back up and consider an intercept-only model of the form
 
 $$
-\begin{align}
-\text{bill_length_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
+\begin{aligned}
+\text{bill\_length\_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
 \mu_i & = \beta_0 ,
-\end{align}
+\end{aligned}
 $$
 
 where there is no predictor variable. Here's how to fit the model with `brm()`.
@@ -621,13 +663,13 @@ fit1.b$prior
 Thus, a fuller expression of our model is
 
 $$
-\begin{align}
-\text{bill_length_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
-\mu_i & = \beta_0 + \beta_1 \text{body_mass_g}_i \\
+\begin{aligned}
+\text{bill\_length\_mm}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
+\mu_i & = \beta_0 + \beta_1 \text{body\_mass\_g}_i \\
 \beta_0 & \sim \operatorname{Student-t}(3, 49.5, 3.6) \\
 \beta_1 & \sim \operatorname{Uniform}(-\infty, \infty) \\
 \sigma & \sim \operatorname{Student-t}^+(3, 0, 3.6).
-\end{align}
+\end{aligned}
 $$
 
 If we had wanted to see the `brm()` defaults before fitting the model, we could have used the `get_prior()` function.
