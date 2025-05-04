@@ -2,6 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/04-23 Missing Data/Missing_Data_Lab_Questions.html",
+      "/posts/04-16 Bayes 3-2/Bayes_Lab_3_2_HMC Diagnostics.html",
+      "/posts/04-16 Bayes 3-1/Bayes_Lab_3_1_Priors and predictive checks.html",
+      "/posts/04-09 Bayes 2/Bayes_Lab_2.html",
       "/posts/04-09 Bayes 2/Bayes_Lab_2.html",
       "/posts/04-02 Bayes 1/Bayes_Lab_1.html",
       "/posts/03-31 bayesian GLM/bayesian glm.html",

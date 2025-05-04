@@ -54,6 +54,8 @@ editor: visual
 
 
 
+
+
 For Lab 1, you had explored the data and looked at models built via lm() and via brms(using default priors). You had also drawn posterior samples after fitting the model.
 
 For Lab 2, we continue with the Palmer Penguins. And we will look more at distributions and priors.
@@ -70,6 +72,8 @@ We load the primary packages.
 
 
 
+
+
 ```{r, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(brms)
@@ -79,7 +83,11 @@ library(ggdist)
 
 
 
+
+
 We want the same data set up as in the last lab.
+
+
 
 
 
@@ -93,6 +101,8 @@ chinstrap <- penguins %>%
 
 glimpse(chinstrap)
 ```
+
+
 
 
 
@@ -111,6 +121,8 @@ with both `lm()` and `brm()`.
 
 
 
+
+
 ```{r fit_again, results = "hide"}
 # OLS
 fit1.ols <- lm(
@@ -124,6 +136,8 @@ fit1.b <- brm(
   bill_length_mm ~ 1 + body_mass_g
 )
 ```
+
+
 
 
 
@@ -212,6 +226,8 @@ where there is no predictor variable. Here's how to fit the model with `brm()`.
 
 
 
+
+
 ```{r fit0.b, results = "hide"}
 # Bayes
 fit0.b <- brm(
@@ -222,7 +238,11 @@ fit0.b <- brm(
 
 
 
+
+
 Let's look at the model summary.
+
+
 
 
 
@@ -232,7 +252,11 @@ summary(fit0.b)
 
 
 
+
+
 The intercept parameter $\beta_0$ is a stand-in for $\mu$. The $\sigma$ parameter is just $\sigma$. Here they are in a plot.
+
+
 
 
 
@@ -252,7 +276,11 @@ draws %>%
 
 
 
+
+
 Here are the posterior means for those two parameters.
+
+
 
 
 
@@ -265,7 +293,11 @@ mu; sigma
 
 
 
+
+
 We can use `dnorm()` to compute the shape of $\operatorname{Normal}(48.8, 3.4)$.
+
+
 
 
 
@@ -280,7 +312,11 @@ tibble(y = seq(from = 30, to = 70, by = 0.1)) %>%
 
 
 
+
+
 We can compare this to the sample distribution of the `bill_length_mm` data:
+
+
 
 
 
@@ -296,9 +332,13 @@ chinstrap %>%
 
 
 
+
+
 It's not a great fit, but not horrible either.
 
 Now let's see what this means for our univariable model `fit1.b`. First, let's learn about the `posterior_summary()` function, which we'll use to save a few posterior means.
+
+
 
 
 
@@ -312,7 +352,11 @@ sigma <- posterior_summary(fit1.b)[3, 1]
 
 
 
+
+
 Now we plot.
+
+
 
 
 
@@ -335,6 +379,8 @@ crossing(body_mass_g    = seq(from = 2500, to = 5000, length.out = 200),
 
 
 
+
+
 Our univariable model `fit1.b` can be viewed as something like a 3-dimensional Gaussian hill.
 
 ### Prior distributions & Prior predictive distributions.
@@ -344,6 +390,8 @@ Let's hold off on this for a bit.
 ### Parameter distributions.
 
 Up above, we plotted the posterior distributions for our intercept-only `fit0.b` model. Here they are again.
+
+
 
 
 
@@ -366,7 +414,11 @@ draws %>%
 
 
 
+
+
 We might practice making a similar plot for our univariable model `fit1.b`.
+
+
 
 
 
@@ -388,11 +440,15 @@ as_draws_df(fit1.b) %>%
 
 
 
+
+
 Some authors, like John Kruschke, have a strong preference for plotting their posteriors with histograms, rather than density plots.
 
 ## Distributions of the model expectations.
 
 Take another look at the `conditional_effects()` plot from earlier.
+
+
 
 
 
@@ -403,9 +459,13 @@ conditional_effects(fit1.b) %>%
 
 
 
+
+
 The blue line is the posterior mean, for the $\mu_i$, the model-based mean for `bill_length_mm`, given the value for the predictor `body_mass_g`. The semitransparent gray ribbon marks the percentile-based interval for the conditional mean.
 
 We can make a similar plot with the `fitted()` function. First we'll need a predictor grid, we'll call `nd`.
+
+
 
 
 
@@ -420,7 +480,11 @@ glimpse(nd)
 
 
 
+
+
 Now pump `nd` into the `fitted()` function.
+
+
 
 
 
@@ -432,7 +496,11 @@ fitted(fit1.b, newdata = nd) %>%
 
 
 
+
+
 Now plot.
+
+
 
 
 
@@ -451,7 +519,11 @@ fitted(fit1.b, newdata = nd) %>%
 
 
 
+
+
 Look what happens if we augment the `probs` argument in `fitted()`.
+
+
 
 
 
@@ -475,7 +547,11 @@ fitted(fit1.b,
 
 
 
+
+
 Now look what happens if we set `summary = FALSE`.
+
+
 
 
 
@@ -488,7 +564,11 @@ fitted(fit1.b,
 
 
 
+
+
 We get full 4,000 draw posterior distributions for each of the 100 levels of the predictor `body_mass_g`. Now look at what happens if we wrangle that output a little, and plot with aid from `stat_lineribbon()` from the **ggdist** package.
+
+
 
 
 
@@ -511,7 +591,11 @@ fitted(fit1.b,
 
 
 
+
+
 Look what happens when we request more intervals in the `.width` argument.
+
+
 
 
 
@@ -537,7 +621,11 @@ fitted(fit1.b,
 
 
 
+
+
 The conditional mean, $\mu_i$, has its own distribution. We can take this visualization approach even further to make a color gradient.
+
+
 
 
 
@@ -561,6 +649,8 @@ fitted(fit1.b,
 
 
 
+
+
 For technical details on this visualization approach, go here: <https://mjskay.github.io/ggdist/articles/lineribbon.html#lineribbon-gradients>.
 
 The **ggdist** package even has an experimental visualization approach that's based on density gradients, rather than interval-width gradients. Since this is experimental, I'm not going to go into the details. But if you're curious and adventurous, you can learn more here: <https://mjskay.github.io/ggdist/articles/lineribbon.html#lineribbon-density-gradients>.
@@ -570,6 +660,8 @@ The **ggdist** package even has an experimental visualization approach that's ba
 The last section showed the posterior distributions for the model expectations (i.e., the conditional means). In the context of the Gaussian distribution, that's $\mu$, or $\mu_i$ in the case of the univariable model `fit1.b`. But the whole Gaussian distribution includes $\mu$ and $\sigma$.
 
 This is where the `predict()` function comes in. First, we compare the `fitted()` output to `predict()`.
+
+
 
 
 
@@ -585,7 +677,11 @@ predict(fit1.b, newdata = nd) %>%
 
 
 
+
+
 The posterior means (`Estimate`) are about the same, but the SD's (`Est.Error`) are much larger in the `predict()` output, and the widths of the 95% intervals are too. Let's make a plot.
+
+
 
 
 
@@ -605,11 +701,15 @@ predict(fit1.b, newdata = nd) %>%
 
 
 
+
+
 The gray band is the 95% interval for the entire posterior predictive distribution, not just the mean. In a good model, about 95% of the data points should be within those bands.
 
 Discuss how the jagged lines have to do with the uncertainty in $\sigma$.
 
 If we wanted to, we could integrate the `fitted()`-based conditional posterior mean, with the `predict()`-based posterior-predictive distribution.
+
+
 
 
 
@@ -642,7 +742,11 @@ predict(fit1.b, newdata = nd) %>%
 
 
 
+
+
 It's the posterior predictive distribution that we use to predict new data points. For example, here's what happens if we use `predict()` without the `newdata` argument.
+
+
 
 
 
@@ -653,7 +757,11 @@ predict(fit1.b) %>%
 
 
 
+
+
 We get posterior predictive summaries for each of the original data points. Here's what happens if we set `summary = FALSE`.
+
+
 
 
 
@@ -664,7 +772,11 @@ predict(fit1.b, summary = FALSE) %>%
 
 
 
+
+
 This time, we got 4,000 posterior draws for each. We can reduce that output with the `ndraws` argument.
+
+
 
 
 
@@ -675,7 +787,11 @@ predict(fit1.b, summary = FALSE, ndraws = 6) %>%
 
 
 
+
+
 Now wrangle and plot.
+
+
 
 
 
@@ -699,7 +815,11 @@ predict(fit1.b, summary = FALSE, ndraws = 6) %>%
 
 
 
+
+
 With `predict()`, we can use the entire posterior-predictive distribution to simulate new data based on the values of our predictor variable(s). To give you a better sense of what's happening under the hood, here's an `as_draws_df()` based alternative.
+
+
 
 
 
@@ -724,7 +844,11 @@ as_draws_df(fit1.b) %>%
 
 
 
+
+
 Now take a look at what happens when we plot the densities of several simulated draws.
+
+
 
 
 
@@ -745,6 +869,8 @@ as_draws_df(fit1.b) %>%
   geom_density(size = 1/4, color = alpha("black", 1/2)) +
   coord_cartesian(xlim = range(chinstrap$bill_length_mm) + c(-2, 2))
 ```
+
+
 
 
 
@@ -783,10 +909,14 @@ To set your priors with **brms**, the `brm()` function has a `prior` argument. I
 
 
 
+
+
 ```{r}
 # maybe show str(fit1.b)
 fit1.b$prior
 ```
+
+
 
 
 
@@ -806,6 +936,8 @@ If we had wanted to see the `brm()` defaults before fitting the model, we could 
 
 
 
+
+
 ```{r}
 get_prior(
   data = chinstrap,
@@ -815,7 +947,11 @@ get_prior(
 
 
 
+
+
 If you recall, the normal distribution is a member of the Student-t family, where the $\nu$ (aka degrees of freedom or normality parameter) is set to $\infty$. To give you a sense, here are the densities of three members of the Student-t family, with varying $\nu$ values.
+
+
 
 
 
@@ -834,9 +970,13 @@ crossing(theta = seq(from = -4.5, to = 4.5, length.out = 200),
 
 
 
+
+
 Thus, Student-t distributions have thicker tails when they have smaller $\nu$ parameters. In the case where $\nu = 3$, the tails are pretty thick, which means they are more tolerant of more extreme values. And thus priors with small-$\nu$ parameters will be weaker (i.e., more permissive) than their Gaussian counterparts.
 
 We can visualize functions from **ggdist** to visualize the default `brm()` priors. We'll start with the `student_t(3, 49.5, 3.6)` $\beta_0$ prior, and also take the opportunity to compare that with a slightly stronger `normal(49.5, 3.6)` alternative.
+
+
 
 
 
@@ -854,7 +994,11 @@ c(prior(student_t(3, 49.5, 3.6)),
 
 
 
+
+
 See how that $n = 3$ parameter in the default prior let do much thicker tails than it's Gaussian counterpart. We can make the same kind of plot for our default $\sigma$ prior and its half-Gaussian counterpart.
+
+
 
 
 
@@ -872,7 +1016,11 @@ c(prior(student_t(3, 0, 3.6), lb = 0),  # note our use of the lb = 0 argument
 
 
 
+
+
 Here's how we could have explicitly set our priors by hand.
+
+
 
 
 
@@ -887,7 +1035,11 @@ fit2.b <- brm(
 
 
 
+
+
 Compare the results.
+
+
 
 
 
@@ -898,7 +1050,11 @@ summary(fit2.b)
 
 
 
+
+
 ## QUESTION 2 Are the priors the same? What do you think is going on?
+
+
 
 
 
@@ -906,6 +1062,8 @@ summary(fit2.b)
 fit1.b$prior
 fit2.b$prior
 ```
+
+
 
 
 
@@ -920,6 +1078,8 @@ If you want to learn more about the default prior settings for **brms**, read th
 In the previous lab, we made a subset of the `penguins` data called `gentoo`, which was only the cases for which `species == "Gentoo"`. Do that again and refit the Bayesian model to those data. Remake some of the figures (From Part 3) in this file with the new version of the model?
 
 ### Answer/ Your solution below:
+
+
 
 
 
@@ -1095,9 +1255,12 @@ c(prior(student_t(3, 0, 3.1), lb = 0)) %>%
 
 
 
+
+
 ## References
 
 Kruschke, J. K. (2015). *Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan*. Academic Press. <https://sites.google.com/site/doingbayesiandataanalysis/>
 
 ## Session information
+
 

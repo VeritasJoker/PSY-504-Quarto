@@ -47,5 +47,11 @@
   "posts/04-13 Latex testing/latex testing.qmd": {
     "latex testing.html": "d1c4c26f",
     "latex-testing.tex": "b763f4f9"
+  },
+  "posts/04-16 Bayes 3/Bayes_Lab_3_1_Priors and predictive checks.qmd": {
+    "Bayes_Lab_3_1_Priors and predictive checks.html": "e7f768ad"
+  },
+  "posts/04-16 Bayes 3-2/Bayes_Lab_3_2_HMC Diagnostics.qmd": {
+    "Bayes_Lab_3_2_HMC Diagnostics.html": "e8833e10"
   }
 }

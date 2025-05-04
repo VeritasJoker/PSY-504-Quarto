@@ -1,0 +1,71 @@
+---
+title: "Missing_Data_Lab"
+format: html
+editor: visual
+---
+
+Missing data is a common problem and dealing with it appropriately is extremely important. Ignoring the missing data points or filling them incorrectly may cause the models to work in unexpected ways and cause the predictions and inferences to be biased.
+
+Le'ts consider built-in dataset 'airquality' in R as a sample dataset.
+
+```{r}
+# Load the airquality dataset
+data("airquality")
+```
+
+#### Question 1:
+
+(a) Examine this dataset for missing values. While there are many ways to do this, the skim function from the library 'skimr' is elegant;
+
+(b) use the nanair package to visualize missing values
+
+(c) even though it's hard to confirm based on visualizations alone, what do your visualizations lead you to believe about the missing data being MCAR, MAR, or MNAR?
+
+(d) Carry out Little's statistical test to evaluate MCAR and report results.
+
+(e) Creating a binary indicator for missingness allows you to test whether the presence of missing data is related to observed data.
+
+    -   For instance, you can create a dummy variable: 1 = Missing; 0 = Observed.
+    -   Next you can conduct a chi-square test or t-test:
+        -   Chi-square: Compare proportions of missingness ***across groups***.
+        -   T-test: Compare means of (other) observed variables with missingness indicators.
+
+```{r}
+
+```
+
+#### Question 2:
+
+Create **new and appropriately named datasets** that are based on airquality for each of the following ways of fixing the dataset:
+
+```         
+  - (a) "listwise deletion" or "complete case analysis" --- where entire records from the analysis are removed if they are missing any data point in one or more variables 
+  
+  - (b) Imputation with mean --- involves filling in the missing values with the mean of the available values in the same variable.
+  
+  - (c) Imputation with regression (use mice package)
+  
+  - (d) Imputation with stochastic regression (use mice package)
+
+  - (e) Imputation with multiple induction (use mice package, 5 imputations, and Predictive mean matching method)
+```
+
+```{r}
+
+```
+
+#### Question 3:
+
+Compare the eventual distribution from these datasets on the variable 'Ozone'against the orgiinal. Below is a template that considers only 2 datasets but please consider all the datasets you generated within a single plot
+
+```{r}
+# ggplot(airquality, aes(x=Ozone, fill="Original")) +
+#   geom_density(alpha=0.5) +
+#   geom_density(data=dataset_listwise_deletion, aes(x=Ozone, fill="Listwise Deletion"), alpha=0.5) +
+#   labs(title="Density Plot of Ozone: Original vs. Imputed")
+
+```
+
+What do you observe?
+
+#### Of course, each dataset you produced will lead to different modeling results, but we won't go into that in today's lab.
