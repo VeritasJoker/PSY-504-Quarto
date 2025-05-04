@@ -9,7 +9,7 @@
 <meta name="author" content="KW">
 <meta name="dcterms.date" content="2025-04-16">
 
-<title>PSY-504-Quarto - PSY 504: Bayes Lab 3_2, HMC Diagnostics</title>
+<title>PSY-504-Quarto - Lab: Bayes 3-2, HMC Diagnostics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,7 +178,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">PSY 504: Bayes Lab 3_2, HMC Diagnostics</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">Lab: Bayes 3-2, HMC Diagnostics</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
             <p class="subtitle lead">Princeton University</p>
                                 <div class="quarto-categories">
                 <div class="quarto-category">code</div>
@@ -1391,7 +1391,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "PSY 504: Bayes Lab 3_2, HMC Diagnostics"</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Lab: Bayes 3-2, HMC Diagnostics"</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Princeton University"</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-04-16"</span></span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "KW"</span></span>
@@ -1702,146 +1702,144 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb41-334"><a href="#cb41-334" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-335"><a href="#cb41-335" aria-hidden="true" tabindex="-1"></a>In the first few warmup draws, the chain values are quite unstable. They are not representative of the target posterior distribution and are used solely to tune the sampler. The warmup iterations are heavily influenced by the initial parameters. Discarding them ensures that inferences are made only using samples from the well-explored, adapted phase of sampling.</span>
 <span id="cb41-336"><a href="#cb41-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-337"><a href="#cb41-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-338"><a href="#cb41-338" aria-hidden="true" tabindex="-1"></a>Another issue is *autocorrelation*, the degree to which a given HMC draw is correlated with the previous draw(s). We can make a plot of the autocorrelations with the `mcmc_acf()` function from the **bayesplot** package.</span>
-<span id="cb41-339"><a href="#cb41-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-342"><a href="#cb41-342" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-343"><a href="#cb41-343" aria-hidden="true" tabindex="-1"></a>fit13.b <span class="sc">%&gt;%</span> </span>
-<span id="cb41-344"><a href="#cb41-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mcmc_acf</span>(<span class="at">pars =</span> <span class="fu">vars</span>(b_Intercept, b_x, sigma),</span>
-<span id="cb41-345"><a href="#cb41-345" aria-hidden="true" tabindex="-1"></a>           <span class="at">lags =</span> <span class="dv">10</span>)  <span class="co"># lags = 20 is the default</span></span>
-<span id="cb41-346"><a href="#cb41-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-347"><a href="#cb41-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-348"><a href="#cb41-348" aria-hidden="true" tabindex="-1"></a>This is what we like to see: Nice L-shaped autocorrelation plots. Low autocorrelations like this are one of the major achievements of Stan's implementation of HMC. It's not uncommon for MCMC via the older Gibbs sampler method to routinely show much higher autocorrelations. You can get a sense of this by comparing the various models in Kruschke's (2015) textbook, which often uses the Gibbs sampler, versus their <span class="in">`brms()`</span> analogues in my (2023) ebook translation.</span>
-<span id="cb41-349"><a href="#cb41-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-350"><a href="#cb41-350" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb41-351"><a href="#cb41-351" aria-hidden="true" tabindex="-1"></a>Mixing describes how efficiently MCMC chains explore the posterior distribution. Good mixing means samples move freely across the parameter space. And high autocorrelation =<span class="sc">\&gt;</span> poor mixing.</span>
-<span id="cb41-352"><a href="#cb41-352" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb41-353"><a href="#cb41-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-354"><a href="#cb41-354" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Question 3: Why are L-shaped autocorrelation plots are desirable? What would an undesirable autocorrelation plot look like?</span></span>
-<span id="cb41-355"><a href="#cb41-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-356"><a href="#cb41-356" aria-hidden="true" tabindex="-1"></a>Because you want no autocorrelation between the draws, which indicate that the samples are nearly independent and that the sampler is exploring the posterior efficiently. At the first few warmup iterations, the autocorrelation would be high but should drop off quickly. This is also why we discard the first few warmup iterations.</span>
-<span id="cb41-357"><a href="#cb41-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-358"><a href="#cb41-358" aria-hidden="true" tabindex="-1"></a>An undesirable autocorrelation would be where the autocorrelation does not drop off quickly and instead plateus. This means that the chain is highly correlated and it would take longer to explore the posterior space.</span>
-<span id="cb41-359"><a href="#cb41-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-337"><a href="#cb41-337" aria-hidden="true" tabindex="-1"></a>Another issue is *autocorrelation*, the degree to which a given HMC draw is correlated with the previous draw(s). We can make a plot of the autocorrelations with the `mcmc_acf()` function from the **bayesplot** package.</span>
+<span id="cb41-338"><a href="#cb41-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-341"><a href="#cb41-341" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-342"><a href="#cb41-342" aria-hidden="true" tabindex="-1"></a>fit13.b <span class="sc">%&gt;%</span> </span>
+<span id="cb41-343"><a href="#cb41-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mcmc_acf</span>(<span class="at">pars =</span> <span class="fu">vars</span>(b_Intercept, b_x, sigma),</span>
+<span id="cb41-344"><a href="#cb41-344" aria-hidden="true" tabindex="-1"></a>           <span class="at">lags =</span> <span class="dv">10</span>)  <span class="co"># lags = 20 is the default</span></span>
+<span id="cb41-345"><a href="#cb41-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-346"><a href="#cb41-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-347"><a href="#cb41-347" aria-hidden="true" tabindex="-1"></a>This is what we like to see: Nice L-shaped autocorrelation plots. Low autocorrelations like this are one of the major achievements of Stan's implementation of HMC. It's not uncommon for MCMC via the older Gibbs sampler method to routinely show much higher autocorrelations. You can get a sense of this by comparing the various models in Kruschke's (2015) textbook, which often uses the Gibbs sampler, versus their <span class="in">`brms()`</span> analogues in my (2023) ebook translation.</span>
+<span id="cb41-348"><a href="#cb41-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-349"><a href="#cb41-349" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb41-350"><a href="#cb41-350" aria-hidden="true" tabindex="-1"></a>Mixing describes how efficiently MCMC chains explore the posterior distribution. Good mixing means samples move freely across the parameter space. And high autocorrelation =<span class="sc">\&gt;</span> poor mixing.</span>
+<span id="cb41-351"><a href="#cb41-351" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb41-352"><a href="#cb41-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-353"><a href="#cb41-353" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Question 3: Why are L-shaped autocorrelation plots are desirable? What would an undesirable autocorrelation plot look like?</span></span>
+<span id="cb41-354"><a href="#cb41-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-355"><a href="#cb41-355" aria-hidden="true" tabindex="-1"></a>Because you want no autocorrelation between the draws, which indicate that the samples are nearly independent and that the sampler is exploring the posterior efficiently. At the first few warmup iterations, the autocorrelation would be high but should drop off quickly. This is also why we discard the first few warmup iterations.</span>
+<span id="cb41-356"><a href="#cb41-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-357"><a href="#cb41-357" aria-hidden="true" tabindex="-1"></a>An undesirable autocorrelation would be where the autocorrelation does not drop off quickly and instead plateus. This means that the chain is highly correlated and it would take longer to explore the posterior space.</span>
+<span id="cb41-358"><a href="#cb41-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-359"><a href="#cb41-359" aria-hidden="true" tabindex="-1"></a>Those low autocorrelations also have a lot to do with our effective sample size (ESS) estimates. Take another look at the <span class="in">`summary()`</span> output.</span>
 <span id="cb41-360"><a href="#cb41-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-361"><a href="#cb41-361" aria-hidden="true" tabindex="-1"></a>Those low autocorrelations also have a lot to do with our effective sample size (ESS) estimates. Take another look at the <span class="in">`summary()`</span> output.</span>
-<span id="cb41-362"><a href="#cb41-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-365"><a href="#cb41-365" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-366"><a href="#cb41-366" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit13.b)</span>
-<span id="cb41-367"><a href="#cb41-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-363"><a href="#cb41-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-364"><a href="#cb41-364" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit13.b)</span>
+<span id="cb41-365"><a href="#cb41-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-366"><a href="#cb41-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-367"><a href="#cb41-367" aria-hidden="true" tabindex="-1"></a>There used to be a single ESS column. Starting with version 2.10.0, **brms** returns two columns: <span class="in">`Bulk_ESS`</span> and <span class="in">`Tail_ESS`</span>. These originate from Vehtari et al (2019). From the paper, we read:</span>
 <span id="cb41-368"><a href="#cb41-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-369"><a href="#cb41-369" aria-hidden="true" tabindex="-1"></a>There used to be a single ESS column. Starting with version 2.10.0, **brms** returns two columns: <span class="in">`Bulk_ESS`</span> and <span class="in">`Tail_ESS`</span>. These originate from Vehtari et al (2019). From the paper, we read:</span>
+<span id="cb41-369"><a href="#cb41-369" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; When reporting quantile estimates or posterior intervals, we strongly suggest assessing the convergence of the chains for these quantiles. In Section 4.3, we show that convergence of Markov chains is not uniform across the parameter space, that is, convergence might be different in the bulk of the distribution (e.g., for the mean or median) than in the tails (e.g., for extreme quantiles). We propose diagnostics and effective sample sizes specifically for extreme quantiles. This is different from the standard ESS estimate (which we refer to as bulk-ESS), which mainly assesses how well the centre of the distribution is resolved. Instead, these "tail-ESS" measures allow the user to estimate the MCSE for interval estimates. (pp. 672-673)</span></span>
 <span id="cb41-370"><a href="#cb41-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-371"><a href="#cb41-371" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; When reporting quantile estimates or posterior intervals, we strongly suggest assessing the convergence of the chains for these quantiles. In Section 4.3, we show that convergence of Markov chains is not uniform across the parameter space, that is, convergence might be different in the bulk of the distribution (e.g., for the mean or median) than in the tails (e.g., for extreme quantiles). We propose diagnostics and effective sample sizes specifically for extreme quantiles. This is different from the standard ESS estimate (which we refer to as bulk-ESS), which mainly assesses how well the centre of the distribution is resolved. Instead, these "tail-ESS" measures allow the user to estimate the MCSE for interval estimates. (pp. 672-673)</span></span>
+<span id="cb41-371"><a href="#cb41-371" aria-hidden="true" tabindex="-1"></a>We generally like the values in both the <span class="in">`Bulk_ESS`</span> and <span class="in">`Tail_ESS`</span> columns to be as close to the total number of post-warmup draws as possible, which would be 4,000 for a default <span class="in">`brm()`</span> model. Sometimes, as in the case of the <span class="in">`Bulk_ESS`</span> value for our $\beta_1$ parameter, the HMC chains are so efficient that we can get larger numbers than the actual number of post-warmup draws. This is related to when we have negative autocorrelations (see above).</span>
 <span id="cb41-372"><a href="#cb41-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-373"><a href="#cb41-373" aria-hidden="true" tabindex="-1"></a>We generally like the values in both the <span class="in">`Bulk_ESS`</span> and <span class="in">`Tail_ESS`</span> columns to be as close to the total number of post-warmup draws as possible, which would be 4,000 for a default <span class="in">`brm()`</span> model. Sometimes, as in the case of the <span class="in">`Bulk_ESS`</span> value for our $\beta_1$ parameter, the HMC chains are so efficient that we can get larger numbers than the actual number of post-warmup draws. This is related to when we have negative autocorrelations (see above).</span>
+<span id="cb41-373"><a href="#cb41-373" aria-hidden="true" tabindex="-1"></a>How much is enough, and how low is too low? Yeah, indeed... Higher is generally better, with diminishing returns rolling in somewhere between 1,000 and 10,000. **brms** will give you a warning message when the ESS estimates get below a couple hundred.</span>
 <span id="cb41-374"><a href="#cb41-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-375"><a href="#cb41-375" aria-hidden="true" tabindex="-1"></a>How much is enough, and how low is too low? Yeah, indeed... Higher is generally better, with diminishing returns rolling in somewhere between 1,000 and 10,000. **brms** will give you a warning message when the ESS estimates get below a couple hundred.</span>
+<span id="cb41-375"><a href="#cb41-375" aria-hidden="true" tabindex="-1"></a>Now look back at the <span class="in">`Rhat`</span> column in the <span class="in">`summary()`</span> output. This is the potential scale reduction factor $\hat R$. It has its origins in Gelman &amp; Rubin (1992), but the current version used in **brms** is from Vehtari et al (2019), as cited above. In short, it is something of a ratio of the between-chain variation versus the within-chain variation. This ratio is usually a little above 1, and we want it to be as close to 1 as possible. The Stan team (e.g., <span class="ot">&lt;https://mc-stan.org/rstan/reference/Rhat.html)&gt;</span> recommends against values greater than 1.05. In our case, we're good to go.</span>
 <span id="cb41-376"><a href="#cb41-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-377"><a href="#cb41-377" aria-hidden="true" tabindex="-1"></a>Now look back at the <span class="in">`Rhat`</span> column in the <span class="in">`summary()`</span> output. This is the potential scale reduction factor $\hat R$. It has its origins in Gelman &amp; Rubin (1992), but the current version used in **brms** is from Vehtari et al (2019), as cited above. In short, it is something of a ratio of the between-chain variation versus the within-chain variation. This ratio is usually a little above 1, and we want it to be as close to 1 as possible. The Stan team (e.g., <span class="ot">&lt;https://mc-stan.org/rstan/reference/Rhat.html)&gt;</span> recommends against values greater than 1.05. In our case, we're good to go.</span>
+<span id="cb41-377"><a href="#cb41-377" aria-hidden="true" tabindex="-1"></a><span class="fu">## What bad chains look like..</span></span>
 <span id="cb41-378"><a href="#cb41-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-379"><a href="#cb41-379" aria-hidden="true" tabindex="-1"></a><span class="fu">## What bad chains look like..</span></span>
+<span id="cb41-379"><a href="#cb41-379" aria-hidden="true" tabindex="-1"></a>Now let's break the model. This time, we'll subset the <span class="in">`d`</span> data to just the first 2 rows, we'll make the priors very wide on the scale of the data, and we'll dramatically reduce the <span class="in">`warmup`</span> period.</span>
 <span id="cb41-380"><a href="#cb41-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-381"><a href="#cb41-381" aria-hidden="true" tabindex="-1"></a>Now let's break the model. This time, we'll subset the <span class="in">`d`</span> data to just the first 2 rows, we'll make the priors very wide on the scale of the data, and we'll dramatically reduce the <span class="in">`warmup`</span> period.</span>
-<span id="cb41-382"><a href="#cb41-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-383"><a href="#cb41-383" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit14.b, results = "hide"}</span></span>
-<span id="cb41-384"><a href="#cb41-384" aria-hidden="true" tabindex="-1"></a><span class="in">fit14.b &lt;- brm(</span></span>
-<span id="cb41-385"><a href="#cb41-385" aria-hidden="true" tabindex="-1"></a><span class="in">  data = d %&gt;% slice(1:2),</span></span>
-<span id="cb41-386"><a href="#cb41-386" aria-hidden="true" tabindex="-1"></a><span class="in">  family = gaussian,</span></span>
-<span id="cb41-387"><a href="#cb41-387" aria-hidden="true" tabindex="-1"></a><span class="in">  y ~ 1 + x,</span></span>
-<span id="cb41-388"><a href="#cb41-388" aria-hidden="true" tabindex="-1"></a><span class="in">  # don't use priors like this for real data analyses</span></span>
-<span id="cb41-389"><a href="#cb41-389" aria-hidden="true" tabindex="-1"></a><span class="in">  prior = prior(normal(0, 100000), class = Intercept) +</span></span>
-<span id="cb41-390"><a href="#cb41-390" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(normal(0, 100000), class = b) +</span></span>
-<span id="cb41-391"><a href="#cb41-391" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(uniform(0, 100000), class = sigma),</span></span>
-<span id="cb41-392"><a href="#cb41-392" aria-hidden="true" tabindex="-1"></a><span class="in">  seed = 14,</span></span>
-<span id="cb41-393"><a href="#cb41-393" aria-hidden="true" tabindex="-1"></a><span class="in">  iter = 1100, warmup = 100, chains = 4, cores = 4</span></span>
-<span id="cb41-394"><a href="#cb41-394" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb41-395"><a href="#cb41-395" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-381"><a href="#cb41-381" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit14.b, results = "hide"}</span></span>
+<span id="cb41-382"><a href="#cb41-382" aria-hidden="true" tabindex="-1"></a><span class="in">fit14.b &lt;- brm(</span></span>
+<span id="cb41-383"><a href="#cb41-383" aria-hidden="true" tabindex="-1"></a><span class="in">  data = d %&gt;% slice(1:2),</span></span>
+<span id="cb41-384"><a href="#cb41-384" aria-hidden="true" tabindex="-1"></a><span class="in">  family = gaussian,</span></span>
+<span id="cb41-385"><a href="#cb41-385" aria-hidden="true" tabindex="-1"></a><span class="in">  y ~ 1 + x,</span></span>
+<span id="cb41-386"><a href="#cb41-386" aria-hidden="true" tabindex="-1"></a><span class="in">  # don't use priors like this for real data analyses</span></span>
+<span id="cb41-387"><a href="#cb41-387" aria-hidden="true" tabindex="-1"></a><span class="in">  prior = prior(normal(0, 100000), class = Intercept) +</span></span>
+<span id="cb41-388"><a href="#cb41-388" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(normal(0, 100000), class = b) +</span></span>
+<span id="cb41-389"><a href="#cb41-389" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(uniform(0, 100000), class = sigma),</span></span>
+<span id="cb41-390"><a href="#cb41-390" aria-hidden="true" tabindex="-1"></a><span class="in">  seed = 14,</span></span>
+<span id="cb41-391"><a href="#cb41-391" aria-hidden="true" tabindex="-1"></a><span class="in">  iter = 1100, warmup = 100, chains = 4, cores = 4</span></span>
+<span id="cb41-392"><a href="#cb41-392" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb41-393"><a href="#cb41-393" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-394"><a href="#cb41-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-395"><a href="#cb41-395" aria-hidden="true" tabindex="-1"></a>Check the parameter summary.</span>
 <span id="cb41-396"><a href="#cb41-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-397"><a href="#cb41-397" aria-hidden="true" tabindex="-1"></a>Check the parameter summary.</span>
-<span id="cb41-398"><a href="#cb41-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-401"><a href="#cb41-401" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-402"><a href="#cb41-402" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit14.b)</span>
-<span id="cb41-403"><a href="#cb41-403" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-399"><a href="#cb41-399" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-400"><a href="#cb41-400" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit14.b)</span>
+<span id="cb41-401"><a href="#cb41-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-402"><a href="#cb41-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-403"><a href="#cb41-403" aria-hidden="true" tabindex="-1"></a>Never ignore Warning messages like that.</span>
 <span id="cb41-404"><a href="#cb41-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-405"><a href="#cb41-405" aria-hidden="true" tabindex="-1"></a>Never ignore Warning messages like that.</span>
+<span id="cb41-405"><a href="#cb41-405" aria-hidden="true" tabindex="-1"></a>Those <span class="in">`Rhat`</span>, <span class="in">`Bulk_ESS`</span>, and <span class="in">`Tail_ESS`</span> look really bad. Also notice how large the posterior means (<span class="in">`Estimate`</span>) and standard deviations (<span class="in">`Est.Error`</span>) are. Seems off, eh?</span>
 <span id="cb41-406"><a href="#cb41-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-407"><a href="#cb41-407" aria-hidden="true" tabindex="-1"></a>Those <span class="in">`Rhat`</span>, <span class="in">`Bulk_ESS`</span>, and <span class="in">`Tail_ESS`</span> look really bad. Also notice how large the posterior means (<span class="in">`Estimate`</span>) and standard deviations (<span class="in">`Est.Error`</span>) are. Seems off, eh?</span>
+<span id="cb41-407"><a href="#cb41-407" aria-hidden="true" tabindex="-1"></a>Let's investigate further with a <span class="in">`pairs()`</span> plot.</span>
 <span id="cb41-408"><a href="#cb41-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-409"><a href="#cb41-409" aria-hidden="true" tabindex="-1"></a>Let's investigate further with a <span class="in">`pairs()`</span> plot.</span>
-<span id="cb41-410"><a href="#cb41-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-413"><a href="#cb41-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-414"><a href="#cb41-414" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit14.b, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb41-415"><a href="#cb41-415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-411"><a href="#cb41-411" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-412"><a href="#cb41-412" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit14.b, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb41-413"><a href="#cb41-413" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-414"><a href="#cb41-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-415"><a href="#cb41-415" aria-hidden="true" tabindex="-1"></a>This is a full-scale disaster. DO NOT trust model results from chains that look like this.</span>
 <span id="cb41-416"><a href="#cb41-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-417"><a href="#cb41-417" aria-hidden="true" tabindex="-1"></a>This is a full-scale disaster. DO NOT trust model results from chains that look like this.</span>
+<span id="cb41-417"><a href="#cb41-417" aria-hidden="true" tabindex="-1"></a>In this case, just giving the model a longer <span class="in">`warmup`</span> period helped a lot.</span>
 <span id="cb41-418"><a href="#cb41-418" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-419"><a href="#cb41-419" aria-hidden="true" tabindex="-1"></a>In this case, just giving the model a longer <span class="in">`warmup`</span> period helped a lot.</span>
-<span id="cb41-420"><a href="#cb41-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-421"><a href="#cb41-421" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit15.b, results = "hide"}</span></span>
-<span id="cb41-422"><a href="#cb41-422" aria-hidden="true" tabindex="-1"></a><span class="in">fit15.b &lt;- brm(</span></span>
-<span id="cb41-423"><a href="#cb41-423" aria-hidden="true" tabindex="-1"></a><span class="in">  data = d %&gt;% slice(1:2),</span></span>
-<span id="cb41-424"><a href="#cb41-424" aria-hidden="true" tabindex="-1"></a><span class="in">  family = gaussian,</span></span>
-<span id="cb41-425"><a href="#cb41-425" aria-hidden="true" tabindex="-1"></a><span class="in">  y ~ 1 + x,</span></span>
-<span id="cb41-426"><a href="#cb41-426" aria-hidden="true" tabindex="-1"></a><span class="in">  # don't use priors like this in real life</span></span>
-<span id="cb41-427"><a href="#cb41-427" aria-hidden="true" tabindex="-1"></a><span class="in">  prior = prior(normal(0, 100000), class = Intercept) +</span></span>
-<span id="cb41-428"><a href="#cb41-428" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(normal(0, 100000), class = b) +</span></span>
-<span id="cb41-429"><a href="#cb41-429" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(uniform(0, 100000), class = sigma),</span></span>
-<span id="cb41-430"><a href="#cb41-430" aria-hidden="true" tabindex="-1"></a><span class="in">  seed = 14,</span></span>
-<span id="cb41-431"><a href="#cb41-431" aria-hidden="true" tabindex="-1"></a><span class="in">  iter = 2000, warmup = 1000, chains = 4, cores = 4</span></span>
-<span id="cb41-432"><a href="#cb41-432" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb41-433"><a href="#cb41-433" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-434"><a href="#cb41-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-437"><a href="#cb41-437" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-438"><a href="#cb41-438" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit15.b, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb41-439"><a href="#cb41-439" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-419"><a href="#cb41-419" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit15.b, results = "hide"}</span></span>
+<span id="cb41-420"><a href="#cb41-420" aria-hidden="true" tabindex="-1"></a><span class="in">fit15.b &lt;- brm(</span></span>
+<span id="cb41-421"><a href="#cb41-421" aria-hidden="true" tabindex="-1"></a><span class="in">  data = d %&gt;% slice(1:2),</span></span>
+<span id="cb41-422"><a href="#cb41-422" aria-hidden="true" tabindex="-1"></a><span class="in">  family = gaussian,</span></span>
+<span id="cb41-423"><a href="#cb41-423" aria-hidden="true" tabindex="-1"></a><span class="in">  y ~ 1 + x,</span></span>
+<span id="cb41-424"><a href="#cb41-424" aria-hidden="true" tabindex="-1"></a><span class="in">  # don't use priors like this in real life</span></span>
+<span id="cb41-425"><a href="#cb41-425" aria-hidden="true" tabindex="-1"></a><span class="in">  prior = prior(normal(0, 100000), class = Intercept) +</span></span>
+<span id="cb41-426"><a href="#cb41-426" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(normal(0, 100000), class = b) +</span></span>
+<span id="cb41-427"><a href="#cb41-427" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(uniform(0, 100000), class = sigma),</span></span>
+<span id="cb41-428"><a href="#cb41-428" aria-hidden="true" tabindex="-1"></a><span class="in">  seed = 14,</span></span>
+<span id="cb41-429"><a href="#cb41-429" aria-hidden="true" tabindex="-1"></a><span class="in">  iter = 2000, warmup = 1000, chains = 4, cores = 4</span></span>
+<span id="cb41-430"><a href="#cb41-430" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb41-431"><a href="#cb41-431" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-432"><a href="#cb41-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-435"><a href="#cb41-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-436"><a href="#cb41-436" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit15.b, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb41-437"><a href="#cb41-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-438"><a href="#cb41-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-439"><a href="#cb41-439" aria-hidden="true" tabindex="-1"></a>We still have a lot of Warning messages, but things have improved.</span>
 <span id="cb41-440"><a href="#cb41-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-441"><a href="#cb41-441" aria-hidden="true" tabindex="-1"></a>We still have a lot of Warning messages, but things have improved.</span>
+<span id="cb41-441"><a href="#cb41-441" aria-hidden="true" tabindex="-1"></a>We can do an even better with default weakly-regularizing priors.</span>
 <span id="cb41-442"><a href="#cb41-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-443"><a href="#cb41-443" aria-hidden="true" tabindex="-1"></a>We can do an even better with default weakly-regularizing priors.</span>
-<span id="cb41-444"><a href="#cb41-444" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-445"><a href="#cb41-445" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit16.b, results = "hide"}</span></span>
-<span id="cb41-446"><a href="#cb41-446" aria-hidden="true" tabindex="-1"></a><span class="in">fit16.b &lt;- brm(</span></span>
-<span id="cb41-447"><a href="#cb41-447" aria-hidden="true" tabindex="-1"></a><span class="in">  data = d %&gt;% slice(1:2),</span></span>
-<span id="cb41-448"><a href="#cb41-448" aria-hidden="true" tabindex="-1"></a><span class="in">  family = gaussian,</span></span>
-<span id="cb41-449"><a href="#cb41-449" aria-hidden="true" tabindex="-1"></a><span class="in">  y ~ 1 + x,</span></span>
-<span id="cb41-450"><a href="#cb41-450" aria-hidden="true" tabindex="-1"></a><span class="in">  prior = prior(normal(0, 1), class = Intercept) +</span></span>
-<span id="cb41-451"><a href="#cb41-451" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(normal(0, 1), class = b) +</span></span>
-<span id="cb41-452"><a href="#cb41-452" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(exponential(1), class = sigma),</span></span>
-<span id="cb41-453"><a href="#cb41-453" aria-hidden="true" tabindex="-1"></a><span class="in">  seed = 14,</span></span>
-<span id="cb41-454"><a href="#cb41-454" aria-hidden="true" tabindex="-1"></a><span class="in">  iter = 2000, warmup = 1000, chains = 4, cores = 4</span></span>
-<span id="cb41-455"><a href="#cb41-455" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb41-456"><a href="#cb41-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb41-457"><a href="#cb41-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-460"><a href="#cb41-460" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-461"><a href="#cb41-461" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit16.b, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb41-462"><a href="#cb41-462" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-443"><a href="#cb41-443" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fit16.b, results = "hide"}</span></span>
+<span id="cb41-444"><a href="#cb41-444" aria-hidden="true" tabindex="-1"></a><span class="in">fit16.b &lt;- brm(</span></span>
+<span id="cb41-445"><a href="#cb41-445" aria-hidden="true" tabindex="-1"></a><span class="in">  data = d %&gt;% slice(1:2),</span></span>
+<span id="cb41-446"><a href="#cb41-446" aria-hidden="true" tabindex="-1"></a><span class="in">  family = gaussian,</span></span>
+<span id="cb41-447"><a href="#cb41-447" aria-hidden="true" tabindex="-1"></a><span class="in">  y ~ 1 + x,</span></span>
+<span id="cb41-448"><a href="#cb41-448" aria-hidden="true" tabindex="-1"></a><span class="in">  prior = prior(normal(0, 1), class = Intercept) +</span></span>
+<span id="cb41-449"><a href="#cb41-449" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(normal(0, 1), class = b) +</span></span>
+<span id="cb41-450"><a href="#cb41-450" aria-hidden="true" tabindex="-1"></a><span class="in">    prior(exponential(1), class = sigma),</span></span>
+<span id="cb41-451"><a href="#cb41-451" aria-hidden="true" tabindex="-1"></a><span class="in">  seed = 14,</span></span>
+<span id="cb41-452"><a href="#cb41-452" aria-hidden="true" tabindex="-1"></a><span class="in">  iter = 2000, warmup = 1000, chains = 4, cores = 4</span></span>
+<span id="cb41-453"><a href="#cb41-453" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb41-454"><a href="#cb41-454" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-455"><a href="#cb41-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-458"><a href="#cb41-458" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-459"><a href="#cb41-459" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit16.b, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb41-460"><a href="#cb41-460" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-461"><a href="#cb41-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-462"><a href="#cb41-462" aria-hidden="true" tabindex="-1"></a>Now look at the parameter summaries.</span>
 <span id="cb41-463"><a href="#cb41-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-464"><a href="#cb41-464" aria-hidden="true" tabindex="-1"></a>Now look at the parameter summaries.</span>
-<span id="cb41-465"><a href="#cb41-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-468"><a href="#cb41-468" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-469"><a href="#cb41-469" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit16.b)</span>
-<span id="cb41-470"><a href="#cb41-470" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-466"><a href="#cb41-466" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-467"><a href="#cb41-467" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fit16.b)</span>
+<span id="cb41-468"><a href="#cb41-468" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-469"><a href="#cb41-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-470"><a href="#cb41-470" aria-hidden="true" tabindex="-1"></a>Those Warning messages still remain, but they're less dire than before. Also, most of the other diagnostics look better. I still wouldn't trust this model. It is only based on 2 data points, after all. But look how far we got by paying attention to the diagnostics and picking better priors.</span>
 <span id="cb41-471"><a href="#cb41-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-472"><a href="#cb41-472" aria-hidden="true" tabindex="-1"></a>Those Warning messages still remain, but they're less dire than before. Also, most of the other diagnostics look better. I still wouldn't trust this model. It is only based on 2 data points, after all. But look how far we got by paying attention to the diagnostics and picking better priors.</span>
+<span id="cb41-472"><a href="#cb41-472" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
 <span id="cb41-473"><a href="#cb41-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-474"><a href="#cb41-474" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb41-474"><a href="#cb41-474" aria-hidden="true" tabindex="-1"></a>Gelman, A. and Rubin, D. (1992). Inference from iterative simulation using multiple sequences. *Statistical Science, 7*(4):457–472. <span class="ot">&lt;https://dx.doi.org/10.1214/ss/1177011136&gt;</span></span>
 <span id="cb41-475"><a href="#cb41-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-476"><a href="#cb41-476" aria-hidden="true" tabindex="-1"></a>Gelman, A. and Rubin, D. (1992). Inference from iterative simulation using multiple sequences. *Statistical Science, 7*(4):457–472. <span class="ot">&lt;https://dx.doi.org/10.1214/ss/1177011136&gt;</span></span>
+<span id="cb41-476"><a href="#cb41-476" aria-hidden="true" tabindex="-1"></a>Kruschke, J. K. (2015). *Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan*. Academic Press. <span class="ot">&lt;https://sites.google.com/site/doingbayesiandataanalysis/&gt;</span></span>
 <span id="cb41-477"><a href="#cb41-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-478"><a href="#cb41-478" aria-hidden="true" tabindex="-1"></a>Kruschke, J. K. (2015). *Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan*. Academic Press. <span class="ot">&lt;https://sites.google.com/site/doingbayesiandataanalysis/&gt;</span></span>
+<span id="cb41-478"><a href="#cb41-478" aria-hidden="true" tabindex="-1"></a>Kurz, A. S. (2023). *Doing Bayesian data analysis in brms and the tidyverse* (Version 1.1.0). <span class="ot">&lt;https://bookdown.org/content/3686/&gt;</span></span>
 <span id="cb41-479"><a href="#cb41-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-480"><a href="#cb41-480" aria-hidden="true" tabindex="-1"></a>Kurz, A. S. (2023). *Doing Bayesian data analysis in brms and the tidyverse* (Version 1.1.0). <span class="ot">&lt;https://bookdown.org/content/3686/&gt;</span></span>
+<span id="cb41-480"><a href="#cb41-480" aria-hidden="true" tabindex="-1"></a>McElreath, R. (2020). *Statistical rethinking: A Bayesian course with examples in R and Stan* (Second Edition). CRC Press. <span class="ot">&lt;https://xcelab.net/rm/statistical-rethinking/&gt;</span></span>
 <span id="cb41-481"><a href="#cb41-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-482"><a href="#cb41-482" aria-hidden="true" tabindex="-1"></a>McElreath, R. (2020). *Statistical rethinking: A Bayesian course with examples in R and Stan* (Second Edition). CRC Press. <span class="ot">&lt;https://xcelab.net/rm/statistical-rethinking/&gt;</span></span>
+<span id="cb41-482"><a href="#cb41-482" aria-hidden="true" tabindex="-1"></a>Vehtari, A., Gelman, A., Simpson, D., Carpenter, B., &amp; Bürkner, P.-C. (2019). Rank-normalization, folding, and localization: An improved $\widehat R$ for assessing convergence of MCMC (with discussion). *Bayesian Analysis, 16*(2), 667-718. <span class="ot">&lt;https://doi.org/10.1214/20-BA1221&gt;</span></span>
 <span id="cb41-483"><a href="#cb41-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-484"><a href="#cb41-484" aria-hidden="true" tabindex="-1"></a>Vehtari, A., Gelman, A., Simpson, D., Carpenter, B., &amp; Bürkner, P.-C. (2019). Rank-normalization, folding, and localization: An improved $\widehat R$ for assessing convergence of MCMC (with discussion). *Bayesian Analysis, 16*(2), 667-718. <span class="ot">&lt;https://doi.org/10.1214/20-BA1221&gt;</span></span>
+<span id="cb41-484"><a href="#cb41-484" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session information</span></span>
 <span id="cb41-485"><a href="#cb41-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-486"><a href="#cb41-486" aria-hidden="true" tabindex="-1"></a><span class="fu">## Session information</span></span>
-<span id="cb41-487"><a href="#cb41-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-490"><a href="#cb41-490" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb41-491"><a href="#cb41-491" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
-<span id="cb41-492"><a href="#cb41-492" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-488"><a href="#cb41-488" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-489"><a href="#cb41-489" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb41-490"><a href="#cb41-490" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -1,5 +1,5 @@
 ---
-title: "PSY 504: Bayes Lab 3, Priors and Predictive Checks April 16th, 2025"
+title: "Lab: Bayes 3-1, Priors and Predictive Checks"
 subtitle: "Princeton University"
 date: "2025-04-16"
 author: "KW"
@@ -158,7 +158,6 @@ Yes, they should all be theoretically possible, since we only need $\sigma$ to b
 
 A theoretically impossible prior would be a normal distribution with mean 0 and standard deviation 1, but not having a left bound and cutoff at 0.
 
-
 ### Prior-predictive checks (by hand).
 
 Note: It's possible we'll need the `truncnorm::rtruncnorm()` function in this section. Once we have candidate priors for both $\beta_0$ and $\sigma$, we can simulate values from those priors and plot the implied distributions.
@@ -194,7 +193,6 @@ The simulated values constitute predictions that are made using our prior belief
 #### Question 3: Can Explain what the section of the previous command, before ggplot is doing?
 
 The code first sets the number of draws to 50. Then creates a tibble with 50 rows, where each row is a simulated $\beta$ and $\sigma$. Then we attach a column `bty_avg` that ranges from –2 to 13 with step 0.025 for every draw, making the tibble 30,050 rows. Then for each `bty_avg` value, we calculate the density of the normal distribution given each $\beta$ and $\sigma$. Then we plot the 50 density plots for the 50 distributions.
-
 
 #### Question 4: The prior predictive above is for one combination of our candidate priors. Why don't you also try the $\beta_0$ prior centered at 8, along with the $\sigma$ prior centered at 2? What do you observe? Among these two , which would you pick? And why? (Optional: try others too if you'd like)
 
@@ -248,7 +246,6 @@ tibble(iter = 1:n,
 ```
 
 The $\beta_0$ prior centered at 8 with the $\sigma$ prior centered at 2 has a much wider density plot. I don't like how it's centered around 8 though. I also tried a third one, where the $\beta_0$ prior is centered at 5.5 with an sd of 2, and the $\sigma$ prior is a truncated normal distribution of mean 0 and sd 1. I think I would prefer the first one, since all the density plots are within the lower and upper boundaries.
-
 
 ### Fit the model that you prefer
 
@@ -305,7 +302,6 @@ Our simple Gaussian model doesn't do a great job respecting the lower and upper 
 The prior predictive check draws from the prior distributions. It is used to evaluate prior plausibility and can help detect unrealistic priors or unreasonable model behavior early in the modeling process.
 
 The posterior predictive checks draws from the posterior distributions. It is used to check for model fit, as it takes into account both the data and the prior.
-
 
 ## Prior-predictive checks (by `sample_prior = "only"`)
 
@@ -398,7 +394,7 @@ Now we'll add `gender` as the sole predictor in the model,
 
 $$
 \begin{align}
-\text{bty_avg}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
+\text{bty\_avg}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
 \mu_i & = \beta_0 + \beta_1 \text{gender}_i \\
 \beta_0 & \sim \text{???} \\
 \beta_1 & \sim \text{???} \\
@@ -545,7 +541,7 @@ Once we've settled on our priors, we should once again practice writing out the 
 
 $$
 \begin{align}
-\text{bty_avg}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
+\text{bty\_avg}_i & \sim \operatorname{Normal}(\mu_i, \sigma) \\
 \mu_i & = \beta_0 + \beta_1 \text{gender}_i \\
 \beta_0 & \sim \text{Normal}(5.5,1) \\
 \beta_1 & \sim \text{Normal}(0,1) \\
@@ -600,7 +596,6 @@ pp_check(fit12.b, ndraws = 5,
 #### Question 6: Does the posterior predictive check look satsifactory to you?
 
 The posterior predictive check look alright. The spread of $y$ for both male and female is quite decently captured by the $y_{rep}$ draws. However, the model still does not respect the upper and lower boundaries sometimes.
-
 
 ::: callout-note
 For more on prior predictive checks, see McElreath (from Chapter 4), and Solomon Kurz's brms/tidverse implementations as well.

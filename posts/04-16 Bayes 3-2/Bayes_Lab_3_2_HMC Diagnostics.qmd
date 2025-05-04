@@ -1,5 +1,5 @@
 ---
-title: "PSY 504: Bayes Lab 3_2, HMC Diagnostics"
+title: "Lab: Bayes 3-2, HMC Diagnostics"
 subtitle: "Princeton University"
 date: "2025-04-16"
 author: "KW"
@@ -310,7 +310,6 @@ ggs(fit13.b) %>%
 
 In the first few warmup draws, the chain values are quite unstable. They are not representative of the target posterior distribution and are used solely to tune the sampler. The warmup iterations are heavily influenced by the initial parameters. Discarding them ensures that inferences are made only using samples from the well-explored, adapted phase of sampling.
 
-
 Another issue is *autocorrelation*, the degree to which a given HMC draw is correlated with the previous draw(s). We can make a plot of the autocorrelations with the `mcmc_acf()` function from the **bayesplot** package.
 
 ```{r}
@@ -330,7 +329,6 @@ Mixing describes how efficiently MCMC chains explore the posterior distribution.
 Because you want no autocorrelation between the draws, which indicate that the samples are nearly independent and that the sampler is exploring the posterior efficiently. At the first few warmup iterations, the autocorrelation would be high but should drop off quickly. This is also why we discard the first few warmup iterations.
 
 An undesirable autocorrelation would be where the autocorrelation does not drop off quickly and instead plateus. This means that the chain is highly correlated and it would take longer to explore the posterior space.
-
 
 Those low autocorrelations also have a lot to do with our effective sample size (ESS) estimates. Take another look at the `summary()` output.
 

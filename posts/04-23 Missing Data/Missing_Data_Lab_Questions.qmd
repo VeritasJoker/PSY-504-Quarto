@@ -17,7 +17,19 @@ data("airquality")
 
 (a) Examine this dataset for missing values. While there are many ways to do this, the skim function from the library 'skimr' is elegant;
 
+```{r}
+library(skimr)
+skim(airquality)
+```
+
+
 (b) use the nanair package to visualize missing values
+
+```{r, warning=FALSE}
+library(naniar)
+gg_miss_var(airquality)
+```
+
 
 (c) even though it's hard to confirm based on visualizations alone, what do your visualizations lead you to believe about the missing data being MCAR, MAR, or MNAR?
 
