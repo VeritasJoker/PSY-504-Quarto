@@ -1,7 +1,56 @@
 ---
-title: "Missing_Data_Lab"
-format: html
+title: "Lab: Missing Data"
+subtitle: "Princeton University"
+date: "2025-04-23"
+author: "KW"
+categories: [code, analysis]
+format:
+  html:
+    self-contained: false
+    anchor-sections: true
+    code-tools: true
+    code-fold: true
+    fig-width: 8
+    fig-height: 4
+    code-block-bg: "#f1f3f5"
+    code-block-border-left: "#31BAE9"
+    mainfont: Source Sans Pro
+    theme: journal
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    captions: true
+    cap-location: margin
+    table-captions: true
+    tbl-cap-location: margin
+    reference-location: margin
+  pdf:
+    pdf-engine: lualatex
+    toc: false
+    number-sections: true
+    number-depth: 2
+    top-level-division: section
+    reference-location: document
+    listings: false
+    header-includes:
+      \usepackage{marginnote, here, relsize, needspace, setspace}
+      \def\it{\emph}
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+  fig-width: 12
+  fig-height: 8
+  editor_options: 
+  chunk_output_type: inline
+  code-overflow: wrap
+  html:
+    code-fold: true
+    code-tools: true
 editor: visual
+---
 ---
 
 Missing data is a common problem and dealing with it appropriately is extremely important. Ignoring the missing data points or filling them incorrectly may cause the models to work in unexpected ways and cause the predictions and inferences to be biased.
@@ -19,6 +68,9 @@ data("airquality")
 
 ```{r}
 library(skimr)
+library(tidyverse)
+library(knitr)
+library(mice)
 skim(airquality)
 ```
 
@@ -27,13 +79,20 @@ skim(airquality)
 
 ```{r, warning=FALSE}
 library(naniar)
-gg_miss_var(airquality)
+vis_miss(airquality)
 ```
-
 
 (c) even though it's hard to confirm based on visualizations alone, what do your visualizations lead you to believe about the missing data being MCAR, MAR, or MNAR?
 
+I would say it is probably not MCAR, since most of the missing data is for Ozone and Solar.R. There are also lots of clusters in missing data. I would guess it's probably MAR, but could also be MNAR.
+
 (d) Carry out Little's statistical test to evaluate MCAR and report results.
+
+```{r, warning=FALSE}
+mcar_test(airquality) %>% kable()
+```
+
+Our p-value is < 0.05 and the test is significant, so it is not MCAR.
 
 (e) Creating a binary indicator for missingness allows you to test whether the presence of missing data is related to observed data.
 
@@ -43,8 +102,24 @@ gg_miss_var(airquality)
         -   T-test: Compare means of (other) observed variables with missingness indicators.
 
 ```{r}
+air = airquality %>% #can also use case_when #if missing 1 else 
+  mutate(Ozone_miss = ifelse(is.na(Ozone), 1, 0),
+         Solar_miss = ifelse(is.na(Solar.R), 1, 0))
 
+t.test(Wind ~ Ozone_miss, data = air, var.equal = FALSE)
+t.test(Temp ~ Ozone_miss, data = air, var.equal = FALSE)
+t.test(Month ~ Ozone_miss, data = air, var.equal = FALSE)
+t.test(Day ~ Ozone_miss, data = air, var.equal = FALSE)
+
+
+t.test(Wind ~ Solar_miss, data = air, var.equal = FALSE)
+t.test(Temp ~ Solar_miss, data = air, var.equal = FALSE)
+t.test(Month ~ Solar_miss, data = air, var.equal = FALSE)
+t.test(Day ~ Solar_miss, data = air, var.equal = FALSE)
 ```
+
+Ozone missing data is related to month. The solar missing data is not related to other variables.
+
 
 #### Question 2:
 
@@ -62,22 +137,54 @@ Create **new and appropriately named datasets** that are based on airquality for
   - (e) Imputation with multiple induction (use mice package, 5 imputations, and Predictive mean matching method)
 ```
 
-```{r}
+```{r, warning=FALSE}
+# (a)
+air_a = airquality %>% drop_na()
 
+# (b)
+air_b = airquality %>%
+  mutate(
+    Ozone = if_else(is.na(Ozone), mean(Ozone, na.rm = TRUE), Ozone),
+    Solar.R = if_else(is.na(Solar.R), mean(Solar.R, na.rm = TRUE), Solar.R)
+  )
+
+# (c)
+air_c = complete(mice(airquality, method="norm.predict", m=1, maxit=1))
+
+# (d)
+air_d = complete(mice(airquality, m=1, method="norm.nob"))
+
+# (e)
+m=5
+imp = mice(airquality, m = m, seed = 24415, method="pmm", print = FALSE)
+air_e = complete(imp, action="long")
 ```
 
 #### Question 3:
 
 Compare the eventual distribution from these datasets on the variable 'Ozone'against the orgiinal. Below is a template that considers only 2 datasets but please consider all the datasets you generated within a single plot
 
-```{r}
-# ggplot(airquality, aes(x=Ozone, fill="Original")) +
-#   geom_density(alpha=0.5) +
-#   geom_density(data=dataset_listwise_deletion, aes(x=Ozone, fill="Listwise Deletion"), alpha=0.5) +
-#   labs(title="Density Plot of Ozone: Original vs. Imputed")
+```{r, warning=FALSE}
+ggplot(airquality, aes(x=Ozone, fill="Original")) +
+  geom_density(alpha=0.5) +
+  geom_density(data=air_a, aes(x=Ozone, fill="Listwise Deletion"), alpha=0.5) +
+  geom_density(data=air_b, aes(x=Ozone, fill="Imputation with Mean"), alpha=0.5) +
+  geom_density(data=air_c, aes(x=Ozone, fill="Imputation with Regression"), alpha=0.5) +
+  geom_density(data=air_d, aes(x=Ozone, fill="Imputation with Stochastic Regression"), alpha=0.5) +
+  geom_density(data=air_e, aes(x=Ozone, fill="Imputation with Multiple Induction"), alpha=0.5) +
+  labs(title="Density Plot of Ozone: Original vs. Five Missing Data Methods")
 
 ```
 
 What do you observe?
+
+List-wise deletion mostly keeps the original density shape.
+
+Imputation with mean is clearly the worst, as it seems to decrease variability.
+
+Imputation with regression and stochastic regression does ok, but has more spread out density than the original.
+
+Imputation with multiple induction seems to keep the original density shape while keeping all the data.
+
 
 #### Of course, each dataset you produced will lead to different modeling results, but we won't go into that in today's lab.
