@@ -1,0 +1,1252 @@
+---
+title: "Lab: Bayes and Penguins"
+subtitle: "Princeton University"
+date: "2025-04-02"
+author: "KW"
+categories: [code, analysis]
+format:
+  html:
+    self-contained: false
+    anchor-sections: true
+    code-tools: true
+    code-fold: true
+    fig-width: 8
+    fig-height: 4
+    code-block-bg: "#f1f3f5"
+    code-block-border-left: "#31BAE9"
+    mainfont: Source Sans Pro
+    theme: journal
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    captions: true
+    cap-location: margin
+    table-captions: true
+    tbl-cap-location: margin
+    reference-location: margin
+  pdf:
+    pdf-engine: lualatex
+    toc: false
+    number-sections: true
+    number-depth: 2
+    top-level-division: section
+    reference-location: document
+    listings: false
+    header-includes:
+      \usepackage{marginnote, here, relsize, needspace, setspace}
+      \def\it{\emph}
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+  fig-align: center
+  fig-width: 12
+  fig-height: 8
+  editor_options: 
+  chunk_output_type: inline
+  code-overflow: wrap
+  html:
+    code-fold: true
+    code-tools: true
+editor: visual
+---
+
+
+
+Here is a worksheet and assignment that combines Bayes (brms) with tidyverse tools. The focus is on the essentials when it comes to simple linear regression with brms.
+
+Please read and run through this worksheet and answer the conceptual questions that are interleaved within them. At the end of each part, is a coding exercise based on the material you've read until then.
+
+# Part 1: EDA, OLS, BRMS
+
+## Packages and data
+
+Load the primary packages.
+
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(ggside)
+library(brms)
+library(broom)
+library(broom.mixed)
+```
+
+
+
+We'll use the `penguins` data set from the **palmerpenguins** package.
+
+
+
+```{r}
+data(penguins, package = "palmerpenguins")
+
+# Any type of looking at data is a part of EDA 
+glimpse(penguins)
+head(penguins)
+```
+
+
+
+You might divide the data set by the three levels of `species`.
+
+
+
+```{r}
+penguins %>% 
+  count(species)
+```
+
+
+
+To start, we'll make a subset of the data called `chinstrap`.
+
+
+
+```{r}
+chinstrap <- penguins %>% 
+  filter(species == "Chinstrap")
+
+glimpse(chinstrap)
+```
+
+
+
+We've done from a full data set with $N = 344$ rows, to a subset with $n = 68$ rows. ("\$" signs hold LaTex snippets)
+
+## More Exploratory data analysis (EDA)
+
+Our focal variables will be `body_mass_g` and `bill_length_mm`. Here they are in a scatter plot.
+
+
+
+```{r}
+chinstrap %>% 
+  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = 'y ~ x', se = FALSE)
+```
+
+
+
+We can augment the plot with some nice functions from the **ggside** package.
+
+
+
+```{r}
+chinstrap %>% 
+  ggplot(aes(x = body_mass_g, y = bill_length_mm)) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = 'y ~ x', se = FALSE) +
+  # from ggside
+  geom_xsidehistogram(bins = 30) +
+  geom_ysidehistogram(bins = 30) +
+  scale_xsidey_continuous(breaks = NULL) +
+  scale_ysidex_continuous(breaks = NULL) +
+  theme(ggside.panel.scale = 0.25)
+```
+
+
+
+It's a good idea to get a sense of the sample statistics. Here are the means and SD's for the two variables.
+
+
+
+```{r}
+chinstrap %>% 
+  summarise(body_mass_g_mean = mean(body_mass_g),
+            body_mass_g_sd = sd(body_mass_g),
+            bill_length_mm_mean = mean(bill_length_mm),
+            bill_length_mm_sd = sd(bill_length_mm)) 
+```
+
+
+
+And you know that more efficient way to compute sample statistics for multiple variables is to first convert the data into the long format with `pivot_longer()`. Then you use a `group_by()` line before the main event in `summarise()`.
+
+
+
+```{r}
+chinstrap %>% 
+  pivot_longer(cols = c(body_mass_g, bill_length_mm)) %>% 
+  group_by(name) %>% 
+  summarise(mean = mean(value),
+            sd = sd(value),
+            # count the missing data (if any)
+            n_missing = sum(is.na(value))) 
+```
+
+
+
+### Question 1.1: What do the marginal histograms added by ggside tell you about the distribution of body_mass_g and bill_length_mm individually?
+
+```         
+The distribution of body_mass_g and bill_length_mm are probably not gaussian. They both look kinda bimodal.
+```
+
+## OLS
+
+We'll fit the model
+
+$$
+\begin{aligned}
+\text{bill\_length\_mm}\_i &= \beta_0 + \beta_1 \text{body\_mass\_g}\_i + \epsilon_i \\
+\epsilon_i &\sim \operatorname{Normal}(0, \sigma\_\epsilon) \\
+\end{aligned}
+$$
+
+where `bill_length_mm` is the *dependent* variable or a *response* variable. The sole predictor is `body_mass_g`. Both variables have $i$ subscripts, which indicate they vary across the $i$ rows in the data set. For now, you might think if $i$ as standing for "index." The last term in the first line, $\epsilon$, is often called the *error*, or *noise* term. In the second line, we see we're making the conventional assumption the "errors" are normally distributed around the regression line.
+
+An alternative and equivalent way to write that equation is
+
+$$
+\begin{aligned}
+\text{bill\_length\_mm}_i &\sim \operatorname{Normal}(\mu_i, \sigma) \\
+\mu_i &= \beta_0 + \beta_1 \text{body\_mass\_g}_i
+\end{aligned} 
+$$
+
+which is meant to convey we are modeling `bill_length_mm` as normally distributed, with a conditional mean. You don't tend to see equations written this way in the OLS paradigm. However, this style of notation will serve us better when we start modeling our data with other distributions.
+
+This notation grows on you
+
+Fitting the model with the base **R** `lm()` function, which uses the OLS algorithm.
+
+
+
+```{r}
+# fit
+fit1.ols <- lm(
+  data = chinstrap,
+  bill_length_mm ~ 1 + body_mass_g
+)
+
+# summarize the results
+summary(fit1.ols)
+```
+
+
+
+The point estimates are in scientific notation. We can pull them with the `coef()` function.
+
+
+
+```{r}
+coef(fit1.ols)
+```
+
+
+
+We can compute fitted values, or predictions, with the `predict()` function. Here's the default behavior.
+
+
+
+```{r}
+predict(fit1.ols)
+```
+
+
+
+We get one prediction, one fitted value, for each case in the data set. We can express the uncertainty around those predictions with confidence intervals.
+
+
+
+```{r}
+predict(fit1.ols,
+        interval = "confidence") %>% 
+  # just the top 6
+  head()
+```
+
+
+
+We might also ask for a standard error for each prediction.
+
+
+
+```{r}
+predict(fit1.ols,
+        se.fit = TRUE) %>% 
+  data.frame()
+```
+
+
+
+Instead of relying on predictions from the values in the data, we might instead define a sequence of values from the predictor variable. We'll call those `nd`.
+
+
+
+```{r}
+nd <- tibble(body_mass_g = seq(from = min(chinstrap$body_mass_g),
+                               to = max(chinstrap$body_mass_g),
+                               length.out = 50))
+
+glimpse(nd)
+```
+
+
+
+We can insert our `nd` data into the `newdata` argument.
+
+
+
+```{r}
+predict(fit1.ols,
+        interval = "confidence",
+        newdata = nd) %>% 
+  # just the top 6
+  head()
+```
+
+
+
+Now we wrangle those predictions a bit and pump the results right into `ggplot()`.
+
+
+
+```{r}
+predict(fit1.ols,
+        interval = "confidence",
+        newdata = nd) %>% 
+  data.frame() %>% 
+  bind_cols(nd) %>% 
+  
+  ggplot(aes(x = body_mass_g)) +
+  # 95% confidence interval ribbon
+  geom_ribbon(aes(ymin = lwr, ymax = upr),
+              alpha = 1/3) +
+  # point estimate line
+  geom_line(aes(y = fit)) +
+  geom_point(data = chinstrap,
+             aes(y = bill_length_mm))
+```
+
+
+
+If we wanted to, we could look at the residuals with help from the `residuals()` function.
+
+
+
+```{r}
+residuals(fit1.ols)
+```
+
+
+
+Here we might put them in a tibble and display them in a plot.
+
+
+
+```{r}
+# put them in a tibble
+tibble(r = residuals(fit1.ols)) %>% 
+  # plot!
+  ggplot(aes(x = r)) +
+  geom_histogram(binwidth = 1)
+```
+
+
+
+### Question 1.2: Can you predict what the mean value, and standard deviations will be? Why? Calculate it. Compare this against outputs in summary(fit1.ols) and explain. Map the values you find to the latex equations before.
+
+
+
+```{r}
+# Slope
+slope = cov(chinstrap$body_mass_g, chinstrap$bill_length_mm) / var(chinstrap$body_mass_g)
+slope
+
+res = residuals(fit1.ols)
+var_res = sum(res^2) / (length(chinstrap) - 2)
+var_res / sum((chinstrap$body_mass_g - mean(chinstrap$body_mass_g))^2)
+
+# Intercept
+mean(chinstrap$bill_length_mm) - slope * mean(chinstrap$body_mass_g)
+sd(chinstrap$bill_length_mm)
+
+```
+
+
+
+```         
+The estimate for the intercept is 32.17 with a standard deviation of 3.40. The standard deviation is not computed from the residuals but the simple SD of the y is a good enough estimate here. Both are pretty close to the estimated value from the model.
+
+The mean value for the slope is 0.0045 and the standard deviation is 9.26e-06. These are quite similar to the values from our ols model.
+```
+
+$$
+\begin{aligned}
+\text{bill\_length\_mm}_i = 32.17 + 0.0045 * \text{body\_mass\_g}_i
+\end{aligned}
+$$
+
+## Bayes with default settings
+
+We'll be fitting our Bayesian models with the **brms** package. The primary function is `brm()`.
+
+`brm()` can work a lot like the OLS-based `lm()` function. For example, here's how to fit a Bayesian version of our OLS model `fit1.ols`.
+
+
+
+```{r fit1.b, results = "hide"}
+fit1.b <- brm(
+  data = chinstrap,
+  bill_length_mm ~ 1 + body_mass_g
+)
+```
+
+
+
+Notice what's happening in the console, below. We'll get into the details of what just happened later. For now, appreciate we just fit our first Bayesian model, and it wasn't all that hard.
+
+Summarize the model.
+
+
+
+```{r}
+summary(fit1.b)
+```
+
+
+
+### Question 1.3: Contrast the language of in the `brm()` output from the in the `lm()` output. Ignore 'Rhat,' 'Bulk_ESS,' and 'Tail_ESS' for now.
+
+```         
+The estimated values are pretty similar in both models. 
+
+The frequentist model shows t and p value for all parameters.
+
+The bayesian model shows the 95% confidence interval for all parameters.
+```
+
+We can get a quick and dirty plot of the fitted line with the `conditional_effects()` function.
+
+
+
+```{r}
+conditional_effects(fit1.b)
+# %>% 
+#   plot(points = TRUE)
+```
+
+
+
+## Coefficients and coefficient plots
+
+We might want to compare the coefficient summaries from the OLS model to those from the Bayesian model. Here's the frequentist summary:
+
+
+
+```{r}
+cbind(coef(fit1.ols),              # point estimates
+      sqrt(diag(vcov(fit1.ols))),  # standard errors
+      confint(fit1.ols))           # 95% CIs
+```
+
+
+
+We can compute a focused summary of the Bayesian model with the `fixef()` function.
+
+
+
+```{r}
+fixef(fit1.b)
+```
+
+
+
+In this case, the results are very similar.
+
+We can also pull this information from our OLS model with the `broom::tidy()` function.
+
+
+
+```{r}
+tidy(fit1.ols, conf.int = TRUE)
+```
+
+
+
+If you would like to use the `tidy()` function with your **brms** models, it will have to be the version of `tidy()` from the **broom.mixed** package.
+
+
+
+```{r}
+tidy(fit1.b)
+```
+
+
+
+Here's how to wrangle and combine these two results into a single data frame. Then we'll make a coefficient plot.
+
+
+
+```{r, warning = F}
+bind_rows(
+  tidy(fit1.ols, conf.int = TRUE) %>% select(term, estimate, contains("conf")),
+  tidy(fit1.b) %>% select(term, estimate, contains("conf")) %>% filter(term != "sd__Observation")
+) %>% 
+  mutate(method = rep(c("lm()", "brm()"), each = 2)) %>% 
+  
+  ggplot(aes(x = estimate, xmin = conf.low, xmax = conf.high, y = method)) +
+  geom_pointrange() +
+  scale_x_continuous("parameter space", expand = expansion(mult = 0.2)) +
+  scale_y_discrete(expand = expansion(mult = 5)) +
+  facet_wrap(~ term, scales = "free_x")
+```
+
+
+
+At a superficial level for simple conventional regression type models, the results from a Bayesian `brm()` model will be very similar to those from an OLS `lm()` model. This will not always be case, and even in this example there are many differences once we look below the surface.
+
+## More Questions/Exercise
+
+Go back to the full `penguins` data set. This time, make a subset of the data called `gentoo`, which is only the cases for which `species == "Gentoo"`.
+
+
+
+```{r}
+gentoo <- penguins %>% 
+  filter(species == "Gentoo")
+```
+
+
+
+Can you fit the same OLS model to these data?
+
+
+
+```{r}
+fit2.ols <- lm(
+  data = gentoo,
+  bill_length_mm ~ 1 + body_mass_g
+)
+```
+
+
+
+How about plotting the results with `predict()`?
+
+
+
+```{r}
+gentoo_filtered = gentoo %>% filter(!is.na(body_mass_g))
+od2 <- tibble(body_mass_g = gentoo_filtered$body_mass_g)
+predict(fit2.ols,
+        interval = "confidence") %>% 
+  data.frame() %>% 
+  bind_cols(od2) %>% 
+  ggplot(aes(x = body_mass_g)) +
+  # 95% confidence interval ribbon
+  geom_ribbon(aes(ymin = lwr, ymax = upr),
+              alpha = 1/3) +
+  # point estimate line
+  geom_line(aes(y = fit)) +
+  geom_point(data = gentoo_filtered,
+             aes(y = bill_length_mm))
+
+
+nd2 <- tibble(body_mass_g = seq(from = min(gentoo$body_mass_g, na.rm=TRUE),
+                               to = max(gentoo$body_mass_g, na.rm=TRUE),
+                               length.out = 50))
+
+predict(fit2.ols,
+        interval = "confidence",
+        newdata = nd2) %>% 
+  data.frame() %>% 
+  bind_cols(nd2) %>% 
+  ggplot(aes(x = body_mass_g)) +
+  # 95% confidence interval ribbon
+  geom_ribbon(aes(ymin = lwr, ymax = upr),
+              alpha = 1/3) +
+  # point estimate line
+  geom_line(aes(y = fit)) +
+  geom_point(data = gentoo,
+             aes(y = bill_length_mm))
+```
+
+
+
+Can you fit the same default Bayesian `brm()` model to these data?
+
+
+
+```{r, results="hide"}
+fit2.b <- brm(
+  data = gentoo,
+  bill_length_mm ~ 1 + body_mass_g
+)
+```
+
+
+
+How about plotting the results with `conditional_effects()`?
+
+
+
+```{r}
+conditional_effects(fit2.b)
+# %>% 
+#   plot(points = TRUE)
+```
+
+
+
+Can you make a coefficient plot comparing the new OLS and Bayesian beta coefficients?
+
+
+
+```{r, warning = F}
+bind_rows(
+  tidy(fit2.ols, conf.int = TRUE) %>% select(term, estimate, contains("conf")),
+  tidy(fit2.b) %>% select(term, estimate, contains("conf")) %>% filter(term != "sd__Observation")
+) %>% 
+  mutate(method = rep(c("lm()", "brm()"), each = 2)) %>% 
+  
+  ggplot(aes(x = estimate, xmin = conf.low, xmax = conf.high, y = method)) +
+  geom_pointrange() +
+  scale_x_continuous("parameter space", expand = expansion(mult = 0.2)) +
+  scale_y_discrete(expand = expansion(mult = 5)) +
+  facet_wrap(~ term, scales = "free_x")
+```
+
+
+
+# Part 2: Penguins and their posteriors
+
+## Exploring model results
+
+We can extract the posterior draws from our Bayesian models with the `as_draws_df()` function.
+
+
+
+```{r}
+as_draws_df(fit1.b)
+```
+
+
+
+Note the meta data. We can get a sense of the full posterior distributions of the $\beta$ parameters with plots.
+
+
+
+```{r}
+# wrangle
+as_draws_df(fit1.b) %>% 
+  pivot_longer(starts_with("b_")) %>% 
+  
+  # plot!
+  ggplot(aes(x = value)) + 
+  # geom_density(fill = "grey20") +
+  geom_histogram(bins = 40) +
+  facet_wrap(~ name, scales = "free")
+```
+
+
+
+We might summarize those posterior distributions with basic descriptive statistics, like their means, SD's, and inner 95-percentile range.
+
+
+
+```{r}
+as_draws_df(fit1.b) %>% 
+  pivot_longer(starts_with("b_")) %>% 
+  group_by(name) %>% 
+  summarise(mean = mean(value),
+            sd = sd(value),
+            ll = quantile(value, probs = 0.025),
+            ul = quantile(value, probs = 0.975))
+```
+
+
+
+Notice how these values match up exactly with those from `fixef()`.
+
+
+
+```{r}
+fixef(fit1.b)
+```
+
+
+
+Thus,
+
+-   The Bayesian posterior mean is analogous to the frequentist point estimate.
+-   The Bayesian posterior SD is analogous to the frequentist standard error.
+-   The Bayesian posterior percentile-based 95% (credible) interval is analogous to the frequentist 95% confidence interval.
+
+These are not exactly the same, mind you. But they serve similar functions.
+
+We can also get a sense of these distributions with the `plot()` function.
+
+
+
+```{r}
+plot(fit1.b)
+```
+
+
+
+Ignore the trace plots on the right for a moment. And let's consider the `pairs()` plot.
+
+
+
+```{r}
+pairs(fit1.b)
+
+# we can adjust some of the settings with the off_diag_args argument
+pairs(fit1.b, off_diag_args = list(size = 1/4, alpha = 1/4))
+```
+
+
+
+### Question 2.1 : In the parlance of Probability, do you know what is the term by which the distributions in the diagonal of the above plot are known as? And the distributions in the off-diagonal?
+
+```         
+The diagonal ones are the marginal distributions of individual parameters.
+
+The off-diagnoal ones are the bivariate marginal distributions, or the joint distributions of the paired two parameters, marginalized over the remaining parameters.
+```
+
+Notice how the two $\beta$ parameters seem to have a strong negative correlation. We can quantify that correlation with the `vcov()` function.
+
+
+
+```{r}
+vcov(fit1.b)                      # variance/covariance metric
+vcov(fit1.b, correlation = TRUE)  # correlation metric
+```
+
+
+
+This correlation/covariance among the parameters is not unique to Bayesian models. Here's the `vcov()` output for the OLS model.
+
+
+
+```{r}
+vcov(fit1.ols)  # variance/covariance metric
+```
+
+
+
+I'm not aware of an easy way to get that output in a correlation metric for our OLS model. Here's how to compute the correlation by hand.
+
+
+
+```{r}
+cov_xy <- vcov(fit1.ols)[2, 1]  # covariance between the intercept and slope
+var_x  <- vcov(fit1.ols)[1, 1]  # variance for the intercept
+var_y  <- vcov(fit1.ols)[2, 2]  # variance for the slope
+
+# convert the covariance into a correlation
+cov_xy / (sqrt(var_x) * sqrt(var_y))
+```
+
+
+
+That code follows the definition of a covariance, which can be expressed as
+
+$$
+\text{Cov}(x, y) = \rho \sigma_x \sigma_y,
+$$
+
+where $\sigma_x$ is the standard deviation for x, $\sigma_y$ is the standard deviation for y, and $\rho$ is their correlation. And thus, you can convert a covariance into a correlation with the formula
+
+$$
+\rho = \frac{\sigma_{xy}}{\sigma_x \sigma_y},
+$$
+
+where $\sigma_{xy}$ is the covariance of x and y.
+
+## Draws
+
+Let's save the `as_draws_df()` output for our model as an object called `draws`.
+
+
+
+```{r}
+draws <- as_draws_df(fit1.b)
+glimpse(draws)
+```
+
+
+
+For each parameter in the model, we have 4,000 draws from the posterior.
+
+### Question 2.2: How does this concept relate to representing uncertainty? Can you anticipate how predictions are made based upon these 4000 draws and the linear regression formula?
+
+```         
+Since we hae 4000 posterior samples, the spread can tell us how uncertain we are about each parameter. We can also get the mean and the 95% confidence interval from the distribution.
+
+For each value of x, the predictions are made by averaging the predicted values across the 4000 samples of the parameters.
+```
+
+$$
+\widehat{\text{bill\_length\_mm}}_i = \beta_0 + \beta_1 \text{body\_mass\_g}_i.
+$$
+
+Let's break the 4000 draws down with our `draws` object.
+
+
+
+```{r, warning = F}
+# adjust the parameter names 
+draws <- draws %>% 
+  mutate(beta0 = b_Intercept,
+         beta1 = b_body_mass_g)
+
+# Note: go through this one line at a time
+draws %>% 
+  select(.draw, beta0, beta1) %>% 
+  mutate(body_mass_g = mean(chinstrap$body_mass_g)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  
+  ggplot(aes(x = y_hat)) +
+  geom_histogram(bins = 40) +
+  labs(title = "Bayesians have posterior distributions",
+       x = expression(hat(italic(y))*'|'*italic(x)==3733.1)) +
+  coord_cartesian(xlim = c(47, 51))
+```
+
+
+
+Here's what that is for the OLS model.
+
+
+
+```{r}
+predict(fit1.ols,
+        newdata = tibble(body_mass_g = mean(chinstrap$body_mass_g)),
+        interval = "confidence") %>% 
+  data.frame() %>% 
+  
+  ggplot(aes(x = fit, xmin = lwr, xmax = upr, y = 0)) +
+  geom_pointrange() +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(title = "Frequentists have point estmates and 95% CI's",
+       x = expression(hat(italic(y))*'|'*italic(x)==3733.1)) +
+  coord_cartesian(xlim = c(47, 51))
+```
+
+
+
+Another handy way to present a Bayesian posterior is as a density with a point-interval summary below.
+
+
+
+```{r, warning = F}
+library(ggdist) #for stat_half_eye and mean_qi
+draws %>% 
+  mutate(body_mass_g = mean(chinstrap$body_mass_g)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  
+  ggplot(aes(x = y_hat)) +
+  stat_halfeye(point_interval = mean_qi, .width = .95) +
+  # scale_y_continuous(NULL, breaks = NULL) +
+  labs(title = "Bayesians have posterior distributions",
+       x = expression(hat(italic(y))*'|'*italic(x)==3733.1)) +
+  coord_cartesian(xlim = c(47, 51))
+```
+
+
+
+The dot at the base of the plot is the posterior mean, and the horizontal line marks the 95% percentile-based interval. If you'd like to mark the median instead, set `point_interval = median_qi`. If you're like a different kind of horizontal interval, adjust the `.width` argument.
+
+
+
+```{r, warning = F}
+draws %>% 
+  mutate(body_mass_g = mean(chinstrap$body_mass_g)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  
+  ggplot(aes(x = y_hat)) +
+  # note the changes to this line
+  stat_halfeye(point_interval = median_qi, .width = c(.5, .99)) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(title = "Bayesians have posterior distributions",
+       subtitle = "The dot marks the median.\nThe thicker line marks the 50% interval, and\nthe thinner line marks the 99% interval.",
+       x = expression(hat(italic(y))*'|'*italic(x)==3733.1)) +
+  coord_cartesian(xlim = c(47, 51))
+```
+
+
+
+## About those means, SD's, and intervals.
+
+You can describe a Bayesian posterior in a lot of different ways. Earlier we said the posterior mean is the Bayesian point estimate. This isn't strictly true. Means are very popular, but you can summarize a posterior by its mean, median, or mode.
+
+Let's see what this looks like in practice. First, we compute and save our statistics for each of our model parameters.
+
+
+
+```{r, warning = F}
+points <- draws %>% 
+  rename(`beta[0]` = beta0,
+         `beta[1]` = beta1) %>% 
+  pivot_longer(cols = c(`beta[0]`, `beta[1]`, sigma), 
+               names_to = "parameter") %>% 
+  group_by(parameter) %>% 
+  summarise(mean = mean(value),
+            median = median(value),
+            mode = Mode(value)) %>% 
+  pivot_longer(starts_with("m"), names_to = "statistic")
+
+# what?
+points
+```
+
+
+
+Now plot.
+
+
+
+```{r, warning = F}
+draws %>% 
+  rename(`beta[0]` = beta0,
+         `beta[1]` = beta1) %>% 
+  pivot_longer(cols = c(`beta[0]`, `beta[1]`, sigma), 
+               names_to = "parameter") %>% 
+  
+  ggplot(aes(x = value)) +
+  geom_density() +
+  geom_vline(data = points,
+             aes(xintercept = value, color = statistic),
+             size = 3/4) +
+  scale_color_viridis_d(option = "A", end = .8) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  xlab("parameter space") +
+  facet_wrap(~ parameter, labeller = label_parsed, scales = "free", ncol = 1) +
+  theme(strip.text = element_text(size = 14))
+```
+
+
+
+### Question 2.3: Discuss the skew in $\sigma$.Why it might arise, etc.?
+
+```         
+$\sigma$ might be skewed becasue a few reasons.
+
+First, it can't be negative, so it is bounded below 0.
+
+Second, we might have a weak prior for $\sigma$, which will result in posterior uncertainty that includes the possibility of high residual variability, resulting in a longer right tail in the posterior.
+
+Third, there could be some outliers that inflates $\sigma$, making its posterior distribution more right-skewed.
+```
+
+-   The mean is the **brms** default summary, and McElreath (2015, 2020) defaulted to the mean in his texts.
+-   The median is also available for many **brms** functions, and it's what Gelman et al (2020) recommend.
+-   The mode can be attractive for very skewed distributions, and it's what Kruschke (2015) used in his text.
+
+With many **brms** functions, you can request the median by setting `robust = TRUE`. For example:
+
+
+
+```{r}
+fixef(fit1.b)                 # means
+fixef(fit1.b, robust = TRUE)  # medians
+```
+
+
+
+### Question 2.4: Given the skew in sigma and what you know about summary statistics, what might be the implication of using just the mean, median, or mode of posteriors to make a prediction?
+
+```         
+The mean is pulled toward the tail, so using the mean of sigma will lead to wider predicted intervals (more conservative), but we might overestimate uncertainty in new predictions if the skew is strong.
+
+The median is robust to the skew, so using the median provides a balanced summary that is not too influenced by tail values.
+
+The mode is often below the mean when the distribution is right skewed, so using the mode of sigma could underestimate uncertainty and produce overconfident predictions.
+
+Overall, it is better to use the entire posterior, which full captures the uncertainty, including the skew, instead of using only a single value of the distribution.
+```
+
+#### SD's and MAD SD's.
+
+Earlier we said the posterior SD is the Bayesian standard error. This isn't strictly true. You can also use the *median absolute deviation* (MAD SD). If we let $M$ stand for the median of some variable $y$, which varies across $i$ cases, we can define the MAD SD as
+
+$$
+\textit{MAD SD} = 1.4826 \times \operatorname{median}_{i = 1}^n |y_i - M|,
+$$
+
+where $1.4826$ is a constant that scales the MAD SD into a standard-deviation metric. Here's what this looks like in practice.
+
+
+
+```{r, warning = F}
+# go through this line by line
+draws %>% 
+  select(beta0) %>% 
+  mutate(mdn = median(beta0)) %>% 
+  mutate(`|yi - mdn|` = abs(beta0 - mdn)) %>% 
+  summarise(MAD_SD = 1.4826 * median(`|yi - mdn|`))
+```
+
+
+
+Base **R** also has a `mad()` function.
+
+
+
+```{r}
+?mad
+
+draws %>% 
+  summarise(MAD_SD = mad(beta0))
+```
+
+
+
+You can request the MAD SD from many **brms** functions by setting `robust = TRUE`.
+
+
+
+```{r}
+fixef(fit1.b)                 # SD
+fixef(fit1.b, robust = TRUE)  # MAD SD
+```
+
+
+
+-   To my eye, many authors (e.g., Kruschke, McElreath) just use the SD.
+-   Gelman et al (see Section 5.3) recommend the MAD SD.
+
+#### Bayesian intervals.
+
+Bayesians describe the widths of their posteriors with intervals. I've seen these variously described as confidence intervals, credible intervals, probability intervals, and even uncertainty intervals. My recommendation is just pick a term, and clearly tell your audience what you mean (e.g., at the end of a Method section in a journal article).
+
+To my eye, the most popular interval is a 95% percentile-based interval. 95% is conventional, perhaps due to the popularity of the 95% frequentist confidence interval, which is related to the 0.05 alpha level used for the conventional $p$-value cutoff. However, you can use other percentiles. Some common alternatives are 99%, 89%, 80%, and 50%.
+
+Also, Bayesian intervals aren't always percentile based. An alternative is the highest posterior density interval (HPDI), which has mathematical properties some find desirable.
+
+**brms** only supports percentile-based intervals, but it does allow for a variety of different ranges via the `prob` argument. For example, here's how to request 80% intervals in `summary()`.
+
+
+
+```{r}
+summary(fit1.b, prob = .80)
+```
+
+
+
+Regarding interval widths:
+
+-   95% Intervals are widely used.
+-   McElreat likes 89% intervals, and uses them as a default in his **rethinking** package.
+-   Some of the **bayesplot**, **ggdist**, and **tidybayes** functions return 80% intervals.
+-   Some of the **ggdist**, and **tidybayes** functions return 66% or 50% intervals.
+-   I've heard Gelman report his fondness for 50% intervals on his blog (https://statmodeling.stat.columbia.edu/2016/11/05/why-i-prefer-50-to-95-intervals/).
+
+Regarding interval types:
+
+-   Percentile-based intervals are widely used in the Stan ecosystem, and are supported in texts like Gelman et al.
+-   Kruschke has consistently advocates for HPDI's in his articles, and in his text.
+
+### Posterior summaries with **tidybayes**.
+
+Matthew Kay's **tidybayes** package (https://mjskay.github.io/tidybayes/) offers an array of convenience functions for summarizing posterior distributions with points and intervals. See the *Point summaries and intervals* section of Kay's *Extracting and visualizing tidy draws from brms models* vignette (https://mjskay.github.io/tidybayes/articles/tidy-brms.html#point-summaries-and-intervals) for a detailed breakdown. In short, the family of functions use the naming scheme `[median|mean|mode]_[qi|hdi]`. Here are a few examples.
+
+
+
+```{r}
+draws %>% mean_qi(beta0)                        # mean and 95% percentile interval
+draws %>% median_qi(beta0, .width = .80)        # median and 80% percentile interval
+draws %>% mode_hdi(beta0, .width = c(.5, .95))  # mode, with 95 and 50% HPDI's
+```
+
+
+
+As an aside, the `Mode()` function we used a while back was also from **tidybayes**.
+
+### Spaghetti plots.
+
+Remember how we said the `draw` was something like 4,000 separate equations for our Bayesian model? Let's see that again.
+
+
+
+```{r}
+draws %>% 
+  select(.draw, beta0, beta1) %>% 
+  mutate(body_mass_g = mean(chinstrap$body_mass_g)) %>% 
+  # here's the equation
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  # subset the top 6
+  head()
+```
+
+
+
+One way we might emphasize the 4,000 equations is with a spaghetti plot. When we display the fitted line for `bill_length_mm` over the range of `body_mass_g` values, we can display a single line for each posterior draw. Here's what that can look like.
+
+
+
+```{r, warning = F}
+range(chinstrap$body_mass_g)
+
+# Note: go through this one line at a time
+draws %>% 
+  select(.draw, beta0, beta1) %>% 
+  expand_grid(body_mass_g = range(chinstrap$body_mass_g)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  
+  # plot!
+  ggplot(aes(x = body_mass_g, y = y_hat, group = .draw)) +
+  geom_line(linewidth = 1/10, alpha = 1/10)
+```
+
+
+
+It might be easier to see what's going on with a random subset of, say, 10 of the posterior draws.
+
+
+
+```{r, warning = F}
+set.seed(10)
+
+draws %>% 
+  # take a random sample of 10 rows
+  slice_sample(n = 10) %>% 
+  select(.draw, beta0, beta1) %>% 
+  expand_grid(body_mass_g = range(chinstrap$body_mass_g)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  
+  ggplot(aes(x = body_mass_g, y = y_hat, group = .draw)) +
+  geom_line(linewidth = 1/2, alpha = 1/2)
+```
+
+
+
+While we're at it, let's take 20 draws and do a little color coding.
+
+
+
+```{r, warning = F}
+set.seed(20)
+
+draws %>% 
+  # take a random sample of 20 rows
+  slice_sample(n = 20) %>% 
+  select(.draw, beta0, beta1) %>% 
+  expand_grid(body_mass_g = range(chinstrap$body_mass_g)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  
+  ggplot(aes(x = body_mass_g, y = y_hat, group = .draw, color = beta0)) +
+  geom_line() +
+  scale_color_viridis_c(expression(beta[0]~(the~intercept)), end = .9)
+```
+
+
+
+Do you remember how we said $\beta_0$ and $\beta_1$ had a strong negative correlation? Notice how the lines computed by lower $\beta_0$ values also tend to have higher slopes. This will happen all the time with conventional regression models.
+
+### Question 2.5: We have done all this without yet specifying a prior. What do you think is going on?
+
+```         
+The brms package assigns default priors (weakly informative priors) to all the parameters, even though we didn't specify any.
+```
+
+## Question/Exercise:
+
+In the last part, we made a subset of the `penguins` data called `gentoo`, which was only the cases for which `species == "Gentoo"`. Do that again and refit the Bayesian model to those data. Can you then remake some of the figures in this file with the new version of the model?
+
+
+
+```{r}
+# wrangle
+as_draws_df(fit2.b) %>% 
+  pivot_longer(starts_with("b_")) %>% 
+  
+  # plot!
+  ggplot(aes(x = value)) + 
+  # geom_density(fill = "grey20") +
+  geom_histogram(bins = 40) +
+  facet_wrap(~ name, scales = "free")
+
+pairs(fit2.b)
+```
+
+```{r, warning = F}
+draws2 <- as_draws_df(fit2.b)
+
+# adjust the parameter names 
+draws2 <- draws2 %>% 
+  mutate(beta0 = b_Intercept,
+         beta1 = b_body_mass_g)
+
+draws2 %>% 
+  mutate(body_mass_g = mean(gentoo$body_mass_g, na.rm=TRUE)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  ggplot(aes(x = y_hat)) +
+  # note the changes to this line
+  stat_halfeye(point_interval = median_qi, .width = c(.5, .99)) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  labs(title = "Bayesians have posterior distributions",
+       subtitle = "The dot marks the median.\nThe thicker line marks the 50% interval, and\nth thinner line marks the 99% interval.")
+
+
+points <- draws2 %>% 
+  rename(`beta[0]` = beta0,
+         `beta[1]` = beta1) %>% 
+  pivot_longer(cols = c(`beta[0]`, `beta[1]`, sigma), 
+               names_to = "parameter") %>% 
+  group_by(parameter) %>% 
+  summarise(mean = mean(value),
+            median = median(value),
+            mode = Mode(value)) %>% 
+  pivot_longer(starts_with("m"), names_to = "statistic")
+
+
+draws2 %>% 
+  rename(`beta[0]` = beta0,
+         `beta[1]` = beta1) %>% 
+  pivot_longer(cols = c(`beta[0]`, `beta[1]`, sigma), 
+               names_to = "parameter") %>% 
+  ggplot(aes(x = value)) +
+  geom_density() +
+  geom_vline(data = points,
+             aes(xintercept = value, color = statistic),
+             size = 3/4) +
+  scale_color_viridis_d(option = "A", end = .8) +
+  scale_y_continuous(NULL, breaks = NULL) +
+  xlab("parameter space") +
+  facet_wrap(~ parameter, labeller = label_parsed, scales = "free", ncol = 1) +
+  theme(strip.text = element_text(size = 14))
+
+
+set.seed(20)
+
+draws2 %>% 
+  # take a random sample of 20 rows
+  slice_sample(n = 20) %>% 
+  select(.draw, beta0, beta1) %>% 
+  expand_grid(body_mass_g = range(gentoo$body_mass_g, na.rm=TRUE)) %>% 
+  mutate(y_hat = beta0 + beta1 * body_mass_g) %>% 
+  ggplot(aes(x = body_mass_g, y = y_hat, group = .draw, color = beta0)) +
+  geom_line() +
+  scale_color_viridis_c(expression(beta[0]~(the~intercept)), end = .9)
+
+```
+
+
+
+## References
+
+Gelman, A., Hill, J., & Vehtari, A. (2020). *Regression and other stories*. Cambridge University Press. https://doi.org/10.1017/9781139161879
+
+Kruschke, J. K. (2015). *Doing Bayesian data analysis: A tutorial with R, JAGS, and Stan*. Academic Press. https://sites.google.com/site/doingbayesiandataanalysis/
+
+McElreath, R. (2020). *Statistical rethinking: A Bayesian course with examples in R and Stan* (Second Edition). CRC Press. https://xcelab.net/rm/statistical-rethinking/
+
+McElreath, R. (2015). *Statistical rethinking: A Bayesian course with examples in R and Stan*. CRC press. https://xcelab.net/rm/statistical-rethinking/
+
+## Session information
+
+
+
+```{r}
+sessionInfo()
+```
+

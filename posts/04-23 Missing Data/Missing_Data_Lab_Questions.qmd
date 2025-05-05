@@ -51,7 +51,8 @@ execute:
     code-tools: true
 editor: visual
 ---
----
+
+------------------------------------------------------------------------
 
 Missing data is a common problem and dealing with it appropriately is extremely important. Ignoring the missing data points or filling them incorrectly may cause the models to work in unexpected ways and cause the predictions and inferences to be biased.
 
@@ -74,7 +75,6 @@ library(mice)
 skim(airquality)
 ```
 
-
 (b) use the nanair package to visualize missing values
 
 ```{r, warning=FALSE}
@@ -92,7 +92,7 @@ I would say it is probably not MCAR, since most of the missing data is for Ozone
 mcar_test(airquality) %>% kable()
 ```
 
-Our p-value is < 0.05 and the test is significant, so it is not MCAR.
+Our p-value is \< 0.05 and the test is significant, so it is not MCAR.
 
 (e) Creating a binary indicator for missingness allows you to test whether the presence of missing data is related to observed data.
 
@@ -119,7 +119,6 @@ t.test(Day ~ Solar_miss, data = air, var.equal = FALSE)
 ```
 
 Ozone missing data is related to month. The solar missing data is not related to other variables.
-
 
 #### Question 2:
 
@@ -185,6 +184,5 @@ Imputation with mean is clearly the worst, as it seems to decrease variability.
 Imputation with regression and stochastic regression does ok, but has more spread out density than the original.
 
 Imputation with multiple induction seems to keep the original density shape while keeping all the data.
-
 
 #### Of course, each dataset you produced will lead to different modeling results, but we won't go into that in today's lab.
