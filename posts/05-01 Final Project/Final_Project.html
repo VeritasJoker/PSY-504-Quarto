@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The Amazon reviews dataset consists of reviews from Amazon. The data span a period of 18 years, including ~35 million reviews up to March 2013. Reviews include product and user information, ratings, and a plaintext review. Here, we take review score 1 and 2 as negative, and 4 and 5 as positive. Samples of score 3 are ignored.</p>
 <section id="loading-packages-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="loading-packages-dataset">Loading Packages &amp; Dataset</h2>
-<div id="60ec47e9" class="cell" data-execution_count="1">
+<div id="8747f7dc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># os</span></span>
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="b256a16d" class="cell" data-execution_count="2">
+<div id="8bf88cbf" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="eda" class="level2">
 <h2 class="anchored" data-anchor-id="eda">EDA</h2>
-<div id="2135598a" class="cell" data-execution_count="3">
+<div id="a66b312d" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Length of the data</span></span>
@@ -202,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The dataset is too huge. To save computational resources, we are going to sample 1% of the data to analyze. All the methods should still work on the full dataset though.</p>
-<div id="84869c74" class="cell" data-execution_count="4">
+<div id="e251cd16" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample 1% of the data for each rating category</span></span>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>Just want to double check that the dataset is still balanced after sampling.</p>
-<div id="c6a88d6f" class="cell" data-execution_count="5">
+<div id="bc340b67" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the distribution of ratings</span></span>
@@ -254,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Here are some example reviews from the sampled data:</p>
-<div id="345ef3ff" class="cell" data-execution_count="6">
+<div id="954c3585" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train_df.head())</span>
@@ -288,10 +288,10 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <section id="embedding-extraction" class="level2">
 <h2 class="anchored" data-anchor-id="embedding-extraction">Embedding Extraction</h2>
 <p>Let’s first extract features, in this case embeddings, which are internal activations of Large Language Models (LLMs). LLMs relies on the Transformer architecture to sculpt the embedding of a given word based on the surrounding context. The model is composed of a repeated circuit motif—called the “attention head” — by which the model can “attend” to surrounding words in the context window when determining the meaning of the current word.</p>
-<p>Here we use a model named <a href="https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L3-v2">paraphrase-MiniLM-L3-v2</a>. This is a really small model (relative to the other current LLMs) with about 61 million parameters. It is composed of 3 layers, each of which contains each of which contains 12 attention heads that influence the embedding as it proceeds to the subsequent layer. The embeddings at each layer of the model comprise 384 features and the context window includes the surrounding 512 tokens.</p>
-<p>Note that usually we get word embeddings from the LLMs. To simply things, here we directly gets a 768 dimension vector for the whole sentence or paragraph, using the <a href="https://sbert.net/index.html">sentence transformer</a> library.</p>
+<p>Here we use a model named <a href="https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L3-v2">paraphrase-MiniLM-L3-v2</a>. This is a really small model (relative to the other current LLMs) with about 61 million parameters. It is composed of 3 layers, each of which contains 12 attention heads that influence the embedding as it proceeds to the subsequent layer. The embeddings at each layer of the model comprise 384 features and the context window includes the surrounding 512 tokens.</p>
+<p>Note that usually we get word embeddings from the LLMs. To simply things, here we directly gets a 384 dimension vector for the whole sentence or paragraph, using the <a href="https://sbert.net/index.html">sentence transformer</a> library.</p>
 <p>To access this model, we have to register an account on Huggingface and get an access token. If you are curious, <a href="https://huggingface.co/docs/hub/en/security-tokens">this page</a> has more information about it. Here, we store the access token in a <code>.env</code> file under the variable <code>HUG_KEY</code> and load it through the <code>dotenv</code> package.</p>
-<div id="587e715b" class="cell" data-execution_count="7">
+<div id="a8a156d9" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
@@ -301,9 +301,9 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Now that we have loaded the model, we are going to generate three types of embeddings. First, we use the titles of the reviews to generate embeddings, which we call <code>title_emb</code>. Second, we use the full reviews to generate embeddings, which we call <code>review_emb</code>. Note that if a review is longer than 514 words, then model will only use the first 514 words. One way to improve this is to seperate the full reviews into sentences, generate embeddings for each sentence, and then average the sentence embeddings. This we call <code>sent_emb</code>.</p>
+<p>Now that we have loaded the model, we are going to generate three types of embeddings. First, we use the titles of the reviews to generate embeddings, which we call <code>title_emb</code>. Second, we use the full reviews to generate embeddings, which we call <code>review_emb</code>. Note that if a review is longer than 512 words, then model will only use the first 512 words. One way to improve this is to seperate the full reviews into sentences, generate embeddings for each sentence, and then average the sentence embeddings. This we call <code>sent_emb</code>.</p>
 <p>We first look at what <code>sent_tokenize</code> from the <code>nltk</code> package does:</p>
-<div id="3303cd49" class="cell" data-execution_count="8">
+<div id="2a55eea4" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of a negative review</span></span>
@@ -322,7 +322,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 </div>
 </div>
 <p>Now we will define the functions for embedding extractions and extract the three types of embeddings.</p>
-<div id="5ee704b1" class="cell" data-execution_count="9">
+<div id="af73c6c8" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> full_text_emb(model, text):</span>
@@ -347,7 +347,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 </details>
 </div>
 <p>Because we have so much data, generating embeddings still takes a lot of computational resources even after the 1% sampling. Thus, we are just going to load the already generated <code>title_emb</code> and <code>review_emb</code> and ignore <code>sent_emb</code> for now. If you are interested, here is the <a href="https://github.com/VeritasJoker/PSY-504-Quarto/blob/main/posts/05-01%20Final%20Project/emb_extract.py">script</a> we used to batch the input and speed up the embedding extraction process.</p>
-<div id="5ee93416" class="cell" data-execution_count="10">
+<div id="1680057b" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the sampled csv</span></span>
@@ -375,9 +375,9 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 </section>
 <section id="classification" class="level2">
 <h2 class="anchored" data-anchor-id="classification">Classification</h2>
-<p>Now we have both the embeddings and the corresponding review results (positive and negative), we can start to perform classification. We will use a few classifiers, including Logistic Regression and Ridge Regression Classifier. We will also employ some ensemble methods, like Adaboost and Random Forest. We will first define each of them in separate functions.</p>
+<p>Now we have both the embeddings and the corresponding review results (positive and negative), we can start to perform classification. We will use a few classifiers, including Logistic Regression and Ridge Regression Classifier. We will also employ some ensemble methods, like Adaboost and Random Forest. We will implement each of them in separate functions.</p>
 <p>First we will define a scale function that scales all input data.</p>
-<div id="5f0344be" class="cell" data-execution_count="11">
+<div id="661948f8" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Scale(data):</span>
@@ -387,8 +387,8 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Here are the classifiers, including logistic regression without penalty, logistic regression with elastic-net penalty, and ridge classifier. We customize the number of iteraions through the <code>max_iter</code> parameter. If you are curious about each methods and the function that is implemented in Python, here are more info on sklearn about <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">logistic regression</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html">ridge classifier</a>.</p>
-<div id="5293af0e" class="cell" data-execution_count="12">
+<p>Here are the classifiers, including logistic regression without penalty, logistic regression with elastic-net penalty, and ridge classifier. We customize the number of iterations through the <code>max_iter</code> parameter. If you are curious about each method and the function that is implemented in Python, here are more info on sklearn about <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">logistic regression</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html">ridge classifier</a>.</p>
+<div id="235b7fa3" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> LogReg(train_x, train_y, test_x, test_y, <span class="bu">iter</span>):</span>
@@ -417,8 +417,8 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ridge.score(test_x, test_y)  <span class="co"># return accuracy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Here are the ensemble methods, including <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html">Adaboost</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">Random Forest</a>. Here, we customize the number of parameters for Adaboost and the number of trees for Random Forest through the <code>n_estimators</code> parameter.</p>
-<div id="61017192" class="cell" data-execution_count="13">
+<p>Here are the ensemble methods, including <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html">Adaboost</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">Random Forest</a>. We customize the number of parameters for Adaboost and the number of trees for Random Forest through the <code>n_estimators</code> parameter.</p>
+<div id="dd1d7abd" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> AdaBoost(train_x, train_y, test_x, test_y, n_est):</span>
@@ -436,7 +436,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 </details>
 </div>
 <p>Some of the classification methods, especially Adaboost, takes a long time to run. So we are not going to actually run them here. Here are the some sample code to run logistic regression for <code>review_emb</code> and <code>title_emb</code>. The actual script we used is <a href="https://github.com/VeritasJoker/PSY-504-Quarto/blob/main/posts/05-01%20Final%20Project/classifier.py">here</a>.</p>
-<div id="d26fb294" class="cell" data-execution_count="14">
+<div id="295430e3" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>review_log_score <span class="op">=</span> LogReg(train_review_emb, train_y, test_reiew_emb, test_y, <span class="dv">500</span>)</span>
@@ -444,7 +444,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 </details>
 </div>
 <p>Instead, we will directly load a summary csv of all the classification results and checkout how it looks.</p>
-<div id="68c7ad7b" class="cell" data-execution_count="15">
+<div id="84bd65e8" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>classification_results <span class="op">=</span> pd.read_csv(<span class="st">"scores.csv"</span>)</span>
@@ -530,8 +530,8 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 </div>
 </div>
 </div>
-<p>We can also plot the scores on a bar plot.</p>
-<div id="1967a05f" class="cell" data-execution_count="16">
+<p>We can also plot the classification perf on a bar plot.</p>
+<div id="f276b45e" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
@@ -563,11 +563,11 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <p>Using the titles for embeddings is on par with using the full review, which is pretty surprising but makes sense. There probably is enough info in the review title most of the times to determine if the review is positive or negative.</p>
 <p>Again, this is just a simple tutorial demonstrating some classification methods. In order to perform a comprehensive classification study, here are some more steps to include:</p>
 <ul>
-<li>Using better models for embedding. The current model is super small in terms of LLMs and previous research have shown that bigger and better trained models will have better performance.</li>
+<li>Use better models for embedding. The current model is super small in terms of LLMs and previous research have shown that bigger and better trained models will have better performance.</li>
 </ul>
 <!-- -->
 <ul>
-<li><p>Implementing the third type of embedding <code>sent_emb</code>, which will incorporate the full review into the embedding.</p></li>
+<li><p>Implement the third type of embedding <code>sent_emb</code>, which will incorporate the full review into the embedding.</p></li>
 <li><p>Perform some parameter search with our models, especially with the ensemble methods.</p></li>
 <li><p>Use the full data. Here we are only sampling 1% of the data.</p></li>
 </ul>
@@ -1203,9 +1203,9 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-184"><a href="#cb22-184" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-185"><a href="#cb22-185" aria-hidden="true" tabindex="-1"></a>Let's first extract features, in this case embeddings, which are internal activations of Large Language Models (LLMs). LLMs relies on the Transformer architecture to sculpt the embedding of a given word based on the surrounding context. The model is composed of a repeated circuit motif—called the "attention head" — by which the model can "attend" to surrounding words in the context window when determining the meaning of the current word.</span>
 <span id="cb22-186"><a href="#cb22-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a>Here we use a model named <span class="co">[</span><span class="ot">paraphrase-MiniLM-L3-v2</span><span class="co">](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L3-v2)</span>. This is a really small model (relative to the other current LLMs) with about 61 million parameters. It is composed of 3 layers, each of which contains each of which contains 12 attention heads that influence the embedding as it proceeds to the subsequent layer. The embeddings at each layer of the model comprise 384 features and the context window includes the surrounding 512 tokens.</span>
+<span id="cb22-187"><a href="#cb22-187" aria-hidden="true" tabindex="-1"></a>Here we use a model named <span class="co">[</span><span class="ot">paraphrase-MiniLM-L3-v2</span><span class="co">](https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L3-v2)</span>. This is a really small model (relative to the other current LLMs) with about 61 million parameters. It is composed of 3 layers, each of which contains 12 attention heads that influence the embedding as it proceeds to the subsequent layer. The embeddings at each layer of the model comprise 384 features and the context window includes the surrounding 512 tokens.</span>
 <span id="cb22-188"><a href="#cb22-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-189"><a href="#cb22-189" aria-hidden="true" tabindex="-1"></a>Note that usually we get word embeddings from the LLMs. To simply things, here we directly gets a 768 dimension vector for the whole sentence or paragraph, using the <span class="co">[</span><span class="ot">sentence transformer</span><span class="co">](https://sbert.net/index.html)</span> library.</span>
+<span id="cb22-189"><a href="#cb22-189" aria-hidden="true" tabindex="-1"></a>Note that usually we get word embeddings from the LLMs. To simply things, here we directly gets a 384 dimension vector for the whole sentence or paragraph, using the <span class="co">[</span><span class="ot">sentence transformer</span><span class="co">](https://sbert.net/index.html)</span> library.</span>
 <span id="cb22-190"><a href="#cb22-190" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-191"><a href="#cb22-191" aria-hidden="true" tabindex="-1"></a>To access this model, we have to register an account on Huggingface and get an access token. If you are curious, <span class="co">[</span><span class="ot">this page</span><span class="co">](https://huggingface.co/docs/hub/en/security-tokens)</span> has more information about it. Here, we store the access token in a <span class="in">`.env`</span> file under the variable <span class="in">`HUG_KEY`</span> and load it through the <span class="in">`dotenv`</span> package.</span>
 <span id="cb22-192"><a href="#cb22-192" aria-hidden="true" tabindex="-1"></a></span>
@@ -1218,7 +1218,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-199"><a href="#cb22-199" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb22-200"><a href="#cb22-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-201"><a href="#cb22-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a>Now that we have loaded the model, we are going to generate three types of embeddings. First, we use the titles of the reviews to generate embeddings, which we call <span class="in">`title_emb`</span>. Second, we use the full reviews to generate embeddings, which we call <span class="in">`review_emb`</span>. Note that if a review is longer than 514 words, then model will only use the first 514 words. One way to improve this is to seperate the full reviews into sentences, generate embeddings for each sentence, and then average the sentence embeddings. This we call <span class="in">`sent_emb`</span>.</span>
+<span id="cb22-202"><a href="#cb22-202" aria-hidden="true" tabindex="-1"></a>Now that we have loaded the model, we are going to generate three types of embeddings. First, we use the titles of the reviews to generate embeddings, which we call <span class="in">`title_emb`</span>. Second, we use the full reviews to generate embeddings, which we call <span class="in">`review_emb`</span>. Note that if a review is longer than 512 words, then model will only use the first 512 words. One way to improve this is to seperate the full reviews into sentences, generate embeddings for each sentence, and then average the sentence embeddings. This we call <span class="in">`sent_emb`</span>.</span>
 <span id="cb22-203"><a href="#cb22-203" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-204"><a href="#cb22-204" aria-hidden="true" tabindex="-1"></a>We first look at what <span class="in">`sent_tokenize`</span> from the <span class="in">`nltk`</span> package does:</span>
 <span id="cb22-205"><a href="#cb22-205" aria-hidden="true" tabindex="-1"></a></span>
@@ -1279,7 +1279,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-266"><a href="#cb22-266" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-267"><a href="#cb22-267" aria-hidden="true" tabindex="-1"></a><span class="fu">## Classification</span></span>
 <span id="cb22-268"><a href="#cb22-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-269"><a href="#cb22-269" aria-hidden="true" tabindex="-1"></a>Now we have both the embeddings and the corresponding review results (positive and negative), we can start to perform classification. We will use a few classifiers, including Logistic Regression and Ridge Regression Classifier. We will also employ some ensemble methods, like Adaboost and Random Forest. We will first define each of them in separate functions.</span>
+<span id="cb22-269"><a href="#cb22-269" aria-hidden="true" tabindex="-1"></a>Now we have both the embeddings and the corresponding review results (positive and negative), we can start to perform classification. We will use a few classifiers, including Logistic Regression and Ridge Regression Classifier. We will also employ some ensemble methods, like Adaboost and Random Forest. We will implement each of them in separate functions.</span>
 <span id="cb22-270"><a href="#cb22-270" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-271"><a href="#cb22-271" aria-hidden="true" tabindex="-1"></a>First we will define a scale function that scales all input data.</span>
 <span id="cb22-272"><a href="#cb22-272" aria-hidden="true" tabindex="-1"></a></span>
@@ -1291,7 +1291,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-280"><a href="#cb22-280" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span>
 <span id="cb22-281"><a href="#cb22-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-282"><a href="#cb22-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a>Here are the classifiers, including logistic regression without penalty, logistic regression with elastic-net penalty, and ridge classifier. We customize the number of iteraions through the <span class="in">`max_iter`</span> parameter. If you are curious about each methods and the function that is implemented in Python, here are more info on sklearn about <span class="co">[</span><span class="ot">logistic regression</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)</span> and <span class="co">[</span><span class="ot">ridge classifier</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html)</span>.</span>
+<span id="cb22-283"><a href="#cb22-283" aria-hidden="true" tabindex="-1"></a>Here are the classifiers, including logistic regression without penalty, logistic regression with elastic-net penalty, and ridge classifier. We customize the number of iterations through the <span class="in">`max_iter`</span> parameter. If you are curious about each method and the function that is implemented in Python, here are more info on sklearn about <span class="co">[</span><span class="ot">logistic regression</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)</span> and <span class="co">[</span><span class="ot">ridge classifier</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html)</span>.</span>
 <span id="cb22-284"><a href="#cb22-284" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-287"><a href="#cb22-287" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb22-288"><a href="#cb22-288" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> LogReg(train_x, train_y, test_x, test_y, <span class="bu">iter</span>):</span>
@@ -1320,7 +1320,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-311"><a href="#cb22-311" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ridge.score(test_x, test_y)  <span class="co"># return accuracy</span></span>
 <span id="cb22-312"><a href="#cb22-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-313"><a href="#cb22-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-314"><a href="#cb22-314" aria-hidden="true" tabindex="-1"></a>Here are the ensemble methods, including <span class="co">[</span><span class="ot">Adaboost</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html)</span> and <span class="co">[</span><span class="ot">Random Forest</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)</span>. Here, we customize the number of parameters for Adaboost and the number of trees for Random Forest through the <span class="in">`n_estimators`</span> parameter.</span>
+<span id="cb22-314"><a href="#cb22-314" aria-hidden="true" tabindex="-1"></a>Here are the ensemble methods, including <span class="co">[</span><span class="ot">Adaboost</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html)</span> and <span class="co">[</span><span class="ot">Random Forest</span><span class="co">](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)</span>. We customize the number of parameters for Adaboost and the number of trees for Random Forest through the <span class="in">`n_estimators`</span> parameter.</span>
 <span id="cb22-315"><a href="#cb22-315" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-318"><a href="#cb22-318" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb22-319"><a href="#cb22-319" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> AdaBoost(train_x, train_y, test_x, test_y, n_est):</span>
@@ -1353,7 +1353,7 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-350"><a href="#cb22-350" aria-hidden="true" tabindex="-1"></a>classification_results</span>
 <span id="cb22-351"><a href="#cb22-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-352"><a href="#cb22-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-353"><a href="#cb22-353" aria-hidden="true" tabindex="-1"></a>We can also plot the scores on a bar plot.</span>
+<span id="cb22-353"><a href="#cb22-353" aria-hidden="true" tabindex="-1"></a>We can also plot the classification perf on a bar plot.</span>
 <span id="cb22-354"><a href="#cb22-354" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-357"><a href="#cb22-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb22-358"><a href="#cb22-358" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>)</span>
@@ -1380,11 +1380,11 @@ Great show.................I want that freakin' car too!!!!!The show was totally
 <span id="cb22-379"><a href="#cb22-379" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-380"><a href="#cb22-380" aria-hidden="true" tabindex="-1"></a>Again, this is just a simple tutorial demonstrating some classification methods. In order to perform a comprehensive classification study, here are some more steps to include:</span>
 <span id="cb22-381"><a href="#cb22-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-382"><a href="#cb22-382" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Using better models for embedding. The current model is super small in terms of LLMs and previous research have shown that bigger and better trained models will have better performance.</span>
+<span id="cb22-382"><a href="#cb22-382" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Use better models for embedding. The current model is super small in terms of LLMs and previous research have shown that bigger and better trained models will have better performance.</span>
 <span id="cb22-383"><a href="#cb22-383" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-384"><a href="#cb22-384" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- --&gt;</span></span>
 <span id="cb22-385"><a href="#cb22-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-386"><a href="#cb22-386" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Implementing the third type of embedding <span class="in">`sent_emb`</span>, which will incorporate the full review into the embedding.</span>
+<span id="cb22-386"><a href="#cb22-386" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Implement the third type of embedding <span class="in">`sent_emb`</span>, which will incorporate the full review into the embedding.</span>
 <span id="cb22-387"><a href="#cb22-387" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-388"><a href="#cb22-388" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Perform some parameter search with our models, especially with the ensemble methods.</span>
 <span id="cb22-389"><a href="#cb22-389" aria-hidden="true" tabindex="-1"></a></span>
