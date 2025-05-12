@@ -87,8 +87,8 @@
     "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-glm",
     "href": "posts/03-31 bayesian GLM/bayesian glm.html#bayesian-glm",
     "title": "Bayesian GLM",
-    "section": "",
-    "text": "Bayesian Inference\nGeneralized Linear Models (GLMs)"
+    "section": "Bayesian GLM",
+    "text": "Bayesian GLM\n\nBayesian Inference\nGeneralized Linear Models (GLMs)"
   },
   {
     "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#bayes-rule",
@@ -172,7 +172,7 @@
     "href": "posts/03-31 bayesian GLM/bayesian glm.html#evaluating-logistic",
     "title": "Bayesian GLM",
     "section": "Evaluating Logistic",
-    "text": "Evaluating Logistic\n\n\n\ntab_model(log_model_freq)\n\n\n\n\n \nmass_trans_spend_right\n\n\nPredictors\nOdds Ratios\nCI\np\n\n\n(Intercept)\n2.28\n1.74 – 3.00\n&lt;0.001\n\n\nage\n0.99\n0.99 – 1.00\n0.007\n\n\nsex [Male]\n0.77\n0.66 – 0.91\n0.001\n\n\nsei10\n0.99\n0.99 – 1.00\n&lt;0.001\n\n\nObservations\n2590\n\n\nR2 Tjur\n0.014\n\n\n\n\n\n\n\n\n\ntab_model(log_model_bay)\n\n\n\n\n \nmass_trans_spend_right\n\n\nPredictors\nOdds Ratios\nCI (95%)\n\n\nIntercept\n2.28\n1.74 – 2.98\n\n\nage\n0.99\n0.99 – 1.00\n\n\nsex: Male\n0.77\n0.66 – 0.91\n\n\nsei10\n0.99\n0.99 – 1.00\n\n\nObservations\n2590\n\n\nR2 Bayes\n0.015"
+    "text": "Evaluating Logistic\n\n\n\ntab_model(log_model_freq)\n\n\n\n\n \nmass trans spend right\n\n\nPredictors\nOdds Ratios\nCI\np\n\n\n(Intercept)\n2.28\n1.74 – 3.00\n&lt;0.001\n\n\nage\n0.99\n0.99 – 1.00\n0.007\n\n\nsex [Male]\n0.77\n0.66 – 0.91\n0.001\n\n\nsei10\n0.99\n0.99 – 1.00\n&lt;0.001\n\n\nObservations\n2590\n\n\nR2 Tjur\n0.014\n\n\n\n\n\n\n\n\n\ntab_model(log_model_bay)\n\n\n\n\n \nmass trans spend right\n\n\nPredictors\nOdds Ratios\nCI (95%)\n\n\nIntercept\n2.28\n1.74 – 2.98\n\n\nage\n0.99\n0.99 – 1.00\n\n\nsex: Male\n0.77\n0.66 – 0.91\n\n\nsei 10\n0.99\n0.99 – 1.00\n\n\nObservations\n2590\n\n\nR2 Bayes\n0.015"
   },
   {
     "objectID": "posts/03-31 bayesian GLM/bayesian glm.html#marginal-effects",
@@ -214,7 +214,7 @@
     "href": "posts/03-31 bayesian GLM/bayesian glm.html#other-glms",
     "title": "Bayesian GLM",
     "section": "Other GLMs",
-    "text": "Other GLMs\nLots of Bayesian GLMs, all in one package!\n\nmodel = brm(\n  y ~ 1 + x1 + x2 + x3 + (1+x4|x3), # multilevel\n  family=bernoulli(link=\"logit\"), # logistic\n  family=cumulative(link=\"logit\"), # ordinal\n  family=categorical(link=\"logit\"), # multinomial\n  family=poisson(link=\"log\"), # poisson\n  family=negbinomial(link=\"log\") # negative binomial\n  family=zero_inflated_poisson(link=\"log\") # zero-inflated poisson\n  family=zero_inflated_negbinomial(link=\"log\") # zero-inflated negbinom\n  data=data,\n  warmup=500,\n  iter=2000,\n  cores=2,\n  chains=2,\n  seed=123\n)"
+    "text": "Other GLMs\nLots of Bayesian GLMs, all in one package!\n\nmodel = brm(\n  y ~ 1 + x1 + x2 + x3 + (1+x4|x3), # multilevel\n  family=bernoulli(link=\"logit\"), # logistic\n  family=cumulative(link=\"logit\"), # ordinal\n  family=categorical(link=\"logit\"), # multinomial\n  family=poisson(link=\"log\"), # poisson\n  family=negbinomial(link=\"log\") # negative binomial\n  family=zero_inflated_poisson(link=\"log\") # zero-inflated poisson\n  family=zero_inflated_negbinomial(link=\"log\") # zero-inflated negbinom\n  data=data,\n  warmup=500,\n  iter=2000,\n  cores=2,\n  chains=2,\n  seed=123\n)\n\n\n\n\nPSY 504"
   },
   {
     "objectID": "posts/02-26 multinomial/Lab4_multinom_Questions-1.html",
